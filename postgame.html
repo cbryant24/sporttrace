@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Find Pickup Sports Games Locally">
     <meta name="author" content="Nico / Caleb / Chris">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>    
+    <script src='create_game.js'></script>
 
     <title>Sports Finder</title>
 
@@ -22,7 +24,6 @@
   </head>
 
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -51,24 +52,32 @@
   
     <header class="masthead">
 
-      <iframe class="game-map post-map" frameborder="0"
+      <!-- <iframe class="game-map post-map" frameborder="0"
       src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJKZcT2t_n3IARhA7AdKhMkuQ&key=AIzaSyCe4HExhxjnlIrfiI7GrPX_l7ZoFpmwdGM"  allowfullscreen></iframe>
-      
-
-
+       -->
+       <div class='game-map post-map' id="googleMap" style="width:100%;height:400px">
+         <!-- this is where the map is -->
+       </div>
+       <form action="" id='create-game-form'>
           <div class="postgame row">
             <div class="col-sm-6 col-12">
               <h5>Title</h5>
-              <input class="game_title_input" placeholder="Your Title"></input><br>
+              <input class="game_title_input" placeholder="Your Title" value='we ballin at saddleback'></input><br>
               <hr>
               <div class="date row">
                 <div class="col-sm-6 col-12">
                   <h5>Time</h5>
-                  <input type="time" class="game_time_input" placeholder="Game Time"></input>
-                </div>  
+                  <input type="time" class="game_time_input" placeholder="Game Time" value='09:00'></input>
+                </div> 
+                <div class="col-sm-6 col-12">
+                    <h5>Location</h5>
+                    <input type="text" class="game_time_input" id='pac-input' placeholder="Game Location"></input>        
+                  </div> 
+                  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
+                  &libraries=places&callback=initAutocomplete"></script>
                 <div class="col-sm-6 col-12">
                   <h5>Date</h5>
-                  <input type="date" class="game_time_input" placeholder="Game Time"></input>        
+                  <input type="date" class="game_time_input" id='game_date'placeholder="Game Date" value='2017-09-30'></input>        
                 </div>
               </div>
               <hr>
@@ -82,12 +91,13 @@
             </div>
             <div class="col-sm-6 col-12">
               <h5>Game Description</h5>
-              <textarea class="game_description_input" placeholder="Your Description"></textarea>
+              <textarea class="game_description_input" placeholder="Your Description" value='meetup at saddleback yo!'></textarea>
 
-              <a href="#" class="btn btn-outline btn-xl viewbtn postsubmit">Submit</a>
+              <a href="#" type='submit' id='submit-button' class="btn btn-outline btn-xl viewbtn postsubmit">Submit</a>
               
             </div>
           </div>
+        </form>
 
    
           
