@@ -157,7 +157,7 @@ function Display_Games(games) {
                 class: 'btn btn-outline btn-xl viewbtn',
                 text: 'View'
             })
-            $('.viewbtn').on('click', join_game.display_selected('value'))
+            // $('.viewbtn').on('click', join_game.display_selected('value'))
             $single_game.append($game_title);
             $single_game.append($game_time);
             $single_game.append($game_vibe);
