@@ -366,17 +366,21 @@ textarea{
   height: 109px;
 }
 
-.postgame.row{
-  min-height: 31vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  margin-top: -7px;
-  padding-top: 10px;
+.postgame.row {
+    min-height: 39vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 0;
+    padding-top: 10px;
 }
 .postsubmit{
   margin:20px 0;
+  -webkit-appearance: none;
 }
 .post-map{
-  height: 63vh !important;
+  height: 56vh !important;
+}
+form#create-game-form {
+    padding: 0;
 }
 .date.row > .col-sm-6{
   padding: 0;
@@ -432,8 +436,12 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
   max-width: 100%;
   margin: 0;
 }
-
-
+.wide{
+  padding: 0;
+}
+.date col-12{
+  padding: 0;
+}
 .col-md-4,.col-lg-4, .col-lg-8, .col-md-8{
     padding: 0;
     padding-top: 10px;
