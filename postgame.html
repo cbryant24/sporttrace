@@ -60,41 +60,38 @@
        </div>
        <form action="" id='create-game-form'>
           <div class="postgame row">
+            <!-- Left -->
             <div class="col-sm-6 col-12">
               <h5>Title</h5>
               <input class="game_title_input" placeholder="Your Title" value='we ballin at saddleback'></input><br>
               <hr>
               <div class="date row">
-                <div class="col-sm-6 col-12">
-                  <h5>Time</h5>
-                  <input type="time" class="game_time_input" placeholder="Game Time" value='09:00'></input>
-                </div> 
-                <div class="col-sm-6 col-12">
-                    <h5>Location</h5>
-                    <input type="text" class="game_time_input" id='pac-input' placeholder="Game Location"></input>        
+                  <div class="col-sm-6 col-12">
+                    <h5>Time</h5>
+                    <input type="time" class="game_time_input" placeholder="Game Time" value='09:00'></input>
                   </div> 
-                  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
-                  &libraries=places&callback=initAutocomplete"></script>
-                <div class="col-sm-6 col-12">
-                  <h5>Date</h5>
-                  <input type="date" class="game_time_input" id='game_date'placeholder="Game Date" value='2017-09-30'></input>        
+
+                  <div class="col-sm-6 col-12">
+                    <h5>Date</h5>
+                    <input type="date" class="game_time_input" id='game_date'placeholder="Game Date" value='2017-09-30'></input> 
+                  </div> 
                 </div>
-              </div>
               <hr>
               <h5>Vibe</h5>
               <select name="vibe" class="game_vibe_input">
                 <option value="casual">Casual</option>
                 <option value="competitive">Competitive</option>
               </select>
-              
-
             </div>
+            <!-- Right -->
             <div class="col-sm-6 col-12">
+              <h5>Location</h5>
+              <input type="text" class="game_time_input" id='pac-input' placeholder="Game Location"></input>
+              <hr>
               <h5>Game Description</h5>
               <textarea class="game_description_input" placeholder="Your Description" value='meetup at saddleback yo!'></textarea>
 
               <a href="#" type='submit' id='submit-button' class="btn btn-outline btn-xl viewbtn postsubmit">Submit</a>
-              
             </div>
           </div>
         </form>
@@ -106,7 +103,8 @@
 
 
     </header>
-  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
+                    &libraries=places&callback=initAutocomplete"></script>
 
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->
 

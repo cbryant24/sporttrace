@@ -127,7 +127,7 @@ function Create_Game() {
         this.complete_game.game_description = $('.game_description_input')[0].value
         console.log(JSON.stringify(this.complete_game));
         $.ajax({
-            url: '/proto',
+            url: '/data.php?action=insert',
             method: 'post',
             data: {
                 complete_game: this.complete_game,
