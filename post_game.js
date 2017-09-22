@@ -94,7 +94,31 @@ function Create_Game() {
     };
     this.collect_game_data = function(event) {
         event.preventDefault()
+
+        if( !$('.game_title_input')[0].value || !$(".game_time_input")[0].value || !$('#game_date')[0].value ||
+        !this.location[0] || !$('.game_description_input')[0].value) {
+            return 
+        }
+
+        //Normalizing the user date input date with regex from 2017-09-30 to 9/30/2017 to match javascript date
+        //object formating
+        debugger
+        let user_date = $('#game_date')[0].value.replace(/(\d{4})-(\d{2})-(\d{2})/, '$2/$3/$1' )
+        user_date = user_date[0] === '0' ? user_date.substring(1):date;
+        let current_date = new Date().toLocaleDateString();
+        let current_mil_time = new Date().toString();
+        current_mil_time = current_mil_time.substr(current_mil_time.search(/([0-9]){1,2}(?=:)/g), 5);
         
+        if(user_date < current_date) {
+            console.log('game date must be in the future')
+            return
+        }
+
+        if($(".game_time_input")[0].value < current_mil_time && user_date === current_date) {
+            console.log('game time must be in the future')
+            return
+        }
+
         this.complete_game.game_title = $('.game_title_input')[0].value;
         this.complete_game.game_time = $(".game_time_input")[0].value;
         this.complete_game.game_date = $('#game_date')[0].value;
@@ -105,7 +129,10 @@ function Create_Game() {
         $.ajax({
             url: '/data.php?action=insert',
             method: 'post',
-            data: this.complete_game
+            data: {
+                complete_game: this.complete_game,
+                action: 'insert'
+            }
         })
     }
 }

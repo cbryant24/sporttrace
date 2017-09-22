@@ -9,7 +9,11 @@ $('document').ready(() => {
 
     // })
     display_games.load_games();
-    $()
+    view_game = new View_Game();
+    $('.viewbtn').on('click', function(event){
+        event.preventDefault();
+        view_game.load_display(event)
+    })
 })
 
 function myMap() {
@@ -53,6 +57,7 @@ function Display_Games(games) {
        game_time: ' 7:30 ',
        game_date: '11/12/2017',
        vibe: ' casual ',
+       game_id: 0
    },
    {
        game_title: ' Brick City ',
@@ -69,6 +74,7 @@ function Display_Games(games) {
        game_time: ' 9:00 ',
        game_date: '11/12/2017',
        vibe: 'casual ',
+       game_id: 0
    },
    {
        game_title: ' Buckets ',
@@ -86,6 +92,7 @@ function Display_Games(games) {
        game_time: ' 10:00 ',
        game_date: '11/12/2017',
        vibe: 'casual ',
+       game_id: 0
    },
    {
        game_title: ' Ankle Breakers ',
@@ -103,6 +110,7 @@ function Display_Games(games) {
        game_time: ' 12:00 ',
        game_date: '11/12/2017',
        vibe: ' casual ',
+       game_id: 0
    },
    {
        game_title: 'Bitches and Ballers ',
@@ -120,6 +128,7 @@ function Display_Games(games) {
        game_time: ' 18:00 ',
        game_date: '11/12/2017',
        vibe: ' competitive ',
+       game_id: 0
    }];
     this.all_games = [
         ['Bondi Beach', 33.552085, -117.666035, 4],
@@ -132,7 +141,7 @@ function Display_Games(games) {
         let $game_list_container = $('.game-list-container');
         let $game_container = $('<div>')
         for(let i = 0; i < this.complete_games.length; i++) {
-            let $single_game = $('<div>', {
+            let $single_game = $(`<div>`, {
                 class: 'single-game row',
                 style: 'background',
             })
@@ -140,7 +149,6 @@ function Display_Games(games) {
                 class: 'col-3 textpad',
                 text: this.complete_games[i].game_title,
             })
-            debugger;
             let $game_time = $('<div>', {
                 class: 'col-3 textpad',
                 text: `${this.complete_games[i].game_time} ${this.complete_games[i].game_date}`
@@ -153,10 +161,15 @@ function Display_Games(games) {
                 class: 'col-4'
             })
             let $view_button = $('<a>', {
-                href: '#',
+                href: '',
+                id: this.game_id,
                 class: 'btn btn-outline btn-xl viewbtn',
-                text: 'View'
+                text: 'View',
+                game_info: `${this.complete_games[i].game_title}|${this.complete_games[i].description}|${this.complete_games[i].game_date}|${this.complete_games[i].game_time}`
+                
             })
+            let view_info = $view_button[0];
+            view_info.game = this.complete_games[i];
             // $('.viewbtn').on('click', join_game.display_selected('value'))
             $single_game.append($game_title);
             $single_game.append($game_time);
@@ -183,8 +196,39 @@ function Join_Game() {
         game_description: '',
         game_creator: false
     }
-    // this.
+}
+
+function View_Game() {
+    this.load_display = function(game_details) {
+        $('.gameinfobox').empty()
+        debugger
+        let $gameinfobox = $('.gameinfobox')
+        let game_arr = game_details.target.attributes[2].textContent.split('|');
+        let $game_title = $('<h3>', {
+            text: game_arr[0]
+        })
+        let $game_descr = $('<p>',{
+            text: game_arr[1],
+        })
+
+        let $game_date = $('<h6>', {
+            text: `${game_arr[2]} ${game_arr[3]}`
+        })
+
+        let $cancel_btn = $('<a>', {
+            href: '#',
+            class: 'btn btn-outline btn-xl joinbtn',
+            text: 'Join Game'
+        })
+        $gameinfobox.append($game_title);
+        $gameinfobox.append('<hr>');
+        $gameinfobox.append($game_descr);
+        $gameinfobox.append($game_date);
+        $gameinfobox.append('<hr>');
+        $gameinfobox.append($cancel_btn);
+    }
 }
 
 var display_games = null;
 var join_game = null;
+var view_game = null;

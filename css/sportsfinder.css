@@ -82,9 +82,9 @@ hr {
   padding: 15px 50px;
   margin: 10px;
 }
-.joinbtn{
+/* .joinbtn{
   display: block;
-}
+} */
 .viewbtn, .joinbtn{
   margin: 0;
   padding: 15px 20%;
