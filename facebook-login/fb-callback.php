@@ -4,7 +4,7 @@ start your session, load your creds, facebook sdk, and make the facebook object
 */
 session_start();//start your session
 include('facebook_info.php');//make sure to include your facebook credentials!
-include('facebook-php-sdk-v4-5.0.0');//then you'll need to include the facebook sdk
+include('libraries/php-graph-sdk');//then you'll need to include the facebook sdk
 
 $fb = new Facebook\Facebook([//create a new facebook object
   'app_id' => FACEBOOK_APP_ID, //Replace {app-id} with your app id
@@ -55,7 +55,7 @@ echo '<h3>Metadata</h3>';
 var_dump($tokenMetadata);
 
 // Validation (these will throw FacebookSDKException's when they fail)
-$tokenMetadata->validateAppId('{app-id}'); // Replace {app-id} with your app id
+$tokenMetadata->validateAppId(FACEBOOK_APP_ID); // Replace {app-id} with your app id
 // If you know the user ID this access token belongs to, you can validate it here
 //$tokenMetadata->validateUserId('123');
 $tokenMetadata->validateExpiration();
