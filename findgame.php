@@ -18,13 +18,10 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sportsfinder.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>    
-    
-    <script src='findgame.js'></script>
 
   </head>
 
-  <body>
+  <body id="page-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -35,13 +32,31 @@
         <div class="nav-link-box">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="findgame.html">Find Game</a>
+              <a class="nav-link" href="findgame.php">Find Game</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="postgame.html">Post Game</a>
+              <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#login">Login | Sign Up</a>
+              <?php
+              session_start();//start your session
+              include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
+              include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
+
+              $fb = new Facebook\Facebook([//create a new facebook object
+                'app_id' => FACEBOOK_APP_ID, //Replace {app-id} with your app id
+                'app_secret' => FACEBOOK_SECRET,
+                'default_graph_version' => FACEBOOK_GRAPH_VERSION,
+                ]);
+
+              $helper = $fb->getRedirectLoginHelper();//make a redirect helper handler
+
+              $permissions = ['email'];
+              $loginUrl = $helper->getLoginUrl('http://tittyking.com/sportsfinder/facebook-login/fb-callback.php', $permissions); //generate the login url
+
+              echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+              ?>
+              <!-- <a  href="#login">Login | Sign Up</a> -->
             </li>
           </ul>
         </div>

@@ -32,10 +32,10 @@
         <div class="nav-link-box">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="findgame.html">Find Game</a>
+              <a class="nav-link" href="findgame.php">Find Game</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="postgame.html">Post Game</a>
+              <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
               <?php
