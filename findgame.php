@@ -70,7 +70,7 @@
     <header class="masthead">
       <!-- <iframe class="game-map" frameborder="0"
       src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJKZcT2t_n3IARhA7AdKhMkuQ&key=AIzaSyCe4HExhxjnlIrfiI7GrPX_l7ZoFpmwdGM"  allowfullscreen></iframe> -->
-      <<div class='game-map post-map' id="googleMap" style="width:100%;height:400px"></div>
+      <div class='game-map post-map' id="googleMap" style="width:100%;height:400px"></div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
       &libraries=places&callback=myMap"></script>
       <div class="row">
