@@ -126,6 +126,9 @@
                 $user = $response->getGraphUser();
 
                 print_r('Name: ' . $user['name']);
+                print_r('ID: ' . $user['id']);
+                print_r('Email: ' . $user['email']);
+
 
               ?>
             <!-- <div class="single-game row" style="background:;">
