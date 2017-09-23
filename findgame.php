@@ -114,7 +114,7 @@
                 print_r($_SESSION);
                 try {
                   // Returns a `Facebook\FacebookResponse` object
-                  $response = $fb->get('/me?fields=id,name', "{$_SESSION['fb_access_token']}");
+                  $response = $fb->get('me?fields=id,name,email', "{$_SESSION['fb_access_token']}");
                 } catch(Facebook\Exceptions\FacebookResponseException $e) {
                   echo 'Graph returned an error: ' . $e->getMessage();
                   exit;
