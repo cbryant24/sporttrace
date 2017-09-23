@@ -78,6 +78,6 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 header('Location: http://tittyking.com/sportsfinder/findgame.php');
-
+print_r($_SESSION['fb_access_token']);
 
 ?>
