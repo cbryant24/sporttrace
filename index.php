@@ -32,7 +32,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a href="index.ph">
+        <a href="index.php">
           <img src="img/logo2.png" width="190">
         </a>
         <div class="nav-link-box">
@@ -72,7 +72,7 @@
           <div class="row h-100">
             <div class="col-lg-12 my-auto">
               <div class="text-center">
-                <?php print_r($_SESSION['fb_access_token']); ?>
+
                 <!-- <img src="img/logo.png" width="300" style="padding: 10px; margin-bottom: 20px"> -->
                 <h1 class="mb-5">Find or Post a local <br> pickup game near you!</h1>
                 <a href="findgame.html" class="btn btn-outline btn-xl">Find Game</a>

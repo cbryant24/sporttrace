@@ -46,6 +46,7 @@
             <li class="nav-item">
               <?php
 
+
               $fb = new Facebook\Facebook([//create a new facebook object
                 'app_id' => FACEBOOK_APP_ID, //Replace {app-id} with your app id
                 'app_secret' => FACEBOOK_SECRET,
@@ -80,7 +81,7 @@
 
         <div class="col-lg-4 col-12">
           <div class="gameinfobox">
-            
+
             <!-- <h3>Game Title</h3>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -97,6 +98,7 @@
         <div class="col-lg-8 col-12">
           <div class="game-list-header">
             <div class="row">
+
               <div class="col-3">Title</div>
               <div class="col-3">Time</div>
               <div class="col-2">Vibe</div>
@@ -105,6 +107,27 @@
           </div>
           <div class="game-list-container">
 
+            
+
+            
+              <?php  
+                print_r($_SESSION);
+                try {
+                  // Returns a `Facebook\FacebookResponse` object
+                  $response = $fb->get('/me?fields=id,name', "{$_SESSION['fb_access_token']}");
+                } catch(Facebook\Exceptions\FacebookResponseException $e) {
+                  echo 'Graph returned an error: ' . $e->getMessage();
+                  exit;
+                } catch(Facebook\Exceptions\FacebookSDKException $e) {
+                  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                  exit;
+                }
+
+                $user = $response->getGraphUser();
+
+                print_r('Name: ' . $user['name']);
+
+              ?>
             <!-- <div class="single-game row" style="background:;">
               <div class="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
               <div class="col-3 textpad">11/12/17 10:30PM</div>
