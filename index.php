@@ -3,7 +3,7 @@
   include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
   include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
  ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,6 +72,7 @@
           <div class="row h-100">
             <div class="col-lg-12 my-auto">
               <div class="text-center">
+                <?php print_r($_SESSION['fb_access_token']); ?>
                 <!-- <img src="img/logo.png" width="300" style="padding: 10px; margin-bottom: 20px"> -->
                 <h1 class="mb-5">Find or Post a local <br> pickup game near you!</h1>
                 <a href="findgame.html" class="btn btn-outline btn-xl">Find Game</a>
