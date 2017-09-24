@@ -97,5 +97,5 @@ $user = $response->getGraphUser();
 // You can redirect them to a members-only page.
 header('Location: http://tittyking.com/sportsfinder/findgame.php');
 
-
+//$_SERVER['HTTP_REFERER']?? ^^
 ?>

@@ -11,8 +11,12 @@
   $permissions = ['email'];
   $loginUrl = $helper->getLoginUrl('http://tittyking.com/sportsfinder/facebook-login/fb-callback.php', $permissions); //generate the login url
 
+  $token = $facebook->getAccessToken();
+  $logoutUrl = 'https://www.facebook.com/logout.php?next=' . 'http://tittyking.com/sportsfinder/' .
+	  '&access_token='.$token;
+
   if(isset($_SESSION['user_id'])){
-  	echo '<a class="nav-link" href="#">Logout</a>';		
+  	echo '<a class="nav-link" href="' . htmlspecialchars($logoutUrl) . '">Logout</a>';		
   } else {
   	echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';	
   }
