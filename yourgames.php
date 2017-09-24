@@ -1,8 +1,4 @@
-<?php 
-  session_start();//start your session
-  include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
-  include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
- ?>
+<?php include('php/sessionStart.php')?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +42,7 @@
               <a class="nav-link" href="postgame.html">Post Game</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#login">Your Games</a>
+              <?php include('php/navLogin.php');?>
             </li>
           </ul>
         </div>
