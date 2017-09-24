@@ -11,7 +11,7 @@
 		
 		session_destroy();
 		header('Location: '.$logouturl);
-		print_r($_SESSION['fb_access_token']);
+		print_r($_SESSION['user_name']);
 
 	};
 ?>
