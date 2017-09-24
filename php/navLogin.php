@@ -11,7 +11,7 @@
   $permissions = ['email'];
   $loginUrl = $helper->getLoginUrl('http://tittyking.com/sportsfinder/facebook-login/fb-callback.php', $permissions); //generate the login url
 
-  $token = $facebook->getAccessToken();
+  // $token = $facebook->getAccessToken();
   // $logoutUrl = 'https://www.facebook.com/logout.php?next=' . 'http://tittyking.com/sportsfinder/' .
 	 //  '&access_token='.$token;
 
