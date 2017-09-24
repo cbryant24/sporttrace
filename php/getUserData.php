@@ -13,9 +13,7 @@
 
   $user = $response->getGraphUser();
 
-  print_r('Name: ' . $user['name']);
-  print_r('ID: ' . $user['id']);
-  print_r('Email: ' . $user['email']);
-
-
+  $_SESSION['user_name'] = $user['name'];
+  $_SESSION['user_id'] = $user['id'];
+  $_SESSION['user_email'] = $user['email'];
 ?>
