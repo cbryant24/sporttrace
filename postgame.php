@@ -18,8 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sportsfinder.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
-                    &libraries=places&callback=initAutocomplete"></script>
+
   </head>
 
   <body id="page-top">
@@ -105,6 +104,8 @@
 
 
     </header>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
+                    &libraries=places&callback=initAutocomplete"></script>
 
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->
 
