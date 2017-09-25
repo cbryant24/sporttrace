@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<!-- <?php 
-  session_start();//start your session
-  include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
-  include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
- ?> -->
-=======
 <?php include('php/sessionStart.php');?>
->>>>>>> 4fb0f1aa45da15096bbee6f5625fad1d17a24364
 <!DOCTYPE html>
 <html lang="en">
 

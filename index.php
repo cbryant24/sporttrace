@@ -39,28 +39,9 @@
               <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
-<<<<<<< HEAD
-              <!-- <?php
-
-              $fb = new Facebook\Facebook([//create a new facebook object
-                'app_id' => FACEBOOK_APP_ID, //Replace {app-id} with your app id
-                'app_secret' => FACEBOOK_SECRET,
-                'default_graph_version' => FACEBOOK_GRAPH_VERSION,
-                ]);
-
-              $helper = $fb->getRedirectLoginHelper();//make a redirect helper handler
-
-              $permissions = ['email'];
-              $loginUrl = $helper->getLoginUrl('http://tittyking.com/sportsfinder/facebook-login/fb-callback.php', $permissions); //generate the login url
-
-              echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
-              ?> -->
-              <!-- <a  href="#login">Login | Sign Up</a> -->
-=======
 
               <?php include('php/navLogin.php');?>
               
->>>>>>> 4fb0f1aa45da15096bbee6f5625fad1d17a24364
             </li>
           </ul>
         </div>
