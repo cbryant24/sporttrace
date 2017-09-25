@@ -5,7 +5,9 @@
 
 
 if(!isset($_SESSION['fb_access_token'])){
-	echo "Not Logged In";
+
+	$output['errors'][] = "Not Logged In";
+	print_r($out)['errors'];
 	die();
 };
 
@@ -13,7 +15,7 @@ $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`
 VALUES ('{$_SESSION['user_id']}','{$_POST['game_title']}', '{$_POST['game_date']}', '{$_POST['game_time']}', '{$_POST['lat_lon']['lat']}', '{$_POST['lat_lon']['lon']}', '{$_POST['game_description']}', '{$_POST['game_address']}') 
 
 INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-VALUES ('{$_SESSION['user_id']}', LAST_INSERT_ID())";
+VALUES ('{$_SESSION['user_id']}	', LAST_INSERT_ID())";
 
 
 
