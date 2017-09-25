@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('fromData',true);
 require_once('mysql_connect.php');
 

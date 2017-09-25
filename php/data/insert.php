@@ -1,0 +1,39 @@
+<?php
+// WRITE REGEX CHECKER HERE?
+// WRITE REGEX CHECKER HERE?
+// WRITE REGEX CHECKER HERE?
+
+
+if(!isset($_SESSION['fb_access_token'])){
+	echo "Not Logged In";
+	die();
+};
+
+$query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`) 
+VALUES ('{$_SESSION['user_id']}','{$_POST['game_title']}', '{$_POST['game_date']}', '{$_POST['game_time']}', '{$_POST['lat_lon']['lat']}', '{$_POST['lat_lon']['lon']}', '{$_POST['game_description']}', '{$_POST['game_address']}') 
+
+INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
+VALUES ('{$_SESSION['user_id']}', LAST_INSERT_ID())";
+
+
+
+//(SELECT `game_id` FROM `sportsfinder-db`.`game_table` WHERE `user_id`='{$_SESSION['user_id']}'))
+
+
+$result = mysqli_query($conn, $query);
+
+if($result){
+	if (mysqli_affected_rows($conn)){
+		$output['success'] = true;
+
+	} else {
+		$output['errors'][] = 'Insert Error';
+	};
+} else {
+	$output['errors'][] = 'Database Error';
+}
+print_r($output);
+
+		
+	
+?>

@@ -1,9 +1,4 @@
-<?php 
-  session_start();//start your session
-  include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
-  include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
- ?>
-
+<?php include('php/sessionStart.php')?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a href="index.ph">
+        <a href="index.php">
           <img src="img/logo2.png" width="190">
         </a>
         <div class="nav-link-box">
@@ -44,6 +39,7 @@
               <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
+<<<<<<< HEAD
               <!-- <?php
 
               $fb = new Facebook\Facebook([//create a new facebook object
@@ -60,6 +56,11 @@
               echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
               ?> -->
               <!-- <a  href="#login">Login | Sign Up</a> -->
+=======
+
+              <?php include('php/navLogin.php');?>
+              
+>>>>>>> 4fb0f1aa45da15096bbee6f5625fad1d17a24364
             </li>
           </ul>
         </div>
@@ -72,7 +73,7 @@
           <div class="row h-100">
             <div class="col-lg-12 my-auto">
               <div class="text-center">
-                <?php print_r($_SESSION['fb_access_token']); ?>
+
                 <!-- <img src="img/logo.png" width="300" style="padding: 10px; margin-bottom: 20px"> -->
                 <h1 class="mb-5">Find or Post a local <br> pickup game near you!</h1>
                 <a href="findgame.html" class="btn btn-outline btn-xl">Find Game</a>

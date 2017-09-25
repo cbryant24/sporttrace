@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 <!-- <?php 
   session_start();//start your session
   include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
   include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
  ?> -->
+=======
+<?php include('php/sessionStart.php');?>
+>>>>>>> 4fb0f1aa45da15096bbee6f5625fad1d17a24364
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,6 +47,7 @@
               <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
+<<<<<<< HEAD
               <!-- <?php
 
               $fb = new Facebook\Facebook([//create a new facebook object
@@ -59,6 +64,11 @@
               echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
               ?> -->
               <!-- <a  href="#login">Login | Sign Up</a> -->
+=======
+
+              <?php include('php/navLogin.php');?>
+              
+>>>>>>> 4fb0f1aa45da15096bbee6f5625fad1d17a24364
             </li>
           </ul>
         </div>
@@ -79,7 +89,7 @@
 
         <div class="col-lg-4 col-12">
           <div class="gameinfobox">
-            
+
             <!-- <h3>Game Title</h3>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -96,6 +106,7 @@
         <div class="col-lg-8 col-12">
           <div class="game-list-header">
             <div class="row">
+
               <div class="col-3">Title</div>
               <div class="col-3">Time</div>
               <div class="col-2">Vibe</div>
@@ -104,6 +115,9 @@
           </div>
           <div class="game-list-container">
 
+            
+
+          
             <!-- <div class="single-game row" style="background:;">
               <div class="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
               <div class="col-3 textpad">11/12/17 10:30PM</div>
