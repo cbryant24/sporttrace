@@ -11,7 +11,6 @@
 
     <title>Sports Finder</title>
 
-    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -19,7 +18,8 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sportsfinder.css" rel="stylesheet">
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
+                    &libraries=places&callback=initAutocomplete"></script>
   </head>
 
   <body id="page-top">
@@ -105,8 +105,6 @@
 
 
     </header>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
-                    &libraries=places&callback=initAutocomplete"></script>
 
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->
 
