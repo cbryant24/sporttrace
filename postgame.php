@@ -45,8 +45,6 @@
               <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
-              <!-- <?php
-4fb0f1aa45da15096bbee6f5625fad1d17a24364
 
               <?php include('php/navLogin.php');?>
 
