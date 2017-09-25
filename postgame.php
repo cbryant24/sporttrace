@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sportsfinder.css" rel="stylesheet">
-    <script type="text/javascript" src="post_game.js"></script>
+
   </head>
 
   <body id="page-top">
@@ -98,6 +98,7 @@
         </form>
 
     </header>
+    <script type="text/javascript" src="post_game.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
                     &libraries=places&callback=initAutocomplete"></script>
 
