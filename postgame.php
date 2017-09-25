@@ -1,8 +1,8 @@
-<?php 
+<!-- <?php 
   session_start();//start your session
   include('facebook-login/facebook_info.php');//make sure to include your facebook credentials!
   include('facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk ?>
-<!DOCTYPE html>
+<!DOCTYPE html> -->
 <html lang="en">
 
   <head>
@@ -42,7 +42,7 @@
               <a class="nav-link" href="postgame.php">Post Game</a>
             </li>
             <li class="nav-item">
-              <?php
+              <!-- <?php
 
 
               $fb = new Facebook\Facebook([//create a new facebook object
@@ -57,7 +57,7 @@
               $loginUrl = $helper->getLoginUrl('http://tittyking.com/sportsfinder/facebook-login/fb-callback.php', $permissions); //generate the login url
 
               echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
-              ?>
+              ?> -->
               <!-- <a  href="#login">Login | Sign Up</a> -->
             </li>
           </ul>
