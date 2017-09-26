@@ -120,7 +120,7 @@ function Create_Game() {
         }
 
         this.complete_game.game_title = $('.game_title_input')[0].value;
-        this.complete_game.game_time = $(".game_time_input")[0].value;
+        this.complete_game.game_time = $(".game_time_input")[0].value + ':00';
         this.complete_game.game_date = $('#game_date')[0].value;
         this.complete_game.game_vibe = $('select')[0][0].selected === true ? 'casual':'competitive';
         this.complete_game.game_address = this.location[0].formatted_address;
