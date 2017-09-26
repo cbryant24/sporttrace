@@ -51,6 +51,7 @@ if($result_game){
 $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
 VALUES ({$_SESSION['user_id']}, {$lastInsertId})";
 
+print_r(mysqli_error($conn));
 $output['query2'] = $query2;
 
 $result_history = mysqli_query($conn, $query2);
