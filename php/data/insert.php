@@ -20,7 +20,7 @@ $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`
 VALUES (1,'fuck','2017-10-10', '10:10:10', '10.1', '10.1', 'shhhhiiiiit', '1112 dsofij', 'casual');
 
 INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-VALUES (123, '{$lastInsertId}');";
+VALUES (123,".$lastInsertId.");";
 
 
 	
