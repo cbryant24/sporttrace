@@ -49,7 +49,7 @@ if($result_game){
 };
 
 $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-VALUES ({$_SESSION['user_id']}, {$lastInsertId}";
+VALUES ({$_SESSION['user_id']}, {$lastInsertId})";
 
 $output['query2'] = $query2;
 
