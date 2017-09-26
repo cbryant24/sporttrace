@@ -25,7 +25,7 @@ VALUES ('{$_SESSION['user_id']}','{$_POST['complete_game']['game_title']}', '{$_
 // $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
 // VALUES ('{$_SESSION['user_id']}', ".$lastInsertId.")";
 
-$lastInsertId = LAST_INSERT_ID();
+// $lastInsertId = LAST_INSERT_ID();
 $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
 VALUES ('{$_SESSION['user_id']}', 5)";
 
@@ -48,7 +48,7 @@ if($result_game){
 if($result_history){
 	if (mysqli_affected_rows($conn)){
 		$output['success'] = true;
-		print_r('History 3Info Added');
+		print_r('History Info Added');
 
 	} else {
 		$output['errors'][] = 'History Insert Error';
@@ -56,9 +56,6 @@ if($result_history){
 } else {
 	$output['errors'][] = 'History Table Error';
 };
-
-
-
 
 print_r($output['errors']);	
 	
