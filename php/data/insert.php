@@ -30,6 +30,7 @@ $result = mysqli_query($conn, $query);
 if($result){
 	if (mysqli_affected_rows($conn)){
 		$output['success'] = true;
+		print_r($output['success']);
 
 	} else {
 		$output['errors'][] = 'Insert Error';
