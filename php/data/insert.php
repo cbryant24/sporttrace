@@ -31,7 +31,7 @@ VALUES ('{$_SESSION['user_id']}','{$_POST['complete_game']['game_title']}', '{$_
 
 
 $result_game = mysqli_query($conn, $query);
-printf("Last inserted record has id %d\n", mysql_insert_id());
+// printf("Last inserted record has id %d\n", mysql_insert_id());
 
 // $result_history = mysqli_query($conn, $query2);
 
