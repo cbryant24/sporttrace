@@ -102,7 +102,7 @@ function Create_Game() {
 
         //Normalizing the user date input date with regex from 2017-09-30 to 9/30/2017 to match javascript date
         //object formating
-        debugger
+        
         let user_date = $('#game_date')[0].value.replace(/(\d{4})-(\d{2})-(\d{2})/, '$2/$3/$1' )
         user_date = user_date[0] === '0' ? user_date.substring(1):date;
         let current_date = new Date().toLocaleDateString();
