@@ -56,17 +56,17 @@ $output['query2'] = $query2;
 $result_history = mysqli_query($conn, $query2);
 
 
-if($result_history){
-	if (mysqli_affected_rows($conn)){
-		$output['success'] = true;
-		print_r('History Info Added');
+// if($result_history){
+// 	if (mysqli_affected_rows($conn)){
+// 		$output['success'] = true;
+// 		print_r('History Info Added');
 
-	} else {
-		$output['errors'][] = 'History Insert Error';
-	};
-} else {
-	$output['errors'][] = 'History Table Error';
-};
+// 	} else {
+// 		$output['errors'][] = 'History Insert Error';
+// 	};
+// } else {
+// 	$output['errors'][] = 'History Table Error';
+// };
 
 print_r($output);	
 	
