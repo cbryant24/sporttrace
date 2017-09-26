@@ -14,7 +14,7 @@ if($conn == false){
 	print_r($output['errors']);
 };
 
-$lastInsertId = "LAST_INSERT_ID()";
+$lastInsertId = mysql_insert_id ();
 // print_r($_POST);
 $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`) 
 VALUES (1,'fuck','2017-10-10', '10:10:10', '10.1', '10.1', 'shhhhiiiiit', '1112 dsofij', 'casual');
