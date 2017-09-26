@@ -168,9 +168,10 @@
         </div> 
       </div>
     </header>
-    <script type="text/javascript" src="findgame.js"></script>
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
       &libraries=places&callback=myMap"></script>
+    <script type="text/javascript" src="findgame.js"></script>
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->
 
 <!--     <footer>

@@ -27,7 +27,7 @@ function initAutocomplete() {
     // more details for that place.
     searchBox.addListener('places_changed', function() {
         var places = searchBox.getPlaces();
-        create_game.location = places
+        create_game.location = places;
         if (places.length == 0) {
         return;
       }

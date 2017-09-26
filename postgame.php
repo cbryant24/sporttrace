@@ -98,9 +98,10 @@
         </form>
 
     </header>
-    <script type="text/javascript" src="post_game.js"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
                     &libraries=places&callback=initAutocomplete"></script>
+    <script type="text/javascript" src="post_game.js"></script>
 
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->
 
