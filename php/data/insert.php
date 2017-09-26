@@ -40,6 +40,6 @@ if($result){
 } else {
 	$output['errors'][] = 'Database Error';
 }
-	
+print_r($output['errors']);	
 	
 ?>
