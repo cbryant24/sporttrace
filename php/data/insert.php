@@ -12,7 +12,7 @@ if(!isset($_SESSION['fb_access_token'])){
 if($conn == false){
 	$output['errors'][] = "Bad Connection";
 	print_r($output['errors']);
-}
+};
 
 // print_r($_POST);
 
@@ -39,7 +39,7 @@ if($result){
 	};
 } else {
 	$output['errors'][] = 'Database Error';
-}
+};
 print_r($output['errors']);	
 	
 ?>
