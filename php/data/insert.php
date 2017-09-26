@@ -21,12 +21,13 @@ if($conn == false){
 $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`) 
 VALUES ('{$_SESSION['user_id']}','{$_POST['complete_game']['game_title']}', '{$_POST['complete_game']['game_date']}', '{$_POST['complete_game']['game_time']}', '{$_POST['complete_game']['lat_lon']['lat']}', '{$_POST['complete_game']['lat_lon']['lon']}', '{$_POST['complete_game']['game_description']}', '{$_POST['complete_game']['game_address']}', {$_POST['complete_game']['game_vibe']})";
 
+// $lastInsertId = LAST_INSERT_ID();
+// $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
+// VALUES ('{$_SESSION['user_id']}', ".$lastInsertId.")";
+
 $lastInsertId = LAST_INSERT_ID();
-
 $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-VALUES ('{$_SESSION['user_id']}', ".$lastInsertId.")";
-
-
+VALUES ('{$_SESSION['user_id']}', 5)";
 
 
 $result_game = mysqli_query($conn, $query);
@@ -47,7 +48,7 @@ if($result_game){
 if($result_history){
 	if (mysqli_affected_rows($conn)){
 		$output['success'] = true;
-		print_r('History Info Added');
+		print_r('History 3Info Added');
 
 	} else {
 		$output['errors'][] = 'History Insert Error';
