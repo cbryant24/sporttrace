@@ -15,7 +15,8 @@ if($conn == false){
 };
 
 // $lastInsertId = mysql_insert_id();
-// print_r($_POST);
+print_r($_POST);
+print_r($_SESSION);
 
 
 $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`) 
@@ -24,10 +25,9 @@ VALUES ('{$_SESSION['user_id']}','{$_POST['complete_game']['game_title']}', '{$_
 // $lastInsertId = LAST_INSERT_ID();
 // $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
 // VALUES ('{$_SESSION['user_id']}', ".$lastInsertId.")";
-print_r($_SESSION['user_id']);
 // $lastInsertId = LAST_INSERT_ID();
 $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-VALUES (23456, LAST_INSERT_ID())";
+VALUES ('{$_SESSION['user_id']}', LAST_INSERT_ID())";
 
 
 $result_game = mysqli_query($conn, $query);
