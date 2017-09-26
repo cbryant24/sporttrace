@@ -11,13 +11,11 @@ if(!isset($_SESSION['fb_access_token'])){
 	die();
 };
 
-$query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`) VALUES (100)";
+$query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`) 
+VALUES ('{$_SESSION['user_id']}','{$_POST['game_title']}', '{$_POST['game_date']}', '{$_POST['game_time']}', '{$_POST['lat_lon']['lat']}', '{$_POST['lat_lon']['lon']}', '{$_POST['game_description']}', '{$_POST['game_address']}', {$_POST['game_vibe']}) 
 
-// $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`) 
-// VALUES ('{$_SESSION['user_id']}','{$_POST['game_title']}', '{$_POST['game_date']}', '{$_POST['game_time']}', '{$_POST['lat_lon']['lat']}', '{$_POST['lat_lon']['lon']}', '{$_POST['game_description']}', '{$_POST['game_address']}') 
-
-// INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-// VALUES ('{$_SESSION['user_id']}	', LAST_INSERT_ID())";
+INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
+VALUES ('{$_SESSION['user_id']}	', LAST_INSERT_ID())";
 
 
 
