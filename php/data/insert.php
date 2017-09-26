@@ -7,7 +7,7 @@
 if(!isset($_SESSION['fb_access_token'])){
 
 	$output['errors'][] = "Not Logged In";
-	print_r($out)['errors'];
+	print_r($output['errors']);
 	die();
 };
 
