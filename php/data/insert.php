@@ -26,12 +26,14 @@ VALUES ('{$_SESSION['user_id']}','{$_POST['complete_game']['game_title']}', '{$_
 // $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
 // VALUES ('{$_SESSION['user_id']}', ".$lastInsertId.")";
 // $lastInsertId = LAST_INSERT_ID();
-$query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
-VALUES ('{$_SESSION['user_id']}', LAST_INSERT_ID())";
+// $query2 = "INSERT INTO `sportsfinder-db`.`game_history`(`user_id`, `game_id`) 
+// VALUES ('{$_SESSION['user_id']}', LAST_INSERT_ID())";
 
 
 $result_game = mysqli_query($conn, $query);
-$result_history = mysqli_query($conn, $query2);
+printf("Last inserted record has id %d\n", mysql_insert_id());
+
+// $result_history = mysqli_query($conn, $query2);
 
 if($result_game){
 	if (mysqli_affected_rows($conn)){
@@ -45,17 +47,18 @@ if($result_game){
 	$output['errors'][] = 'Game Table Error';
 };
 
-if($result_history){
-	if (mysqli_affected_rows($conn)){
-		$output['success'] = true;
-		print_r('History Info Added');
 
-	} else {
-		$output['errors'][] = 'History Insert Error';
-	};
-} else {
-	$output['errors'][] = 'History Table Error';
-};
+// if($result_history){
+// 	if (mysqli_affected_rows($conn)){
+// 		$output['success'] = true;
+// 		print_r('History Info Added');
+
+// 	} else {
+// 		$output['errors'][] = 'History Insert Error';
+// 	};
+// } else {
+// 	$output['errors'][] = 'History Table Error';
+// };
 
 print_r($output['errors']);	
 	
