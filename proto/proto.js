@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/', express.static('/Users/Chris/Desktop/lfz/c717_sports_pickup'))
 app.get('/', function(req, res){
-    res.sendFile('/Users/Chris/Desktop/lfz/c717_sports_pickup/postgame.html')
+    res.sendFile('/Users/Chris/Desktop/lfz/c717_sports_pickup/index.php')
 })
 
 app.post('/proto', function(req, res){
