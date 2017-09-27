@@ -41,7 +41,7 @@
               <a class="nav-link" href="postgame.html">Post Game</a>
             </li>
             <li class="nav-item">
-            <?php include('php/sessionStart.php');?>
+            <?php include('php/navLogin.php');?>
             </li>
           </ul>
         </div>
