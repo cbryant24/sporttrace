@@ -104,8 +104,10 @@
         </form>
 
     </header>
-    <script type="text/javascript" src="post_game.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="post_game.js"></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
                     &libraries=places&callback=initAutocomplete"></script>
 
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->

@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 define('fromData',true);
 require_once('mysql_connect.php');
 
@@ -33,7 +34,10 @@ switch($_GET['action']){
 
 
 //convert the $output variable to json, store the result in $outputJSON
-//print $outputJSON
+$output['debug'] = ob_get_contents();
+ob_end_clean();
+$outputJSON = json_encode($output);
+print($outputJSON);
 //end
 //mysql_close($conn) WHY DONT WERK!?
 ?>

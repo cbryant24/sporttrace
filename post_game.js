@@ -27,7 +27,7 @@ function initAutocomplete() {
     // more details for that place.
     searchBox.addListener('places_changed', function() {
         var places = searchBox.getPlaces();
-        create_game.location = places
+        create_game.location = places;
         if (places.length == 0) {
         return;
       }
@@ -102,7 +102,7 @@ function Create_Game() {
 
         //Normalizing the user date input date with regex from 2017-09-30 to 9/30/2017 to match javascript date
         //object formating
-        debugger
+        
         let user_date = $('#game_date')[0].value.replace(/(\d{4})-(\d{2})-(\d{2})/, '$2/$3/$1' )
         user_date = user_date[0] === '0' ? user_date.substring(1):date;
         let current_date = new Date().toLocaleDateString();
@@ -120,7 +120,7 @@ function Create_Game() {
         }
 
         this.complete_game.game_title = $('.game_title_input')[0].value;
-        this.complete_game.game_time = $(".game_time_input")[0].value;
+        this.complete_game.game_time = $(".game_time_input")[0].value + ':00';
         this.complete_game.game_date = $('#game_date')[0].value;
         this.complete_game.game_vibe = $('select')[0][0].selected === true ? 'casual':'competitive';
         this.complete_game.game_address = this.location[0].formatted_address;

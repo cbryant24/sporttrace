@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sportsfinder.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>    
+        
 
 
   </head>
@@ -163,9 +163,10 @@
         </div> 
       </div>
     </header>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src='your_games.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARkl4ZSeJFaXlp38h9_webHWrsOCUMSFM
-  &libraries=places&callback=myMap"></script>
+    &libraries=places&callback=myMap"></script>
 
 <!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END --><!-- CONTENT END -->
 
@@ -188,7 +189,3 @@
   </body>
 
 </html>
-
-
-<!-- 
- -->
