@@ -41,7 +41,7 @@
               <a class="nav-link" href="postgame.html">Post Game</a>
             </li>
             <li class="nav-item">
-              <?php include('php/navLogin.php');?>
+            <?php include('php/sessionStart.php');?>
             </li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
     <header class="masthead">
       <!-- <iframe class="game-map" frameborder="0"
       src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJKZcT2t_n3IARhA7AdKhMkuQ&key=AIzaSyCe4HExhxjnlIrfiI7GrPX_l7ZoFpmwdGM"  allowfullscreen></iframe> -->
-      <<div class='game-map post-map' id="googleMap" style="width:100%;height:400px"></div>
+      <div class='game-map post-map' id="googleMap" style="width:100%;height:400px"></div>
       <div class="row">
 
         <div class="col-lg-4 col-12">
@@ -189,3 +189,6 @@
 
 </html>
 
+
+<!-- 
+ -->
