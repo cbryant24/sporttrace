@@ -1,6 +1,6 @@
 import React from 'react';
-import logo2 from '../../html_template/img/logo2.png';
-import stylebruh from '../../html_template/css/sportsfinder.css';
+import logo2 from '../assets/img/logo2.png';
+import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
 import {Link} from 'react-router-dom';
 
