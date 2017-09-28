@@ -1,3 +1,3 @@
-/**
- * Created by calebeichelberger on 9/27/17.
- */
+export default {
+    GET_ACTIVE_GAMES: 'get_active_games' 
+}
