@@ -8,38 +8,26 @@ WHERE `user_id`={$_POST['user_id']} "; //CHANGE TO SESSION
 
 $result = mysqli_query($conn, $query); //send the query to the database, store the result of the query into $result
 
-print_r($result);
-die();
-
-
-
-
-
-
 
 
 $output = [
 	'success' => false
 ];
 
-if(empty($result)){ //check if $result is empty. 
+if(empty($result)){
 	$output['errors'][] = 'Database Error';
-
 } else {
-	if (mysqli_num_rows($result)){ //check if any data came back
-		$output['success'] = true; //if it did, change output success to true
+	if (mysqli_num_rows($result)){ 
+		$output['success'] = true;
 		$output['data']=[];
 		
-		while( $row = mysqli_fetch_assoc($result) ){//do a while loop to collect all the data 
-			$output['data'][] = $row;//add each row of data to the $output['data'] array
-
+		while( $row = mysqli_fetch_assoc($result) ){
+			$output['data'][] = $row;
 		}
 		print_r(json_encode($output['data']));
-		// print_r(mysqli_fetch_assoc($result));
 
 	} else {
-		$output['errors'][] = 'No Data';//if not, add to the errors: 'no data'
-
+		$output['errors'][] = 'No Data';
 	}
 }
 			
