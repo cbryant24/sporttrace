@@ -14,7 +14,10 @@ $output = [
 ];
 switch($_GET['action']){
 	case 'read':
-		include('DataAPI/read.php');
+		include('data/read.php');
+		break;
+	case 'read-p':
+		include('data/read-p.php');
 		break;
 	case 'insert':
 		include('data/insert.php');

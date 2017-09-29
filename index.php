@@ -57,8 +57,8 @@
 
                 <!-- <img src="img/logo.png" width="300" style="padding: 10px; margin-bottom: 20px"> -->
                 <h1 class="mb-5">Find or Post a local <br> pickup game near you!</h1>
-                <a href="findgame.html" class="btn btn-outline btn-xl">Find Game</a>
-                <a href="postgame.html" class="btn btn-outline btn-xl">Post Game</a>
+                <a href="findgame.php" class="btn btn-outline btn-xl">Find Game</a>
+                <a href="postgame.php" class="btn btn-outline btn-xl">Post Game</a>
               </div>
             </div>
           </div>
