@@ -4,10 +4,11 @@
 
 
 $query = " SELECT * FROM `game_history`
-WHERE `user_id`={$_POST['user_id']} ";
-print_r($_POST);
-print($query);
+WHERE `user_id`={$_POST['user_id']} "; //CHANGE TO SESSION
 
+$result = mysqli_query($conn, $query); //send the query to the database, store the result of the query into $result
+
+print_r($result);
 die();
 
 
@@ -16,7 +17,7 @@ die();
 
 
 
-$result = mysqli_query($conn, $query); //send the query to the database, store the result of the query into $result
+
 $output = [
 	'success' => false
 ];
