@@ -1,77 +1,65 @@
 import React, { Component } from 'react';
-// import logo2 from '../../html_template/img/logo2.png';
-// import stylebruh from '../../html_template/css/sportsfinder.css';
+import MapContainer from './find_games_map';
+import logo2 from '../assets/img/logo2.png';
+import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
 import { get_active_games } from '../actions';
 import Game from './game';
+import ReactDom from 'react-dom';
+// import Game_Details_Box from './game_details_box';
 
 
 class Find_Game extends Component {
-    constructor(props) {
-        super(props)
-
-        this.games_array = [];
-    }
     componentWillMount(){
-        // console.log('the component has mounted:', this.props)
         this.props.get_active_games()
-        console.log('after the get_active is called ', this.props)
-
     }
 
-    handle_click() {
-        console.log(this.props)
-        this.games_array = this.props.active_games.map( (item, idx) =>  <Game key={idx} game_details={item}/>)
-        console.log(this.props)
-
+    componentDidMount(){
+        
     }
-
 
     render() {
         const { active_games } = this.props
-        const test_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
+        const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
-            <div>
-           <NavBar/>
+        <div>
+            {/* <Game_Details_Box/> */}
+            <NavBar/>
+            <MapContainer active_games ={ active_games }/>
             <header className="masthead">
-                {/* Map will go here */}
+                <div>
+
+                </div>
                 <div className="row">
-
-                    <div className="col-lg-4 col-12">
+                    {/* <div className="col-lg-4 col-12">
                         <div className="gameinfobox">
-
                             <h3>Game Title</h3>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor.</p>
-
+                                    consequat. Duis aute irure dolor.
+                                </p>
                             <h6>12/2/17 4:00PM</h6>
-
-
-                                <a href="#" className="btn btn-outline btn-xl joinbtn">Join Game</a>
+                                <button className="btn btn-outline btn-xl joinbtn">Join Game</button>
 
                         </div>
-                    </div>
+                    </div> */}
                     <div className="col-lg-8 col-12">
                         <div className="game-list-header">
                             <div className="row">
                                 <div className="col-3">Title</div>
                                 <div className="col-3">Time</div>
                                 <div className="col-2">Vibe</div>
-
                             </div>
-                        </div>
-                        <div className="game-list-container">
-                        {test_list}
-                            
+                            <div className="game-list-container">
+                                {games_list}
+                            </div>
                         </div>
                     </div>
                 </div>
             </header>
-
         </div>
         )
     }
@@ -84,121 +72,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { get_active_games })(Find_Game)
-
-
-
-{/* <div>
-           <NavBar/>
-            <header className="masthead">
-                <iframe className="game-map" frameBorder="0"
-                        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJKZcT2t_n3IARhA7AdKhMkuQ&key=AIzaSyCe4HExhxjnlIrfiI7GrPX_l7ZoFpmwdGM"
-                        allowFullScreen> </iframe>
-                <div className="row">
-
-                    <div className="col-lg-4 col-12">
-                        <div className="gameinfobox">
-
-                            <h3>Game Title</h3>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor.</p>
-
-                            <h6>12/2/17 4:00PM</h6>
-
-
-                                <a href="#" className="btn btn-outline btn-xl joinbtn">Join Game</a>
-
-                        </div>
-                    </div>
-                    <div className="col-lg-8 col-12">
-                        <div className="game-list-header">
-                            <div className="row">
-                                <div className="col-3">Title</div>
-                                <div className="col-3">Time</div>
-                                <div className="col-2">Vibe</div>
-
-                            </div>
-                        </div>
-                        <div className="game-list-container">
-
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-                            <div className="single-game row">
-                                <div className="col-3 textpad">Lorem ipsum dolor sit amet tempor.</div>
-                                <div className="col-3 textpad">11/12/17 10:30PM</div>
-                                <div className="col-2 textpad">Casual</div>
-                                <div className="col-4">
-                                    <a href="#" className="btn btn-outline btn-xl viewbtn">View</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-        </div> */}

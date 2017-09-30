@@ -16,8 +16,8 @@ export default this.complete_games = [{
    'Atque aut doloremque minus modi nihil nisi numquam ullam vitae. A aliquid corporis doloribus ea eos ' +
    'eveniet explicabo harum maxime modi non, officiis omnis pariatur placeat quaerat quam quasi, quo rerum ' +
    'sed sunt tempora! Amet iusto pariatur quos voluptatem. ',
-   latitude: 33.7736,
-   longitude: 118.0111,
+   latitude: 34.043017,
+   longitude: -118.267254,
    game_time: ' 9:00 ',
    game_date: '11/12/2017',
    vibe: 'casual ',
@@ -32,8 +32,8 @@ export default this.complete_games = [{
    'tenetur totam voluptates? Atque aut doloremque minus modi nihil nisi numquam ullam vitae. A aliquid corporis ' +
    'doloribus ea eos eveniet explicabo harum maxime modi non, officiis omnis pariatur placeat quaerat quam quasi,' +
    ' quo rerum sed sunt tempora! Amet iusto pariatur quos voluptatem. ',
-    latitude: 33.8121,
-    longitude: 117.9190,
+    latitude: 33.552085,
+    longitude: -117.666035,
     game_time: ' 10:00 ',
     game_date: '11/12/2017',
     vibe: 'casual ',
@@ -48,8 +48,8 @@ export default this.complete_games = [{
    'tenetur totam voluptates? Atque aut doloremque minus modi nihil nisi numquam ullam vitae. A aliquid corporis ' +
    'doloribus ea eos eveniet explicabo harum maxime modi non, officiis omnis pariatur placeat quaerat quam quasi, ' +
    'quo rerum sed sunt tempora! Amet iusto pariatur quos voluptatem. ',
-    latitude: 36.1699,
-    longitude: 115.1398,
+    latitude: 34.068921,
+    longitude: -118.445181,
     game_time: ' 12:00 ',
     game_date: '11/12/2017',
     vibe: ' casual ',
@@ -64,8 +64,8 @@ export default this.complete_games = [{
    'tempore tenetur totam voluptates? Atque aut doloremque minus modi nihil nisi numquam ullam vitae. A aliquid ' +
    'corporis doloribus ea eos eveniet explicabo harum maxime modi non, officiis omnis pariatur placeat quaerat ' +
    'quam quasi, quo rerum sed sunt tempora! Amet iusto pariatur quos voluptatem.',
-    latitude: 36.1699,
-    longitude: 115.1398,
+    latitude: 32.774731,
+    longitude: -117.069387,
     game_time: ' 18:00 ',
     game_date: '11/12/2017',
     vibe: ' competitive ',
