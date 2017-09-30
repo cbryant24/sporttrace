@@ -1,93 +1,76 @@
-import React, {Component} from 'react';
-import {reduxForm, Field} from 'redux-form';
+import React from 'react';
+import {Field, reduxForm} from 'redux-form'
 
 
-class PostGameReduxForm extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            input: null
-        };
-        this.handleFormInput = this.handleFormInput.bind(this);
-        this.submitForm = this.submitForm.bind(this);
+const renderInput = ({input, label, type, meta: {touched, error}}) => {
+    return (
+        <div className="form-group">
+            <label> {label} </label>
+            <input {...input} className="form-control" type={type}/>
+            <div className="text-danger"> {touched && error} </div>
+        </div>
+
+    )
+};
+
+
+
+const PostGameForm = props => {
+
+    const handleFormVals = vals => {
+        console.log('form vals', vals)
+    };
+
+    const {handleSubmit, pristine, submitting} = props;
+
+    return (
+        <form onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
+            <div className="row">
+            <div className="col-sm-6 col-12">
+            <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
+            <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
+            <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
+            </div>
+            <div className="col-sm-6 col-12">
+            <Field name="vibe" component={renderInput} label="Vibe" type="select" className="game_vibe_input" >
+                <option value="casual">Casual</option>
+                <option value="competitive">Competitive</option>
+            </Field>
+            <Field name="ball" component={renderInput} label="Ball" type="checkbox" className="game_vibe_input" />
+            <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
+            </div>
+            </div>
+            <button type="submit" disabled={pristine || submitting} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+        </form>
+    )
+};
+
+const validation = vals => {
+    const errors = {};
+
+    if (!vals.title) {
+        errors.title = 'Enter a Game Title'
     }
-    submitForm(e){
-        e.preventDefault();
-        console.log('this has been submitted: ', this.state.input);
+    if (!vals.time) {
+        errors.time = 'Enter a Game Time'
     }
-    handleFormInput(e) {
-        this.setState({
-            input: e
-        });
+    if (!vals.date) {
+        errors.date = 'Enter a Game Date'
     }
-
-    componentWillMount(){
-        console.log('cWM', this.props)
+    if (!vals.vibe) {
+        errors.vibe = 'Select the pace of the game'
     }
+    return errors;
+};
 
 
-    render() {
-        const {handleSubmit, pristine, reset, submitting} = this.props;
-        return (
 
-            <form onSubmit={this.submitForm} onChange={handleSubmit(this.handleFormInput)}>
 
-                <div className="postgame row">
 
-                    <div className="col-sm-6 col-12">
-                        <h5> Title: </h5>
-                        <Field className="game_title_input" name="title" component="input" type="text"
-                               placeholder="Your Title"/> <br/>
-
-                        <div className="date row">
-
-                            <div className="col-sm-6 col-12">
-                                <h5>Time</h5>
-                                <Field type="time" name="time" component="input" className="game_time_input"
-                                       placeholder="Game Time"/>
-
-                            </div>
-
-                            <div className="col-sm-6 col-12">
-                                <h5>Date</h5>
-                                <Field type="date" name="date" component="input" className="game_time_input"
-                                       placeholder="Game Time"/>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div>
-                        <h5>Vibe</h5>
-                        <Field name="vibe" className="game_vibe_input" component="select">
-                            <option />
-                            <option value="casual">Casual</option>
-                            <option value="competitive">Competitive</option>
-                        </Field>
-
-                    </div>
-
-                    <div>
-                        <h5> I'll bring a ball </h5>
-                        <Field name="ball" type="checkbox" component="input" id="ball"/>
-
-                    </div>
-
-                    <div className="col-sm-6 col-12">
-                        <h5>Game Description</h5>
-                        <textarea className="game_description_input" placeholder="Your Description"/>
-
-                        <button type="submit" disabled={pristine || submitting}
-                                className="btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit
-                        </button>
-                    </div>
-                </div>
-            </form>
-        )
-    }
-}
 
 export default reduxForm({
-    form: 'post game redux form'
-})(PostGameReduxForm)
+    form: 'post game form',
+    validate: validation
+})(PostGameForm)
+
+
