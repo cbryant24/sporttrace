@@ -24,3 +24,4 @@ export function get_single_game(game_id = 0) {
         payload: single_game
     }
 }
+
