@@ -262,7 +262,7 @@ header.masthead.home {
 
 .game-map{
   width: 100%;
-  margin-top: 63px;
+  margin-top: 10.5vh;
   height: 50vh;
 }
 @media only screen and (max-width: 768px) {

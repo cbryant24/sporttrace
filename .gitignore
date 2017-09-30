@@ -3,3 +3,5 @@ html_template/
 .DS_Store
 node_modules
 npm-debug.log
+test_data
+proto

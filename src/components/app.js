@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom'
+import {Route} from 'react-router-dom';
 import HomePage from './home_page';
 import FindGame from './find_game';
 import PostGame from './post_game';
