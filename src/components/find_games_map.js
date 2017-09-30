@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, InfoWindow, Marker, GoogleApiWrapper, onReady, Listing } from 'google-maps-react';
 import logo2 from '../assets/img/logo2.png';
 import stylebruh from '../assets/css/sportsfinder.css';
 
@@ -18,7 +18,11 @@ export class MapContainer extends Component {
                 <Map google={ this.props.google }
                     clickableIcons={ false }
                     style={ style }
-                    zoom={ 13 }
+                    zoom={ 10 }
+                    initialCenter={{
+                    lat: 34.043017,
+                    lng: -118.267254
+                    }}
                     className={'googles mapping'} >
                     { marker_arr }
                 </Map>
@@ -27,12 +31,31 @@ export class MapContainer extends Component {
     }
 }
 
+class Fetch_Places extends Component {
+    render() {
+        const {google} = mapProps;
+        const service = new google.maps.places.PlacesService(map);
+        return (
+            <Map google={this.props.google}
+                onReady={this.fetchPlaces}
+                visible={false}>
+                <Listing places={this.state.places} />
+            </Map>
+                
+        )
+
+    }
+}
 
 
-export default GoogleApiWrapper({
+export const GoogleMapWrapper = GoogleApiWrapper({
     apiKey: 'AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0',
     version: '3.28'
 })(MapContainer)
 
+export const Fetch_All_Places = GoogleApiWrapper({
+    apiKey: 'AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0',
+    version: '3.28'
+})(Fetch_Places)
 
 

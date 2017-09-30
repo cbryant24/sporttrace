@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import MapContainer from './find_games_map';
+import { GoogleMapWrapper } from './find_games_map';
+import { Fetch_All_Places } from './find_games_map';
 import logo2 from '../assets/img/logo2.png';
 import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
@@ -7,7 +8,7 @@ import { connect } from 'react-redux';
 import { get_active_games } from '../actions';
 import Game from './game';
 import ReactDom from 'react-dom';
-// import Game_Details_Box from './game_details_box';
+import Game_Details_Box from './game_details_box';
 
 
 class Find_Game extends Component {
@@ -24,9 +25,9 @@ class Find_Game extends Component {
         const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
         <div>
-            {/* <Game_Details_Box/> */}
             <NavBar/>
-            <MapContainer active_games ={ active_games }/>
+            <GoogleMapWrapper active_games ={ active_games }/>
+            <Game_Details_Box/>
             <header className="masthead">
                 <div>
 
