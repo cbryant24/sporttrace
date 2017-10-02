@@ -3,10 +3,10 @@
 
 
 
-$query = " SELECT * FROM `game_history`
-WHERE `user_id`={$_POST['user_id']} "; //CHANGE TO SESSION
+// $query = " SELECT * FROM `game_history`
+// WHERE `user_id`={$_POST['user_id']} "; //CHANGE TO SESSION
 
-$query2 = "SELECT 
+$query = "SELECT 
 `game_table`.`title`, 
 `game_table`.`date`, 
 `game_table`.`time`, 
@@ -15,17 +15,19 @@ $query2 = "SELECT
 `game_table`.`desc`,
 `game_table`.`address`,
 `game_table`.`vibe`,
+`game_table`.`game_id`
 
-FROM game_table
-INNER JOIN game_history
-ON `game_table`.`game_id`=`history_table`.`game_id`";
-
-
-print_r($query2);
-
+FROM `game_table`
+INNER JOIN `game_history`
+ON `game_table`.`game_id`=`game_history`.`game_id`
+WHERE `game_history`.`user_id` = {$_POST['user_id']} ";
 
 
-$result = mysqli_query($conn, $query); //send the query to the database, store the result of the query into $result
+// print_r($query2);
+
+
+
+$result = mysqli_query($conn, $query);  // send the query to the database, store the result of the query into $result
 
 
 
