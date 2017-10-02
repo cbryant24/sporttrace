@@ -20,7 +20,7 @@ $query = "SELECT
 FROM `game_table`
 INNER JOIN `game_history`
 ON `game_table`.`game_id`=`game_history`.`game_id`
-WHERE `game_history`.`user_id` = {$_GET['user_id']} ";
+WHERE `game_history`.`user_id` = 123 ";
 
 
 print_r($query);
