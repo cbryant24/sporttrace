@@ -1,11 +1,5 @@
 <?php
 
-
-
-
-// $query = " SELECT * FROM `game_history`
-// WHERE `user_id`={$_POST['user_id']} "; //CHANGE TO SESSION
-
 $query = "SELECT 
 `game_table`.`title`, 
 `game_table`.`date`, 
@@ -27,7 +21,7 @@ print_r($query);
 
 
 
-$result = mysqli_query($conn, $query);  // send the query to the database, store the result of the query into $result
+// $result = mysqli_query($conn, $query);  // send the query to the database, store the result of the query into $result
 
 
 
