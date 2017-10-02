@@ -14,8 +14,8 @@ if($conn == false){
 	print_r($output['errors']);
 };
 
-print_r($_POST);
-print_r($_SESSION);
+// print_r($_POST);
+// print_r($_SESSION);
 
 
 $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`) 
