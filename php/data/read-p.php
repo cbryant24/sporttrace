@@ -23,7 +23,7 @@ ON `game_table`.`game_id`=`game_history`.`game_id`
 WHERE `game_history`.`user_id` = {$_POST['user_id']} ";
 
 
-// print_r($query2);
+print_r($query);
 
 
 
