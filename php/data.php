@@ -39,7 +39,7 @@ switch($_GET['action']){
 //convert the $output variable to json, store the result in $outputJSON
 $output['debug'] = ob_get_contents();
 ob_end_clean();
-$outputJSON = json_encode($output);
+$outputJSON = json_encode($output['errors']);
 print($outputJSON);
 //end
 //mysql_close($conn) WHY DONT WERK!?
