@@ -22,7 +22,7 @@ module.exports = {
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [ 'file-loader?hash=sha512&digest=hex&name=imgs/[hash].[ext]',
+                use: [ 'file-loader?hash=sha512&digest=hex&name=dist/imgs/[hash].[ext]',
                     'image-webpack-loader?bypassOnDebug' ]
             }
         ]
