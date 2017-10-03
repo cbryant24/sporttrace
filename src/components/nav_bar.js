@@ -10,7 +10,6 @@ export default () => {
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
                 <div className="container">
                     <Link to="/"> <img src={logo2} width="190"/> </Link>
-
                     <div className="nav-link-box">
                         <ul className="navbar-nav">
                             <li className="nav-item">

@@ -6,7 +6,8 @@ export default this.complete_games = [{
     game_time: ' 7:30 ',
     game_date: '11/12/2017',
     vibe: ' casual ',
-    game_id: 4
+    game_id: 4,
+    user_id: 0
 },
 {
    game_title: ' Brick City ',
@@ -21,7 +22,8 @@ export default this.complete_games = [{
    game_time: ' 9:00 ',
    game_date: '11/12/2017',
    vibe: 'casual ',
-   game_id: 3
+   game_id: 3,
+   user_id: 1
 },
 {
    game_title: ' Buckets ',
@@ -37,7 +39,8 @@ export default this.complete_games = [{
     game_time: ' 10:00 ',
     game_date: '11/12/2017',
     vibe: 'casual ',
-    game_id: 2
+    game_id: 2,
+    user_id: 2
 },
 {
    game_title: ' Ankle Breakers ',
@@ -53,7 +56,8 @@ export default this.complete_games = [{
     game_time: ' 12:00 ',
     game_date: '11/12/2017',
     vibe: ' casual ',
-    game_id: 1
+    game_id: 1,
+    user_id: 3
 },
 {
    game_title: 'Bitches and Ballers ',
@@ -69,5 +73,6 @@ export default this.complete_games = [{
     game_time: ' 18:00 ',
     game_date: '11/12/2017',
     vibe: ' competitive ',
-    game_id: 0
+    game_id: 0,
+    user_id: 4
 }];

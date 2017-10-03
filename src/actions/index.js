@@ -11,9 +11,8 @@ export function get_active_games() {
     return {
         type: types.GET_ACTIVE_GAMES,
         payload: active_games
-    }
-
-}
+    };
+};
 
 export function get_single_game(game_id = 0) {
     // const single_game = axios.get(`${BASE_URL}/${game_id}`);
@@ -22,6 +21,25 @@ export function get_single_game(game_id = 0) {
     return {
         type: types.GET_SINGLE_GAME,
         payload: single_game
+    };
+};
+
+export function update_lat_long(new_lat_lon) {
+    const lat_lon = new_lat_lon;
+
+    return {
+        type: types.UPDATE_LAT_LON,
+        payload: lat_lon
+    };
+};
+
+export function get_users_history(user_id = 0) {
+    // const user_history = axios.get(`{BASE_URL/{user_id}`);
+    const user_history = test.filter( (game) => game.user_id === user_id)
+    
+    
+    return {
+        type: types.GET_USER_HISTORY,
+        payload: user_history
     }
 }
-

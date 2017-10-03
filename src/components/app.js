@@ -4,6 +4,7 @@ import HomePage from './home_page';
 import FindGame from './find_game';
 import PostGame from './post_game';
 import LoginPage from './login';
+import YourGames from './your_games';
 
 
 export default () => {
@@ -13,6 +14,7 @@ export default () => {
             <Route path="/find_game" component={FindGame}/>
             <Route path="/post_game" component= {PostGame} />
             <Route path="/login_page" component= {LoginPage} />
+            <Route path='/your_games' component={ YourGames} />
         </div>
     )
 }

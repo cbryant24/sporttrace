@@ -1,5 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form'
+import Search_Bar from './map_searchbar'
 
 
 const renderInput = ({input, label, type, meta: {touched, error}}) => {
@@ -31,6 +32,7 @@ const PostGameForm = props => {
             <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
             <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
             </div>
+            
             <div className="col-sm-6 col-12">
             <Field name="vibe" component={renderInput} label="Vibe" type="select" className="game_vibe_input" >
                 <option value="casual">Casual</option>
@@ -38,6 +40,8 @@ const PostGameForm = props => {
             </Field>
             <Field name="ball" component={renderInput} label="Ball" type="checkbox" className="game_vibe_input" />
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
+            <Search_Bar/>
+            
             </div>
             </div>
             <button type="submit" disabled={pristine || submitting} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>

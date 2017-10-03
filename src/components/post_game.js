@@ -3,30 +3,35 @@ import logo2 from '../assets/img/logo2.png';
 import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
 import PostGameForm from './post_game_redux_form';
+import MapWithAMarker from './display_games_map';
+import { connect } from 'react-redux';
 
 class PostGame extends Component {
-
-
-
+    componentWillMount() {
+        console.log('this be the props from postgame', this.props)
+    }
 
     render() {
         return (
             <div>
                 <NavBar/>
-
+                <MapWithAMarker
+                    center = {'value'}
+                    lat_lon = {this.props}
+                     />
                 <header className="masthead">
-
-                    <iframe className="game-map post-map" frameBorder="0"
-                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJKZcT2t_n3IARhA7AdKhMkuQ&key=AIzaSyCe4HExhxjnlIrfiI7GrPX_l7ZoFpmwdGM"
-                            allowFullScreen> </iframe>
-                        <PostGameForm/>
+                        <PostGameForm />
                 </header>
             </div>
-
-
         )
     }
 }
 
-export default PostGame;
+function mapStateToProps(state) {
+    return {
+        lat_long: state.sports.lat_lon
+    }
+}
 
+
+export default connect(mapStateToProps)(PostGame)
