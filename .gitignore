@@ -1,3 +1,10 @@
+html_template/
+.idea
+.DS_Store
+node_modules
+npm-debug.log
+test_data
+proto
 .DS_Store
 facebook-login/facebook_info.php
 php/mysql_connect.php
