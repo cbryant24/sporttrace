@@ -134,6 +134,10 @@ input[type=date], input[type=time]{
     padding-top: 10px;
 }
 
+.navbar{
+  padding: 1.1rem 1rem;
+}
+
 .navbar-nav {
     -ms-flex-direction: row;
     flex-direction: row;
