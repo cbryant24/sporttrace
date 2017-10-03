@@ -14,6 +14,21 @@ const renderInput = ({input, label, type, meta: {touched, error}}) => {
 };
 
 
+const renderSelect = ({input, label, type, meta: {touched, error}}) => {
+    return (
+        <div className="form-group">
+            <label> {label} </label>
+            <select {...input} className="form-control" type={type}>
+                <option></option>
+                <option value="casual">Casual</option>
+                <option value="competitive">Competitive</option>
+            </select>
+
+            <div className="text-danger"> {touched && error} </div>
+        </div>
+
+    )
+};
 
 const PostGameForm = props => {
 
@@ -32,10 +47,7 @@ const PostGameForm = props => {
             <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
             </div>
             <div className="col-sm-6 col-12">
-            <Field name="vibe" component={renderInput} label="Vibe" type="select" className="game_vibe_input" >
-                <option value="casual">Casual</option>
-                <option value="competitive">Competitive</option>
-            </Field>
+            <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
             <Field name="ball" component={renderInput} label="Ball" type="checkbox" className="game_vibe_input" />
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
             </div>
