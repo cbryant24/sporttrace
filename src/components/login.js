@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import { signed_in } from '../actions';
 
 class Login extends Component {
-    redner() {
+    componentWillMount() {
+        this.props.signed_in()
+    }
+    
+    render() {
         return (
             <div>
                 Hello

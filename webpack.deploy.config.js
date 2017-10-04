@@ -6,7 +6,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: '/dist'
     },
     context: resolve(__dirname, 'src'),
     module: {
@@ -22,8 +22,11 @@ module.exports = {
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [ 'file-loader?hash=sha512&digest=hex&name=dist/imgs/[hash].[ext]',
-                    'image-webpack-loader?bypassOnDebug' ]
+                loader: 'file-loader', options: {
+                    publicPath: 'dist/imgs/',
+                    name: '[sha512:hash:base64:12].[ext]',
+                    outputPath: 'imgs/'
+                }
             }
         ]
     },
