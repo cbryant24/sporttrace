@@ -20,7 +20,7 @@ class PostGame extends Component {
                     lat_lon = {this.props}
                      />
                 <header className="masthead">
-                        <PostGameForm />
+                        <PostGameForm auth={this.props.auth} />
                 </header>
             </div>
         )
@@ -29,7 +29,8 @@ class PostGame extends Component {
 
 function mapStateToProps(state) {
     return {
-        lat_long: state.sports.lat_lon
+        lat_long: state.sports.lat_lon,
+        auth: state.sports.auth
     }
 }
 

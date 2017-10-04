@@ -37,7 +37,7 @@ const PostGameForm = props => {
         console.log('form vals', vals)
     };
 
-    const {handleSubmit, pristine, submitting} = props;
+    const {handleSubmit, pristine, submitting, auth} = props;
 
     return (
         <form onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
@@ -56,7 +56,7 @@ const PostGameForm = props => {
             
             </div>
             </div>
-            <button type="submit" disabled={pristine || submitting} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+            <button type="submit" disabled={pristine || submitting || !auth} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
         </form>
     )
 };

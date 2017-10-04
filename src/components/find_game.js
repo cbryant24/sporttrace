@@ -17,7 +17,7 @@ class Find_Game extends Component {
     }
 
     render() {
-        const { active_games } = this.props
+        const { active_games } = this.props;
         const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
         <div>
