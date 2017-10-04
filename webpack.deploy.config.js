@@ -22,10 +22,9 @@ module.exports = {
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
-                loader: 'file-loader', options: {
-                    publicPath: 'dist/',
-                    name: '[sha512:hash:base64:12].[ext]',
-                    outputPath: 'imgs/'
+                loader: 'file-loader',
+                options: {
+                    outputPath: '/imgs/'
                 }
             }
         ]
