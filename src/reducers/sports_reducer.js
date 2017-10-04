@@ -4,7 +4,8 @@ const DEFAULT_STATE= {
     active_games: [],
     single_game: {},
     lat_lon: {},
-    user_game_history: []
+    user_game_history: [],
+    auth: false
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -18,7 +19,9 @@ export default function (state = DEFAULT_STATE, action) {
             return {...state, lat_lon: action.payload}
         case types.GET_USER_HISTORY:
             return {...state, user_game_history: action.payload}
+        case types.SIGNED_IN:
+            return {...state, auth: action.payload}
         default:
-            return state
+            return state 
     }
 }
