@@ -20,7 +20,7 @@
     $output['data'] = '<a class="nav-link" href="facebook-login/logout.php">Logout</a>';   
   } else {
     $output['status'] = false;
-    $output['data'] = stripslashes('<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>');  
+    $output['data'] = stripslashes('<a class="nav-link" href="' . $loginUrl . '">Log in with Facebook!</a>');  
   }
 
 
