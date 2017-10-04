@@ -28,7 +28,7 @@ class Nav_Bar extends Component {
                                 <Link style={stylebruh} to="/post_game" className="mx-3"> Post Game </Link>
                             </li>
                             <li className="nav-item">
-                                <Link style={stylebruh} to="/login_page" className="mx-3">{this.props.auth.data.data}  </Link>
+                                <Link style={stylebruh} to="/login_page" className="mx-3">{this.props.auth.data}  </Link>
                             </li>
                         </ul>
                     </div>
