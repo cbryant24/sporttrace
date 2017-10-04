@@ -16,11 +16,11 @@
   $loginUrl = $helper->getLoginUrl('/facebook-login/fb-callback.php', $permissions); //generate the login url
 
   if(isset($_SESSION['fb_access_token'])){ 
-    $output['status'] => true;
-    $output['data'] => '<a class="nav-link" href="facebook-login/logout.php">Logout</a>';   
+    $output['status'] = true;
+    $output['data'] = '<a class="nav-link" href="facebook-login/logout.php">Logout</a>';   
   } else {
-    $output['status'] => false;
-    $output['data'] => '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';  
+    $output['status'] = false;
+    $output['data'] = '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';  
   }
 
 
