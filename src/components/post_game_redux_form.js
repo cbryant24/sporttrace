@@ -51,29 +51,20 @@ const PostGameForm = props => {
         debugger
         console.log('form vals', vals)
         console.log(props)
-        // let obj = {
-        //     game_time: vals.time,
-        //     game_date: vals.date,
-        //     game_description: vals.description,
-        //     game_title: vals.title,
-        //     game_vibe: vals.vibe,
-        //     lat_lon: {
-        //         lat: props.lat_lon_zip.lat,
-        //         lon: props.lat_lon_zip.lat
-        //     },
-        //     zip: props.lat_lon_zip.zipcode,
-        //     ball: vals.ball
-        // }
-        axios.post('/php/data.php?action=insert', {
+        let complete_game = {
             game_time: vals.time,
             game_date: vals.date,
             game_description: vals.description,
             game_title: vals.title,
             game_vibe: vals.vibe,
-            lat: props.lat_lon_zip.lat,
-            lon: props.lat_lon_zip.lat,
-            zip: props.lat_lon_zip.zip,
-        })
+            lat_lon: {
+                lat: props.lat_lon_zip.lat,
+                lon: props.lat_lon_zip.lat
+            },
+            zip: props.lat_lon_zip.zipcode,
+            ball: vals.ball
+        }
+        axios.post('/php/data.php?action=insert', complete_game)
 
     };
 
