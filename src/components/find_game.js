@@ -12,8 +12,25 @@ import MapWithAMarker from './display_games_map';
 
 
 class Find_Game extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            current: ''
+        }
+    }
+
     componentWillMount(){
-        this.props.get_active_games()
+        this.props.get_active_games()    
+    }
+
+    handle_zip_code(e) {
+        if(!this.state.gameOn || /\D/.test(e.target.value)) {
+            return
+        } else {
+            let value = e.target.value;
+            this.setState({current: value});
+        }
     }
 
     render() {
@@ -33,6 +50,13 @@ class Find_Game extends Component {
 
                 </div>
                 <div className="row">
+                <form onSubmit={ (e) => this.handle_zip_search(e)}>
+                    <label>
+                        Name:
+                        <input onChange={this.handle_zip_code} type="text" name="name" />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
                     <div className="col-lg-8 col-12">
                         <div className="game-list-header">
                             <div className="row">

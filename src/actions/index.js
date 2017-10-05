@@ -5,7 +5,7 @@ import test from '../test/test_data'
 const BASE_URL = 'getdata.php'
 
 export function get_active_games() {
-    // const active_games = axios.get('./test_server/index.js')
+    // const active_games = axios.post('./test_server/index.js', {zipcode: })
     const active_games = test
 
     return {
