@@ -14,6 +14,18 @@ const renderInput = ({input, label, type, meta: {touched, error}}) => {
     )
 };
 
+const renderCheckBox = ({input, label, type, meta: {touched, error}}) => {
+    return (
+        <div style={{width: `50%`, display: `inline`}}>
+            <label> {label}
+            <input {...input} style={{width: `20%`}} className="form-control" type={type}/>
+            </label>
+            <div className="text-danger"> {touched && error} </div>
+        </div>
+
+    )
+};
+
 
 const renderSelect = ({input, label, type, meta: {touched, error}}) => {
     return (
@@ -24,7 +36,6 @@ const renderSelect = ({input, label, type, meta: {touched, error}}) => {
                 <option value="casual">Casual</option>
                 <option value="competitive">Competitive</option>
             </select>
-
             <div className="text-danger"> {touched && error} </div>
         </div>
 
@@ -40,7 +51,7 @@ const PostGameForm = props => {
     const {handleSubmit, pristine, submitting, auth} = props;
 
     return (
-        <form onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
+        <form style={{marginTop: `5.3%`}} onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
             <div className="row">
             <div className="col-sm-6 col-12">
             <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
@@ -50,13 +61,12 @@ const PostGameForm = props => {
             
             <div className="col-sm-6 col-12">
             <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
-            <Field name="ball" component={renderInput} label="Ball" type="checkbox" className="game_vibe_input" />
+            <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
-            <Search_Bar/>
-            
+                <Search_Bar/>
             </div>
             </div>
-            <button type="submit" disabled={pristine || submitting || !auth} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+            <button style={{marginTop: `10px`}} type="submit" disabled={pristine || submitting || !auth} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
         </form>
     )
 };
