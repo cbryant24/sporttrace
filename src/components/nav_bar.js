@@ -32,7 +32,7 @@ class Nav_Bar extends Component {
                                 <Link to="/post_game" className="mx-3"> Post Game </Link>
                             </li>
                             <li className="nav-item">
-                                {this.props.auth ? <span dangerouslySetInnerHTML={this.createDangerObj()}/> : <Link style={stylebruh} to="/login_page" className="mx-3">Login</Link>}
+                                {this.props.auth ? <span dangerouslySetInnerHTML={this.createDangerObj()}/> : <Link to="/login_page" className="mx-3">Login</Link>}
                             </li>
                         </ul>
                     </div>

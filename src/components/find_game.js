@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo2 from '../assets/img/logo2.png';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
 import { get_active_games } from '../actions';
 import Game from './game';
-import ReactDom from 'react-dom';
 import Game_Details_Box from './game_details_box';
 import MapWithAMarker from './display_games_map';
 
@@ -24,15 +22,10 @@ class Find_Game extends Component {
             <MapWithAMarker
             lat_lon={this.props}
             />
-            <Game_Details_Box/>
-            
-            
-            <header className="masthead" style={{left: `33.3%`}}>
-                <div>
-
-                </div>
+            <header className="masthead">
                 <div className="row">
-                    <div className="col-lg-8 col-12">
+                    <Game_Details_Box/>
+                    <div className="col-lg-8 col-12" id="game_container">
                         <div className="game-list-header">
                             <div className="row">
                                 <div className="col-3">Title</div>

@@ -21,6 +21,7 @@ body {
   background: url("../img/bg-pattern.png"), -moz-linear-gradient(bottom right,#ff0000, #fff544); /* For Firefox 3.6 to 15 */;
   background: url("../img/bg-pattern.png"), linear-gradient(to bottom right,#ff0000, #fff544); /* Standard syntax */;  
   background-repeat: repeat;
+  height: 100vh;
 }
 
 a {
@@ -296,18 +297,22 @@ header.masthead.home {
   }
 }
 
+#game_container{
+  padding-top: 8.5%;
+}
+
 .game-list-header{
   background-color: #222222;
   color: white;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-
+  width: 100%;
   font-size: 11px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 2px;
   text-transform: uppercase; 
-  color: rgba(255, 255, 255, 0.7); 
+  color: rgba(255, 255, 255, 0.7);
 }
 .game-list-header > .row{
   padding: 11px 20px 15px 0px; 
@@ -337,13 +342,18 @@ header.masthead.home {
 .gameinfobox{
   padding: 20px ;
   background: rgba(0, 0, 0, 0.4);
-  height: 100%;
   font-size: 11px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 1px;
   color: white;
-
+  height: 45vh;
+  overflow: scroll;
 }
+
+#game_details_box{
+  padding-top: 8.5%;
+}
+
 
 .textpad{
   padding-top: 10px;

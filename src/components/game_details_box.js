@@ -23,7 +23,7 @@ class Game_Details_Box extends Component {
         const {auth} = this.props;
         if(Object.keys(this.props.single_game).length !== 0) {
             return (
-                <div className='col-lg-4 col-12'>
+                <div className='col-lg-4 col-12' id="game_details_box">
                 <div className='gameinfobox'>
                     <h3>{this.props.single_game[0].game_title}</h3>
                     <p>{this.props.single_game[0].description}</p>
