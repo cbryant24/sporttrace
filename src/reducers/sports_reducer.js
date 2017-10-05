@@ -5,7 +5,7 @@ const DEFAULT_STATE= {
     single_game: {},
     lat_lon: {},
     user_game_history: [],
-    auth: false,
+    auth: true,
     zipcode: ''
 };
 

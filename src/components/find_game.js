@@ -20,10 +20,6 @@ class Find_Game extends Component {
         }
     }
 
-    componentWillMount(){
-        this.props.get_active_games()    
-    }
-
     handle_zip_code(e) {
         if(/\D/.test(e.target.value)) {
             return
@@ -38,15 +34,21 @@ class Find_Game extends Component {
         e.preventDefault();
         debugger
         if(this.state.current.length < 5) {
-            this.props.get_active_games(this.state.current)
+            return
         }
-        
+        this.props.get_active_games(this.state.current)
     }
 
     render() {
         const { current } = this.state
         const { active_games } = this.props;
-        const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
+        debugger
+        if(active_games.length > 0) {
+            const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
+        }else {
+            const games_list = <div>Enter Zipcode</div>
+        }
+        
         return (
         <div>
             <NavBar/>
@@ -76,7 +78,7 @@ class Find_Game extends Component {
                                 <div className="col-2">Vibe</div>
                             </div>
                             <div className="game-list-container">
-                                {games_list}
+                                games_list
                             </div>
                         </div>
                     </div>

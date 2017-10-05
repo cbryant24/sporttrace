@@ -13,7 +13,7 @@ class Game_Details_Box extends Component {
     handle_join_game_click() {
         console.log('these are the details for clicking join game', this.props)
         
-        // this.props.history.push('/')
+        // this.props.history.push('/your_games')
         // axios.post(BASE_URL)
 
         
