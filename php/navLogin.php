@@ -1,4 +1,8 @@
 <?php
+  session_start();//start your session
+  include('../facebook-login/facebook_info.php');//make sure to include your facebook credentials!
+  include('../facebook-login/libraries/php-graph-sdk/src/Facebook/autoload.php');//then you'll need to include the facebook sdk
+
 
   $fb = new Facebook\Facebook([//create a new facebook object
     'app_id' => FACEBOOK_APP_ID, //Replace {app-id} with your app id
@@ -9,14 +13,21 @@
   $helper = $fb->getRedirectLoginHelper();//make a redirect helper handler
 
   $permissions = ['email'];
-  $loginUrl = $helper->getLoginUrl('http://tittyking.com/sportsfinder/facebook-login/fb-callback.php', $permissions); //generate the login url
+  $loginUrl = $helper->getLoginUrl('http://sporttrace.com/facebook-login/fb-callback.php', $permissions); //generate the login url
 
-  if(isset($_SESSION['fb_access_token'])){  	
-  	echo '<a class="nav-link" href="facebook-login/logout.php">Logout</a>';		
+  if(isset($_SESSION['fb_access_token'])){ 
+    $output['status'] = true;
+    $output['data'] = '<a class="nav-link" href="http://sporttrace.com/facebook-login/logout.php">Logout</a>';   
   } else {
-  	echo '<a class="nav-link" href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';	
+    $output['status'] = false;
+    $output['data'] = stripslashes('<a class="nav-link" href="' . $loginUrl . '">Log in with Facebook!</a>');  
   }
-  
-  
+
+
+  print(json_encode($output));
+
+
+
+
 
 ?>

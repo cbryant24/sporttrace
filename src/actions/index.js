@@ -45,7 +45,7 @@ export function get_users_history(user_id = 0) {
 }
 
 export function signed_in() {
-    const sign_in = axios.put(`/php/navlogin.php`);
+    const sign_in = axios.post(`/php/navLogin.php`);
 
     return {
         type: types.SIGNED_IN,

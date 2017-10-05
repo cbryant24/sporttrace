@@ -97,7 +97,7 @@ $user = $response->getGraphUser();
   $_SESSION['user_email'] = $user['email'];
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
-header('Location: http://tittyking.com/sportsfinder/findgame.php');
+header('Location: http://sporttrace.com/');
 
 //$_SERVER['HTTP_REFERER']?? ^^
 ?>

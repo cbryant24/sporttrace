@@ -20,7 +20,7 @@ export default function (state = DEFAULT_STATE, action) {
         case types.GET_USER_HISTORY:
             return {...state, user_game_history: action.payload}
         case types.SIGNED_IN:
-            return {...state, auth: action.payload}
+            return {...state, auth: action.payload.data.data}
         default:
             return state 
     }

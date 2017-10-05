@@ -5,7 +5,7 @@ const config = require('./webpack.config');
 const npm_config = require('./package.json');
 const PORT = process.env.PORT || 3000;
 
-new WebpackDevServer(webpack(config), {
+const devServer = new WebpackDevServer(webpack(config), {
     contentBase: resolve(__dirname),
     publicPath: '/dist',
     hot: false,
@@ -24,7 +24,9 @@ new WebpackDevServer(webpack(config), {
         chunks: false,
         chunkModules: false
     }
-}).listen(PORT, 'localhost', function(err){
+});
+
+devServer.listen(PORT, 'localhost', function(err){
     if(err){
         console.log(err);
     }
