@@ -171,8 +171,8 @@ input[type=date], input[type=time]{
   text-transform: uppercase; 
   color: rgba(255, 255, 255, 0.7); 
 }
-a.nav-link {
-  font-size: 11px;
+.nav-item > span > a.nav-link {
+  font-size: 11px !important;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 2px;
   text-transform: uppercase; 
