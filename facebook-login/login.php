@@ -20,7 +20,7 @@ $fb = new Facebook\Facebook([//create a new facebook object
 $helper = $fb->getRedirectLoginHelper();//make a redirect helper handler
 
 $permissions = ['email']; //Optional permissions//specify the permissions this app will need, putting them into an array
-$loginUrl = $helper->getLoginUrl('http://sporttrace.com/facebook-login/fb-callback.php', $permissions); //generate the login url
+$loginUrl = $helper->getLoginUrl('http://sporttrace.com/facebook-login/login.php', $permissions); //generate the login url
 
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 ?>
