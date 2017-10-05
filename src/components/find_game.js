@@ -28,7 +28,7 @@ class Find_Game extends Component {
             <Game_Details_Box/>
             
             
-            <header className="masthead">
+            <header className="masthead" style={{left: `33.3%`}}>
                 <div>
 
                 </div>

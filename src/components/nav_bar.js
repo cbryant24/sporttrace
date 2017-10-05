@@ -8,7 +8,6 @@ import { signed_in } from '../actions'
 
 class Nav_Bar extends Component {
     componentWillMount() {
-        debugger
         this.props.signed_in()
         console.log('Look at the props from nav on mount', this.props);
     }
@@ -18,7 +17,6 @@ class Nav_Bar extends Component {
     }
 
     render() {
-        debugger
         console.log('Look the props from the Nav Bar Render ', this.props)
         return (
             <div>
