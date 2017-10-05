@@ -3,6 +3,8 @@
 // WRITE REGEX CHECKER HERE?
 // WRITE REGEX CHECKER HERE?
 
+print_r($_POST);
+die();
 
 if(!isset($_SESSION['fb_access_token'])){
 	$output['errors'][] = "Not Logged In";
