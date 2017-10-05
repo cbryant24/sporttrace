@@ -64,7 +64,7 @@ const PostGameForm = props => {
         //     zip: props.lat_lon_zip.zipcode,
         //     ball: vals.ball
         // }
-        axios.post('/php/data?action=insert', {
+        axios.post('http://sporttrace.com/post_game/php/data?action=insert', {
             game_time: vals.time,
             game_date: vals.date,
             game_description: vals.description,
