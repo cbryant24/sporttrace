@@ -25,7 +25,7 @@ class Find_Game extends Component {
     }
 
     handle_zip_code(e) {
-        if(!this.state.gameOn || /\D/.test(e.target.value)) {
+        if(/\D/.test(e.target.value)) {
             return
         } else {
             let value = e.target.value;
@@ -33,15 +33,25 @@ class Find_Game extends Component {
         }
     }
 
+    handle_zip_submit(e) {
+        debugger
+        e.preventDefault();
+        debugger
+        if(this.state.current.length < 5) {
+            this.props.get_active_games(this.state.current)
+        }
+        
+    }
+
     render() {
+        const { current } = this.state
         const { active_games } = this.props;
         const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
         <div>
             <NavBar/>
             <MapWithAMarker
-            lat_lon={this.props}
-            />
+            lat_lon={this.props}/>
             
             
             
@@ -50,10 +60,10 @@ class Find_Game extends Component {
 
                 </div>
                 <div className="row">
-                <form onSubmit={ (e) => this.handle_zip_search(e)}>
+                <form onSubmit={ (e) => this.handle_zip_submit(e)}>
                     <label>
                         Name:
-                        <input onChange={this.handle_zip_code} type="text" name="name" />
+                        <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>

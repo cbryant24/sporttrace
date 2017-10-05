@@ -4,9 +4,10 @@ import test from '../test/test_data'
 
 const BASE_URL = 'getdata.php'
 
-export function get_active_games() {
-    // const active_games = axios.post('./test_server/index.js', {zipcode: })
-    const active_games = test
+export function get_active_games(user_zipcode) {
+    const zipcode = { user_zipcode }
+    const active_games = axios.post('./test_server/index.js', zipcode)
+    // const active_games = test
 
     return {
         type: types.GET_ACTIVE_GAMES,
