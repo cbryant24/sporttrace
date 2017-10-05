@@ -3,7 +3,7 @@
 // WRITE REGEX CHECKER HERE?
 // WRITE REGEX CHECKER HERE?
 
-print_r($_POST);
+print($_POST);
 die();
 
 if(!isset($_SESSION['fb_access_token'])){
