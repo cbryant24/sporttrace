@@ -57,7 +57,7 @@ class Find_Game extends Component {
             
             
             
-            <header className="masthead" style={{left: `33.3%`}}>
+            <header className="masthead">
                 <div>
 
                 </div>
