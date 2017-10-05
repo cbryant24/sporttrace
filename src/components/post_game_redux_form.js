@@ -1,6 +1,10 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form'
-import Search_Bar from './map_searchbar'
+import {Field, reduxForm} from 'redux-form';
+import Search_Bar from './map_searchbar';
+import { connect } from 'react-redux';
+import axios from 'axios';
+
+
 
 
 const renderInput = ({input, label, type, meta: {touched, error}}) => {
@@ -38,14 +42,30 @@ const renderSelect = ({input, label, type, meta: {touched, error}}) => {
             </select>
             <div className="text-danger"> {touched && error} </div>
         </div>
-
     )
 };
 
 const PostGameForm = props => {
 
     const handleFormVals = vals => {
+        debugger
         console.log('form vals', vals)
+        console.log(props)
+        let complete_game = {
+            game_time: vals.time,
+            game_date: vals.date,
+            game_description: vals.description,
+            game_title: vals.title,
+            game_vibe: vals.vibe,
+            lat_lon: {
+                lat: props.lat_lon_zip.lat,
+                lon: props.lat_lon_zip.lat
+            },
+            zip: props.lat_lon_zip.zipcode,
+            ball: vals.ball
+        }
+        axios.post('/php/data.php?action=insert', complete_game)
+
     };
 
     const {handleSubmit, pristine, submitting, auth} = props;
@@ -66,7 +86,7 @@ const PostGameForm = props => {
                 <Search_Bar/>
             </div>
             </div>
-            <button style={{marginTop: `10px`}} type="submit" disabled={pristine || submitting || !auth} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+            <button style={{marginTop: `10px`}} type="submit" disabled={pristine || submitting } className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
         </form>
     )
 };
@@ -91,12 +111,19 @@ const validation = vals => {
 
 
 
+function mapStateToProps(state) {
+    return {
+        lat_lon_zip: state.sports.lat_lon_zip
+    }
+}
 
-
-
-export default reduxForm({
+export default connect(mapStateToProps, null)(reduxForm({
     form: 'post game form',
-    validate: validation
-})(PostGameForm)
+})(PostGameForm))
+
+// export default reduxForm({
+//     form: 'post game form',
+//     validate: validation
+// })(PostGameForm)
 
 

@@ -5,7 +5,8 @@ const DEFAULT_STATE= {
     single_game: {},
     lat_lon: {},
     user_game_history: [],
-    auth: false
+    auth: false,
+    zipcode: ''
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -15,8 +16,9 @@ export default function (state = DEFAULT_STATE, action) {
         case types.GET_SINGLE_GAME:
             return {...state, single_game: action.payload}
         case types.UPDATE_LAT_LON:
+            debugger
             console.log('LAT LON UPDATE:', action);
-            return {...state, lat_lon: action.payload}
+            return {...state, lat_lon_zip: action.payload }
         case types.GET_USER_HISTORY:
             return {...state, user_game_history: action.payload}
         case types.SIGNED_IN:

@@ -42,7 +42,6 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
-  console.log('props from the map comp::', props)
   let lat = props.map_info.lat_long.lat || 33.552085 ;
   let lng = props.map_info.lat_long.lon || -117.666035;
   // if(props.map_info.lat_long) {

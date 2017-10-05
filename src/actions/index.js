@@ -25,11 +25,11 @@ export function get_single_game(game_id = 0) {
 };
 
 export function update_lat_long(new_lat_lon) {
-    const lat_lon = new_lat_lon;
+    const lat_lon_zip = new_lat_lon;
 
     return {
         type: types.UPDATE_LAT_LON,
-        payload: lat_lon
+        payload: lat_lon_zip
     };
 };
 
