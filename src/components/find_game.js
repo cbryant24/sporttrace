@@ -58,10 +58,6 @@ class Find_Game extends Component {
             
             
             <header className="masthead">
-                <div>
-
-                </div>
-                <div className="row">
                 <form onSubmit={ (e) => this.handle_zip_submit(e)}>
                     <label>
                         Name:
@@ -69,6 +65,7 @@ class Find_Game extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+                <div className="row">
                     <Game_Details_Box/>
                     <div className="col-lg-8 col-12">
                         <div className="game-list-header">
