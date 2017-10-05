@@ -16,6 +16,9 @@ class Nav_Bar extends Component {
     }
 
     render() {
+
+        console.log('Look the props from the Nav Bar Render ', this.props)
+
         return (
             <div>
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">

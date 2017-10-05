@@ -42,10 +42,10 @@ class Find_Game extends Component {
             <MapWithAMarker
             lat_lon={this.props}
             />
-            <Game_Details_Box/>
             
             
-            <header className="masthead">
+            
+            <header className="masthead" style={{left: `33.3%`}}>
                 <div>
 
                 </div>
@@ -57,6 +57,7 @@ class Find_Game extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+                    <Game_Details_Box/>
                     <div className="col-lg-8 col-12">
                         <div className="game-list-header">
                             <div className="row">

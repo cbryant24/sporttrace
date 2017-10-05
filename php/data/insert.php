@@ -16,10 +16,10 @@ if($conn == false){
 
 // print_r($_POST);
 // print_r($_SESSION);
+$data = json_decode(file_get_contents("php://input"), true);
 
-
-$query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`) 
-VALUES ({$_SESSION['user_id']},'{$_POST['complete_game']['game_title']}', '{$_POST['complete_game']['game_date']}', '{$_POST['complete_game']['game_time']}', '{$_POST['complete_game']['lat_lon']['lat']}', '{$_POST['complete_game']['lat_lon']['lon']}', '{$_POST['complete_game']['game_description']}', '{$_POST['complete_game']['game_address']}', '{$_POST['complete_game']['game_vibe']}')";
+$query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`, `ball`, `zip`) 
+VALUES ({$_SESSION['user_id']},'{$data['game_title']}', '{$data['game_date']}', '{$data['game_time']}', '{$data['lat_lon']['lat']}', '{$data['lat_lon']['lon']}', '{$data['game_description']}', '{$data['game_address']}', '{$data['game_vibe']}', {$data['ball']}, {$data['zip']})";
 
 // $output['query'] = $query;
 

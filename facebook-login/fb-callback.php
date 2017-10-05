@@ -92,9 +92,13 @@ try {
 $user = $response->getGraphUser();
 
 
-  $_SESSION['user_name'] = $user['name'];
-  $_SESSION['user_id'] = $user['id'];
-  $_SESSION['user_email'] = $user['email'];
+
+$_SESSION['user_name'] = $user['name'];
+$_SESSION['user_id'] = $user['id'];
+$_SESSION['user_email'] = $user['email'];
+
+require_once('../php/addUser.php');
+
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 header('Location: http://sporttrace.com/');
