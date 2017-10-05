@@ -17,7 +17,7 @@ class Your_Games extends Component {
     }
 
     render() {
-        const { user_game_history } = this.props
+        const { user_game_history } = this.props;
         const history_list = user_game_history.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
             <div>
