@@ -28,7 +28,7 @@ class Game_Details_Box extends Component {
                     <h3>{this.props.single_game[0].game_title}</h3>
                     <p>{this.props.single_game[0].description}</p>
                     <h6>{`${this.props.single_game[0].game_time} ${this.props.single_game[0].game_date}`}</h6>
-                    <button disabled={!auth} onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
+                    <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
                 </div>
             </div>
             )
