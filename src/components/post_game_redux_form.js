@@ -82,8 +82,8 @@ const PostGameForm = props => {
             <div className="col-sm-6 col-12">
             <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
             <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
+            <Search_Bar/>
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
-                <Search_Bar/>
             </div>
             </div>
             <button style={{marginTop: `10px`}} type="submit" disabled={pristine || submitting } className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>

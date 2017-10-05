@@ -75,7 +75,7 @@ const MapWithASearchBox = compose(
     onPlacesChanged={ () => props.onPlacesChanged()}>
     <input
         type="text"
-        placeholder="Customized your placeholder"
+        placeholder="Address"
         style={{
             color: 'black',
             boxSizing: `border-box`,
