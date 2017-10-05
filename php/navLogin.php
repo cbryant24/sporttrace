@@ -17,10 +17,10 @@
 
   if(isset($_SESSION['fb_access_token'])){ 
     $output['status'] = true;
-    $output['data'] = '<a class="nav-link" href="http://sporttrace.com/facebook-login/logout.php">Logout</a>';   
+    $output['data'] = '<a class="mx-3" href="http://sporttrace.com/facebook-login/logout.php">Logout</a>';   
   } else {
     $output['status'] = false;
-    $output['data'] = stripslashes('<a class="nav-link" href="' . $loginUrl . '">Log in with Facebook!</a>');  
+    $output['data'] = stripslashes('<a class="mx-3" href="' . $loginUrl . '">Log in with Facebook!</a>');  
   }
 
 
