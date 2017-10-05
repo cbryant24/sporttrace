@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import logo2 from '../assets/img/logo2.png';
-import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
 import PostGameForm from './post_game_redux_form';
 import MapWithAMarker from './display_games_map';

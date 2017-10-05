@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo2 from '../assets/img/logo2.png';
-import stylebruh from '../assets/css/sportsfinder.css';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signed_in } from '../actions'
@@ -27,10 +26,10 @@ class Nav_Bar extends Component {
                     <div className="nav-link-box">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link style={stylebruh} to="/find_game" className="mx-3"> Find Game </Link>
+                                <Link to="/find_game" className="mx-3"> Find Game </Link>
                             </li>
                             <li className="nav-item">
-                                <Link style={stylebruh} to="/post_game" className="mx-3"> Post Game </Link>
+                                <Link to="/post_game" className="mx-3"> Post Game </Link>
                             </li>
                             <li className="nav-item">
                                 {this.props.auth ? <span dangerouslySetInnerHTML={this.createDangerObj()}/> : <Link style={stylebruh} to="/login_page" className="mx-3">Login</Link>}

@@ -5,6 +5,8 @@ import FindGame from './find_game';
 import PostGame from './post_game';
 import LoginPage from './login';
 import YourGames from './your_games';
+import stylebruh from '../assets/css/sportsfinder.css';
+
 
 
 export default () => {
