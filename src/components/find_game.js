@@ -50,13 +50,13 @@ class Find_Game extends Component {
 
                 </div>
                 <div className="row">
-                <form onSubmit={ (e) => this.handle_zip_search(e)}>
-                    <label>
-                        Name:
-                        <input onChange={this.handle_zip_code} type="text" name="name" />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
+                    <form onSubmit={ (e) => this.handle_zip_search(e)}>
+                        <label>
+                            Name:
+                            <input onChange={this.handle_zip_code} type="text" name="name" />
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
                     <Game_Details_Box/>
                     <div className="col-lg-8 col-12">
                         <div className="game-list-header">

@@ -164,7 +164,7 @@ input[type=date], input[type=time]{
   letter-spacing: 1px; 
   color: fade(white, 70%);
 }
-#mainNav .navbar-nav > li > a {
+#mainNav .navbar-nav > li > a, a.nav-link {
   font-size: 11px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 2px;
@@ -178,6 +178,8 @@ input[type=date], input[type=time]{
 #mainNav .navbar-nav > li > a:focus:hover {
     color: yellow; 
   }
+
+
 /*
 @media (max-width: 992px) {
   #mainNav {
