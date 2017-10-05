@@ -25,7 +25,7 @@ class Find_Game extends Component {
             <MapWithAMarker
             lat_lon={this.props}
             />
-            <Game_Details_Box/>
+            
             
             
             <header className="masthead" style={{left: `33.3%`}}>
@@ -33,6 +33,7 @@ class Find_Game extends Component {
 
                 </div>
                 <div className="row">
+                    <Game_Details_Box/>
                     <div className="col-lg-8 col-12">
                         <div className="game-list-header">
                             <div className="row">
