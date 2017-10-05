@@ -171,13 +171,7 @@ input[type=date], input[type=time]{
   text-transform: uppercase; 
   color: rgba(255, 255, 255, 0.7); 
 }
-/*.nav-item > span > a.nav-link {
-  font-size: 11px !important;
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif' !important;
-  letter-spacing: 2px !important;
-  text-transform: uppercase !important; 
-  color: rgba(255, 255, 255, 0.7) !important; 
-}*/
+
 a.mx-3 {
     font-size: 11px;
     font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
