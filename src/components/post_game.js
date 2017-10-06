@@ -18,7 +18,7 @@ class PostGame extends Component {
                     lat_lon = {this.props}
                      />
                 <header className="masthead">
-                        <PostGameForm auth={this.props.auth} />
+                        <PostGameForm auth={this.props.auth} history={this.props.history} />
                 </header>
             </div>
         )
