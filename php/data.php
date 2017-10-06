@@ -22,6 +22,9 @@ switch($_GET['action']){
 	case 'insert':
 		include('data/insert.php');
 		break;
+	case 'join':
+		include('data/join.php');
+		break;
 	// case 'delete':
 		//include the php file delete.php
 		// include('DataAPI/delete.php');
