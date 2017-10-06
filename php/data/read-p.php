@@ -1,11 +1,12 @@
 <?php
 die();
+
 $query = "SELECT 
 `game_table`.`title`, `game_table`.`date`, `game_table`.`time`, `game_table`.`lat`, `game_table`.`lon`, `game_table`.`desc`,`game_table`.`address`,`game_table`.`vibe`,`game_table`.`game_id`
 FROM `sportsfinder-db`.`game_table`
 INNER JOIN `sportsfinder-db`.`game_history`
 ON `game_table`.`game_id`=`game_history`.`game_id`
-WHERE `game_history`.`user_id` ={$_SESSION['user_id']";
+WHERE `game_history`.`user_id` ={$_SESSION['user_id']}";
 
 print_r($query);
 
