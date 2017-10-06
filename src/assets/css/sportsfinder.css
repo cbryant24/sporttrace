@@ -290,11 +290,6 @@ header.masthead.home {
 }
 
 
-
-body{
-  padding-top: 5%;
-}
-
 @media only screen and (max-width: 768px) {
   .game-map{
     margin-top: 100px;
