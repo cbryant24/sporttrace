@@ -29,6 +29,7 @@ class Game_Details_Box extends Component {
             console.log('this is inside the selected game filter and props', item, this.props )
             return item.game_id === this.props.game_id
         })
+        console.log('this is selected game after the filter::', selected_game)
         return (
             <div className='col-lg-4 col-12' id="game_details_box">
             <div className='gameinfobox'>
