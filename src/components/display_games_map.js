@@ -49,6 +49,8 @@ const MyMapComponent = compose(
   //   lng = props.map_info.lat_long.lon;
   // }
   if(props.map_info.active_games ) {
+    debugger
+    console.log(props)
     const markers = props.map_info.active_games.map( (item, idx) => {
       let lat_lon = {lat: item.latitude, lng: item.longitude}
       return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />

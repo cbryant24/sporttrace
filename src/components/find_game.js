@@ -39,6 +39,7 @@ class Find_Game extends Component {
     }
 
     render() {
+        debugger
         console.log('these are the props from find game render', this.props)        
         const { current } = this.state
         const { active_games } = this.props;
