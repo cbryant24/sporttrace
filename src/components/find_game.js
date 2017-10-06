@@ -39,7 +39,6 @@ class Find_Game extends Component {
         console.log('these are the props from find game render', this.props)        
         const { current } = this.state
         const { active_games } = this.props;
-        debugger
         if(active_games.length > 0) {
             const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         }else {
@@ -52,12 +51,12 @@ class Find_Game extends Component {
             <MapWithAMarker
             lat_lon={this.props}/>
             <header className="masthead">
-                <form onSubmit={ (e) => this.handle_zip_submit(e)}>
+                <form onSubmit={ (e) => this.handle_zip_submit(e)} className="zip-form">
                     <label>
-                        Name:
+                        Enter a Zip Code:
                         <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" style={{width: `10%`}} />
                 </form>
                 <div className="row">
                     <Game_Details_Box/>

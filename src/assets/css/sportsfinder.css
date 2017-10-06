@@ -160,7 +160,13 @@ input[type=date], input[type=time]{
 #mainNav {
     background: rgba(0, 0, 0, 0.1);
     box-shadow: 0 0px 5px;
+    max-height: 10vh;
+    min-height: 5vh;
+    height: 10vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
+
 #mainNav .navbar-brand {
   color: #fdcc52;
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
@@ -280,7 +286,18 @@ header.masthead.home {
   width: 100%;
   margin-top: 10.5vh;
   height: 50vh;
+
 }
+
+.zip-form{
+  z-index: 1;
+
+}
+
+body{
+  padding-top: 7.5%;
+}
+
 @media only screen and (max-width: 768px) {
   .game-map{
     margin-top: 100px;
@@ -293,25 +310,22 @@ header.masthead.home {
   }
 }
 @media only screen and (max-width: 440px) {
-  .game-map{
+  .game-map {
     margin-top: 108px !important;
 
   }
+
   .navbar {
     padding-right: 0;
     padding-left: 0;
   }
+
   .navbar > .container {
     padding-right: 0;
     padding-bottom: 0.5rem;
     padding-left: 0;
   }
 }
-
-#game_container{
-  padding-top: 8.5%;
-}
-
 
 .game-list-header{
   background-color: #222222;
@@ -361,11 +375,6 @@ header.masthead.home {
   height: 45vh;
   overflow: scroll;
 }
-
-#game_details_box{
-  padding-top: 8.5%;
-}
-
 
 .textpad{
   padding-top: 10px;
