@@ -25,25 +25,39 @@ class Game_Details_Box extends Component {
         if(this.props.game_id === '') {
             return <div>Select A Game Please</div>
         }
+        let selected_game = this.props.active_games.data.data.filter( (item) => {
+            console.log('this is inside the selected game filter and props', item, this.props )
+            return item.game_id === this.props.game_id
+        })
+        return (
+            <div className='col-lg-4 col-12' id="game_details_box">
+            <div className='gameinfobox'>
+                <h3>{selected_game.title}</h3>
+                <p>{selected_game.desc}</p>
+                <h6>{`${selected_game.time} ${selected_game.date}`}</h6>
+                <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
+            </div>
+        </div>
+        )
         console.log('this is inside the render of game_details', this.props)
         // const {auth} = this.props;
-        if(this.props.active_games.data) {
-            if(this.props.active_games.data.data.length > 0) {
-                let selected_game = this.props.active_games.data.data.filter( (item) => {
-                    return item.id === this.props.active_games.game_id
-                })
-                return (
-                    <div className='col-lg-4 col-12' id="game_details_box">
-                    <div className='gameinfobox'>
-                        <h3>{selected_game.title}</h3>
-                        <p>{selected_game.desc}</p>
-                        <h6>{`${selected_game.time} ${selected_game.date}`}</h6>
-                        <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
-                    </div>
-                </div>
-                )
-            }
-        }
+        // if(this.props.active_games.data) {
+        //     if(this.props.active_games.data.data.length > 0) {
+        //         let selected_game = this.props.active_games.data.data.filter( (item) => {
+        //             return item.id === this.props.active_games.game_id
+        //         })
+        //         return (
+        //             <div className='col-lg-4 col-12' id="game_details_box">
+        //             <div className='gameinfobox'>
+        //                 <h3>{selected_game.title}</h3>
+        //                 <p>{selected_game.desc}</p>
+        //                 <h6>{`${selected_game.time} ${selected_game.date}`}</h6>
+        //                 <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
+        //             </div>
+        //         </div>
+        //         )
+        //     }
+        // }
         // if(Object.keys(this.props.single_game).length !== 0) {
         //     return (
         //         <div className='col-lg-4 col-12' id="game_details_box">
