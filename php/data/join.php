@@ -20,9 +20,6 @@ $data = json_decode(file_get_contents("php://input"), true);
 $query = "INSERT INTO `sportsfinder-db`.`game_history` (`user_id`, `game_id`) 
 VALUES ({$_SESSION['user_id']}, {$data['game_id']})";
 
-print_r($query);
-die();
-
 $result_game = mysqli_query($conn, $query);
 // printf("Last inserted record has id %d\n", mysql_insert_id());
 $lastInsertId = mysqli_insert_id($conn);

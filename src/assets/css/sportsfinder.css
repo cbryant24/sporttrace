@@ -269,8 +269,6 @@ header.masthead .header-content h1 {
 
 header.masthead.home {
   height: 100vh;
-  min-height: 775px;
-
 }
 
 /*|_______________________________________________________________________________________________|*/
@@ -289,11 +287,6 @@ header.masthead.home {
 
 }
 
-
-
-body{
-  padding-top: 5%;
-}
 
 @media only screen and (max-width: 768px) {
   .game-map{
