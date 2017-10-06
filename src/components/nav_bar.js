@@ -34,6 +34,9 @@ class Nav_Bar extends Component {
                             <li className="nav-item">
                                 {this.props.auth ? <span dangerouslySetInnerHTML={this.createDangerObj()}/> : <Link to="/login_page" className="mx-3">Login</Link>}
                             </li>
+                            <li className='nav-item'>
+                                <Link to='/your_games' className='mx-3'>Your Games</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

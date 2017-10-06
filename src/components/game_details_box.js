@@ -26,20 +26,18 @@ class Game_Details_Box extends Component {
             return <div>Select A Game Please</div>
         }
         let selected_game = this.props.active_games.data.data.filter( (item) => {
-            console.log('this is inside the selected game filter and props', item, this.props )
             return item.game_id === this.props.game_id
         })
         
-        console.log('this is selected game after the filter::', selected_game)
         return (
             <div className='col-lg-4 col-12' id="game_details_box">
-            <div className='gameinfobox'>
-                <h3>{selected_game[0].title}</h3>
-                <p>{selected_game[0].desc}</p>
-                <h6>{`${selected_game[0].time} ${selected_game[0].date}`}</h6>
-                <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
+                <div className='gameinfobox'>
+                    <h3>{selected_game[0].title}</h3>
+                    <p>{selected_game[0].desc}</p>
+                    <h6>{`${selected_game[0].time} ${selected_game[0].date}`}</h6>
+                    <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
+                </div>
             </div>
-        </div>
         )
         console.log('this is inside the render of game_details', this.props)
         // const {auth} = this.props;

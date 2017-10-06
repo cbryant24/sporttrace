@@ -65,7 +65,7 @@ const PostGameForm = props => {
             ball: vals.ball
         }
         axios.post('/php/data.php?action=insert', complete_game)
-
+        this.history.push('/your_games')
     };
 
     const {handleSubmit, pristine, submitting, auth} = props;
