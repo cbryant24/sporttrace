@@ -48,9 +48,7 @@ const MyMapComponent = compose(
   //   lat = props.map_info.lat_long.lat;
   //   lng = props.map_info.lat_long.lon;
   // }
-  console.log('this is the props from the post game::', props);
-  console.log('this is the lat and lon::', lat, lng);
-  console.log('this is the second conditional statement', props.map_info.active_games)
+  console.log('this is the props from the display games map', props)
   if(props.map_info.active_games) {
     if(props.map_info.active_games.data.data.length > 0) {
       const markers = props.map_info.active_games.data.data.map( (item, idx) => {
