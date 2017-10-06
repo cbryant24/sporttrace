@@ -48,10 +48,15 @@ const MyMapComponent = compose(
   //   lat = props.map_info.lat_long.lat;
   //   lng = props.map_info.lat_long.lon;
   // }
-  if(props.map_info.active_games ) {
-    console.log(props)
-    const markers = props.map_info.active_games.map( (item, idx) => {
-      let lat_lon = {lat: item.latitude, lng: item.longitude}
+  if(props.map_info.active_games.data ) {
+    debugger
+    console.log('this is the props from map', props)
+    console.log('this is the props from map deeper', props.map_info)
+    console.log('this is the props from map deepest', props.map_info.active_games)
+    console.log('this is the props from map inception', props.map_info.active_games.data)
+    
+    const markers = props.map_info.active_games.data.data.map( (item, idx) => {
+      let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
       return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />
     })
     return (
