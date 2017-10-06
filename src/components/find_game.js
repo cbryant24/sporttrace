@@ -40,9 +40,11 @@ class Find_Game extends Component {
         const { current } = this.state
         const { active_games } = this.props;
         var games_list = <div>Enter Zipcode</div>
-        if(active_games.data.data.length > 0) {
-            games_list = active_games.data.data.map( (item, idx) => <Game key={idx} game_info={item}/>  )
-            console.log('this is the games_list inside render area', games_list);
+        if(active_games.data) {
+            if(active_games.data.data.length > 0) {
+                games_list = active_games.data.data.map( (item, idx) => <Game key={idx} game_info={item}/>  )
+                console.log('this is the games_list inside render area', games_list);
+            }
         }
         console.log('this is the games list before the return', games_list)
         return (
