@@ -174,10 +174,10 @@ input[type=date], input[type=time]{
 }
 .nav-item > span > a.nav-link {
   font-size: 11px !important;
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
-  letter-spacing: 2px;
-  text-transform: uppercase; 
-  color: rgba(255, 255, 255, 0.7);  
+  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif' !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important; 
+  color: rgba(255, 255, 255, 0.7) !important; 
 }
 
 #mainNav .navbar-nav > li > a:hover,
@@ -307,6 +307,7 @@ header.masthead.home {
 #game_container{
   padding-top: 8.5%;
 }
+
 
 .game-list-header{
   background-color: #222222;

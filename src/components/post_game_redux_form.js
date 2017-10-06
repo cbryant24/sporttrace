@@ -78,7 +78,6 @@ const PostGameForm = props => {
             <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
             <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
             </div>
-            
             <div className="col-sm-6 col-12">
             <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
             <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />

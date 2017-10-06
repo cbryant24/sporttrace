@@ -48,33 +48,19 @@ class Find_Game extends Component {
         <div>
             <NavBar/>
             <MapWithAMarker
-<<<<<<< HEAD
             lat_lon={this.props}
             />
             <header className="masthead">
                 <div className="row">
+                    <form onSubmit={ (e) => this.handle_zip_submit(e)}>
+                        <label>
+                            Name:
+                            <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" />
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
                     <Game_Details_Box/>
                     <div className="col-lg-8 col-12" id="game_container">
-=======
-            lat_lon={this.props}/>
-            
-            
-            
-            <header className="masthead" style={{left: `33.3%`}}>
-                <div>
-
-                </div>
-                <div className="row">
-                <form onSubmit={ (e) => this.handle_zip_submit(e)}>
-                    <label>
-                        Name:
-                        <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-                    <Game_Details_Box/>
-                    <div className="col-lg-8 col-12">
->>>>>>> eddad087693e43e5138769a454e19c2b63abc5e2
                         <div className="game-list-header">
                             <div className="row">
                                 <div className="col-3">Title</div>
