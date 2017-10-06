@@ -11,7 +11,7 @@ WHERE `game_history`.`user_id` ={$_SESSION['user_id']}";
 ob_end_flush();
 
 $result = mysqli_query($conn, $query);  // send the query to the database, store the result of the query into $result
-die();
+
 
 if(empty($result)){
         $output['errors'][] = mysqli_error($conn);
@@ -20,7 +20,7 @@ if(empty($result)){
 $output = [
      'success' => false
 ];
-
+die();
 if(empty($result)){
         $output['errors'][] = 'Database Error';
  } else {
