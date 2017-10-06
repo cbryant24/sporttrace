@@ -48,8 +48,8 @@ const MyMapComponent = compose(
   //   lat = props.map_info.lat_long.lat;
   //   lng = props.map_info.lat_long.lon;
   // }
+  console.log('this is the props from the post game::', props)
   if(props.map_info.active_games.data ) {
-    console.log('this is the props from the post game::', props)
     const markers = props.map_info.active_games.data.data.map( (item, idx) => {
       let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
       return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />
