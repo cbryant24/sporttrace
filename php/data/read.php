@@ -6,9 +6,6 @@ $query = "SELECT
 FROM `sportsfinder-db`.`game_table`
 WHERE `game_table`.`zip`= {$data['user_zipcode']}";
 
-print($query);
-die();
-
 ob_end_flush();
 
 $result = mysqli_query($conn, $query);  // send the query to the database, store the result of the query into $result
