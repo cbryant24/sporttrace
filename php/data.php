@@ -17,8 +17,7 @@ switch($_GET['action']){
 		include('data/read.php');
 		break;
 	case 'read-p':
-		//include('data/read-p.php');
-		print('fuck');
+		include('data/read-p.php');
 		break;
 	case 'insert':
 		include('data/insert.php');
