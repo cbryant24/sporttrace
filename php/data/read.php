@@ -1,6 +1,7 @@
 <?php
 $data = json_decode(file_get_contents("php://input"), true);
-
+print_r($data['user_zipcode']);
+die();
 $query = "SELECT 
 `game_table`.`title`, `game_table`.`date`, `game_table`.`time`, `game_table`.`lat`, `game_table`.`lon`, `game_table`.`desc`,`game_table`.`address`,`game_table`.`vibe`,`game_table`.`game_id`,`game_table`.`ball`
 FROM `sportsfinder-db`
