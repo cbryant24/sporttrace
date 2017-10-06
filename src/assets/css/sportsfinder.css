@@ -134,9 +134,9 @@ input[type=date], input[type=time]{
     padding-top: 10px;
 }
 
-.navbar{
+/*.navbar{
   padding: 1.1rem 1rem;
-}
+}*/
 
 .navbar-nav {
     -ms-flex-direction: row;
@@ -326,7 +326,7 @@ header.masthead.home {
   height: 40.5vh;
   background-color: white;
   color: black;
-  margin-top: -7px; 
+  margin-top: 0px; 
   text-align: center;
   font-size: 13px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
