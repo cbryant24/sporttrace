@@ -42,14 +42,21 @@ const MapWithASearchBox = compose(
           refs.searchBox = ref;
         },
         onPlacesChanged: () => {
-          debugger
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
-            this.props.update_lat_long({
-                lat: places[0].geometry.viewport.f.b,
-                lon: places[0].geometry.viewport.b.b,
-                zipcode: places[0].address_components[8].short_name
-                })
+          let i = 0;
+          while(i < places[0].address_components.length) {
+            if(places[0].address_components[i].types[0] === 'postal_code'){
+              var zipcode = places[0].address_components[i].short_name
+            }
+            i++
+          }
+          debugger
+          this.props.update_lat_long({
+            lat: places[0].geometry.viewport.f.b,
+            lon: places[0].geometry.viewport.b.b,
+            zipcode,
+          })
 
           places.forEach(place => {
             if (place.geometry.viewport) {
