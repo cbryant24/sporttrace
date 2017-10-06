@@ -29,9 +29,9 @@ class Game_Details_Box extends Component {
                 return (
                     <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
-                        <h3>{this.props.single_game[0].game_title}</h3>
-                        <p>{this.props.single_game[0].description}</p>
-                        <h6>{`${this.props.single_game[0].game_time} ${this.props.single_game[0].game_date}`}</h6>
+                        <h3>{this.props.active_games.data.data[0].title}</h3>
+                        <p>{this.props.active_games.data.data[0].desc}</p>
+                        <h6>{`${this.props.active_games.data.data[0].time} ${this.props.active_games.data.data[0].date}`}</h6>
                         <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
                     </div>
                 </div>
