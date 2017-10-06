@@ -368,7 +368,7 @@ body{
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 1px;
   color: white;
-  height: 36.5vh;
+  height: 100%;
   overflow: scroll;
   margin-top: 0.7vh;
 }
