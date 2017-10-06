@@ -18,9 +18,8 @@ export default function (state = DEFAULT_STATE, action) {
         case types.UPDATE_LAT_LON:
             return {...state, lat_lon_zip: action.payload }
         case types.GET_USER_HISTORY:
-            return {...state, user_game_history: action.payload}
+            return {...state, user_game_history: action.payload.data.data}
         case types.SIGNED_IN:
-            console.log()
             return {...state, auth: action.payload.data.data}
         case types.UPDATE_ZIPCODE:
             console.log('the zipcode is hopefully updating', action)

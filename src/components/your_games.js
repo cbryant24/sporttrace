@@ -27,7 +27,7 @@ class Your_Games extends Component {
                 />
                 <header className="masthead">
                     <div className="row">
-                        <Game_Details_Box/>
+                        {/* <Game_Details_Box/> */}
                         <div className="col-lg-8 col-12">
                             <div className="game-list-header">
                                 <div className="row">

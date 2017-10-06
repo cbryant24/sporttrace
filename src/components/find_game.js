@@ -27,7 +27,6 @@ class Find_Game extends Component {
     }
 
     handle_zip_submit(e) {
-        console.log('these are the props from find game handle_zip_submit', this.props)                
         e.preventDefault();
         if(this.state.current.length < 5) {
             return
@@ -36,7 +35,6 @@ class Find_Game extends Component {
     }
 
     render() {
-        console.log('these are the props from find game render', this.props)
         const { current } = this.state
         const { active_games } = this.props;
         var games_list = <div>Enter Zipcode</div>
@@ -46,7 +44,6 @@ class Find_Game extends Component {
                 console.log('this is the games_list inside render area', games_list);
             }
         }
-        console.log('this is the games list before the return', games_list)
         return (
         <div>
             <NavBar/>

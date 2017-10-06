@@ -7,7 +7,6 @@ const BASE_URL = 'getdata.php';
 
 class Game_Details_Box extends Component {
     componentWillMount() {
-        console.log('these are the props from the game details comp will mount', this.props)
         if(this.props.zipcode === '') {
             return
         }
@@ -16,9 +15,10 @@ class Game_Details_Box extends Component {
 
     handle_join_game_click() {
         console.log('these are the details for clicking join game', this.props)
+        game_id = this.props.active_games.data.data[0].game_id
         
         // this.props.history.push('/your_games')
-        // axios.post(BASE_URL)
+        axios.post('php/data.php?action=join', { game_id })
     }
 
     render() {
