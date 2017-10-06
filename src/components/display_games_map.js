@@ -56,7 +56,7 @@ const MyMapComponent = compose(
     console.log('this is the props from map inception', props.map_info.active_games.data)
     
     const markers = props.map_info.active_games.data.data.map( (item, idx) => {
-      let lat_lon = {lat: item.latitude, lng: item.longitude}
+      let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
       return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />
     })
     return (
