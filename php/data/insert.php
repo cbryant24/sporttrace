@@ -18,11 +18,6 @@ if($conn == false){
 // print_r($_SESSION);
 $data = json_decode(file_get_contents("php://input"), true);
 
-
-print_r($data);
-die();
-
-
 $query = "INSERT INTO `sportsfinder-db`.`game_table` (`user_id`, `title`, `date`, `time`, `lat`, `lon`, `desc`, `address`, `vibe`, `ball`, `zip`) 
 VALUES ({$_SESSION['user_id']},'{$data['game_title']}', '{$data['game_date']}', '{$data['game_time']}', '{$data['lat_lon']['lat']}', '{$data['lat_lon']['lon']}', '{$data['game_description']}', '{$data['game_address']}', '{$data['game_vibe']}', {$data['ball']}, {$data['zip']})";
 
