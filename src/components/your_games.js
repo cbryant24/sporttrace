@@ -27,12 +27,9 @@ class Your_Games extends Component {
                 <MapWithAMarker
                 lat_lon={this.props}
                 />
-                <Game_Details_Box/>
                 <header className="masthead">
-                    <div>
-    
-                    </div>
                     <div className="row">
+                        <Game_Details_Box/>
                         <div className="col-lg-8 col-12">
                             <div className="game-list-header">
                                 <div className="row">

@@ -21,9 +21,6 @@ $output = [
      'success' => false
 ];
 
-
-
-
 if(empty($result)){
         $output['errors'][] = 'Database Error';
  } else {
