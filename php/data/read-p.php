@@ -8,13 +8,11 @@ INNER JOIN `sportsfinder-db`.`game_history`
 ON `game_table`.`game_id`=`game_history`.`game_id`
 WHERE `game_history`.`user_id` ={$_SESSION['user_id']}";
 
-print_r($query);
-die();
-
-
 ob_end_flush();
 
 $result = mysqli_query($conn, $query);  // send the query to the database, store the result of the query into $result
+die();
+
 if(empty($result)){
         $output['errors'][] = mysqli_error($conn);
 }
