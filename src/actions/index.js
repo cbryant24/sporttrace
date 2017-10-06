@@ -5,7 +5,7 @@ import test from '../test/test_data'
 const BASE_URL = 'getdata.php'
 
 export function get_active_games(user_zipcode) {
-    const active_games = axios.post('/php/data?action=read', { user_zipcode })
+    const active_games = axios.post('/php/data.php?action=read', { user_zipcode })
     // const active_games = test
 
     return {
@@ -34,7 +34,7 @@ export function update_lat_long(new_lat_lon) {
 };
 
 export function get_users_history(user_id = 0) {
-    const user_history = axios.get('php/data?action=read-p');
+    const user_history = axios.get('php/data.php?action=read-p');
     // const user_history = test.filter( (game) => game.user_id === user_id)
     
     
