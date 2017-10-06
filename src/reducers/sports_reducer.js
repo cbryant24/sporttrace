@@ -6,7 +6,8 @@ const DEFAULT_STATE= {
     lat_lon: {},
     user_game_history: [],
     auth: false,
-    zipcode: ''
+    zipcode: '',
+    game_id: ''
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -24,6 +25,9 @@ export default function (state = DEFAULT_STATE, action) {
         case types.UPDATE_ZIPCODE:
             console.log('the zipcode is hopefully updating', action)
             return {...state, zipcode: action.payload}
+        case types.UPDATE_GAME_ID:
+            console.log('this is the update for the game id in the reducer', action)
+            return {...state, game_id: action.payload}
         default:
             return state 
     }

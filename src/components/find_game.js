@@ -57,7 +57,7 @@ class Find_Game extends Component {
                     <input type="submit" value="Submit" style={{width: `50%`}} />
                 </form>
                 <div className="row">
-                    <Game_Details_Box/>
+                    <Game_Details_Box history={this.props.history}/>
                     <div className="col-lg-8 col-12" id="game_container">
                         <div className="game-list-header">
                             <div className="row">

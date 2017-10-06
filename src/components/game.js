@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get_single_game } from '../actions';
+import { update_game_id } from '../actions';
 
  const Game = props => {
-     console.log('these are the prop from the Game creator 11:37pm', props)
+     console.log('these are the prop from the Game creator', props)
      
-    const {desc, date, time, title, vibe} = props.game_info;
+    const {desc, date, time, title, vibe, game_id} = props.game_info;
     
     const handle_view_click = () => {
-        props.get_single_game(game_id)
-        
+        props.update_game_id( game_id )
     }
 
     return (
@@ -23,10 +22,12 @@ import { get_single_game } from '../actions';
         </div>
     )
 }
+
 function mapStateToProps(state) {
     return {
-        auth: state.sports.auth
+        auth: state.sports.auth,
+        game_id: state.sports.game_id
     }
 }
 
-export default connect(mapStateToProps, { get_single_game})(Game)
+export default connect(mapStateToProps, { update_game_id })(Game)

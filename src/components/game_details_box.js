@@ -6,22 +6,24 @@ import { axios } from 'axios';
 const BASE_URL = 'getdata.php';
 
 class Game_Details_Box extends Component {
-    componentWillMount() {
-        if(this.props.zipcode === '') {
-            return
-        }
-        this.props.get_active_games(this.props.zipcode)
-    }
+    // componentWillMount() {
+    //     if(this.props.game_id === '') {
+    //         return
+    //     }
+    //     this.props.get_active_games(this.props.zipcode)
+    // }
 
     handle_join_game_click() {
+        game_id = this.props.game_id
         console.log('these are the details for clicking join game', this.props)
-        game_id = this.props.active_games.data.data[0].game_id
-        
-        // this.props.history.push('/your_games')
         axios.post('php/data.php?action=join', { game_id })
+        this.props.history.push('/your_games')
     }
 
     render() {
+        if(this.props.game_id === '') {
+            return <div>Select A Game Please</div>
+        }
         console.log('this is inside the render of game_details', this.props)
         // const {auth} = this.props;
         if(this.props.active_games.data) {
@@ -49,11 +51,6 @@ class Game_Details_Box extends Component {
         //         </div>
         //     </div>
         //     )
-        else {
-            return (
-                <div>Enter a Zip Code</div>
-            )
-        }
     }
         
 }
@@ -62,7 +59,8 @@ function mapStateToProps(state) {
     return {
         active_games: state.sports.active_games,
         auth: state.sports.auth,
-        zipcode: state.sports.zipcode
+        zipcode: state.sports.zipcode,
+        game_id: state.sports.game_id
     }
 }
 
