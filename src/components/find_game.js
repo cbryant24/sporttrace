@@ -50,23 +50,7 @@ class Find_Game extends Component {
         <div>
             <NavBar/>
             <MapWithAMarker
-<<<<<<< HEAD
-            lat_lon={this.props}
-            />
-            <header className="masthead">
-                <div className="row">
-                    <form onSubmit={ (e) => this.handle_zip_submit(e)}>
-                        <label>
-                            Name:
-                            <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" />
-                        </label>
-                        <input type="submit" value="Submit" />
-                    </form>
-=======
             lat_lon={this.props}/>
-            
-            
-            
             <header className="masthead">
                 <form onSubmit={ (e) => this.handle_zip_submit(e)}>
                     <label>
@@ -76,7 +60,6 @@ class Find_Game extends Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <div className="row">
->>>>>>> a32f681b80042b7e7ece8e3dc9ce0257b4fb7873
                     <Game_Details_Box/>
                     <div className="col-lg-8 col-12" id="game_container">
                         <div className="game-list-header">
