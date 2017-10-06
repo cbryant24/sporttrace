@@ -13,10 +13,12 @@ import MapWithAMarker from './display_games_map';
 
 class Your_Games extends Component {
     componentWillMount(){
+        console.log('these are the props from Your Games comp will mount', this.props)
         this.props.get_users_history()
     }
 
     render() {
+        console.log('these are the props from Your Games render', this.props)        
         const { user_game_history } = this.props;
         const history_list = user_game_history.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
