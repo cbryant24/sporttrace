@@ -20,7 +20,11 @@ export default function (state = DEFAULT_STATE, action) {
         case types.GET_USER_HISTORY:
             return {...state, user_game_history: action.payload}
         case types.SIGNED_IN:
+            console.log()
             return {...state, auth: action.payload.data.data}
+        case types.UPDATE_ZIPCODE:
+            console.log('the zipcode is hopefully updating', action)
+            return {...state, zipcode: action.payload}
         default:
             return state 
     }

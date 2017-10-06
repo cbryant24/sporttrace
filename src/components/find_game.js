@@ -83,7 +83,8 @@ class Find_Game extends Component {
 function mapStateToProps(state) {
     return {
         active_games: state.sports.active_games,
-        lat_long: state.sports.lat_lon
+        lat_long: state.sports.lat_lon,
+        zipcode: state.sports.zipcode
     }
 }
 

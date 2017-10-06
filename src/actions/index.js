@@ -52,3 +52,12 @@ export function signed_in() {
         payload: sign_in
     }
 }
+
+export function update_zip(zip) {
+    console.log('this is the info on zip from the action', zip)
+
+    return {
+        type: types.UPDATE_ZIPCODE,
+        payload: zip
+    }
+}
