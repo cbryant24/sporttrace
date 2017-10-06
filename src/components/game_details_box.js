@@ -11,7 +11,7 @@ class Game_Details_Box extends Component {
         if(this.props.zipcode === '') {
             return
         }
-        this.props.get_active_games(this.state.zipcode)
+        this.props.get_active_games(this.props.zipcode)
     }
 
     handle_join_game_click() {
