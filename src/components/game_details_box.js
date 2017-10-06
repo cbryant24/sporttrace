@@ -7,7 +7,7 @@ const BASE_URL = 'getdata.php';
 
 class Game_Details_Box extends Component {
     componentWillMount() {
-        console.log('')
+        console.log('these are the props from the game details comp will mount', this.props)
         if(this.props.zipcode === '') {
             return
         }
