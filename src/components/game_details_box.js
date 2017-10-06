@@ -24,8 +24,8 @@ class Game_Details_Box extends Component {
     render() {
         console.log('this is inside the render of game_details', this.props)
         // const {auth} = this.props;
-        if(this.active_games.data) {
-            if(this.active_games.data.data.length > 0) {
+        if(this.props.active_games.data) {
+            if(this.props.active_games.data.data.length > 0) {
                 return (
                     <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
