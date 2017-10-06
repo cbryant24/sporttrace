@@ -43,10 +43,9 @@ class Find_Game extends Component {
         const { current } = this.state
         const { active_games } = this.props;
         debugger
+        var games_list = <div>Enter Zipcode</div>
         if(active_games.length > 0) {
-            const games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
-        }else {
-            const games_list = <div>Enter Zipcode</div>
+            var games_list = active_games.data.data.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         }
         
         return (
@@ -75,7 +74,7 @@ class Find_Game extends Component {
                                 <div className="col-2">Vibe</div>
                             </div>
                             <div className="game-list-container">
-                                
+                                {games_list}
                             </div>
                         </div>
                     </div>
