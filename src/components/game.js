@@ -6,7 +6,7 @@ import { get_single_game } from '../actions';
      console.log('these are the prop from the Game creator', props)
      console.log('these are the prop from the Game creator', props.active_games)
      
-    const {description, game_date, game_time, game_title, vibe, game_id, auth} = props.game_info;
+    const {desc, date, time, title, vibe} = props.game_info;
     
     const handle_view_click = () => {
         props.get_single_game(game_id)
