@@ -289,13 +289,10 @@ header.masthead.home {
 
 }
 
-.zip-form{
-  z-index: 1;
 
-}
 
 body{
-  padding-top: 7.5%;
+  padding-top: 5%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -346,10 +343,9 @@ body{
 
 .game-list-container{
   overflow: scroll;
-  height: 40.5vh;
+  height: 31.5vh;
   background-color: white;
   color: black;
-  margin-top: 0px; 
   text-align: center;
   font-size: 13px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
@@ -372,8 +368,9 @@ body{
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 1px;
   color: white;
-  height: 45vh;
+  height: 36.5vh;
   overflow: scroll;
+  margin-top: 0.7vh;
 }
 
 .textpad{

@@ -71,7 +71,7 @@ const PostGameForm = props => {
     const {handleSubmit, pristine, submitting, auth} = props;
 
     return (
-        <form style={{marginTop: `5.3%`}} onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
+        <form onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
             <div className="row">
             <div className="col-sm-6 col-12">
             <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
