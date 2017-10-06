@@ -14,8 +14,8 @@ class Game_Details_Box extends Component {
     // }
 
     handle_join_game_click() {
+        console.log('these are the details for clicking join game', this.props)        
         game_id = this.props.game_id
-        console.log('these are the details for clicking join game', this.props)
         axios.post('php/data.php?action=join', { game_id })
         this.props.history.push('/your_games')
     }
