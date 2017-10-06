@@ -6,6 +6,8 @@ $query = "SELECT
 FROM `sportsfinder-db`
 WHERE `game_table`.`zip`= {$data['user_zipcode']}";
 
+print($query);
+die();
 
 ob_end_flush();
 
