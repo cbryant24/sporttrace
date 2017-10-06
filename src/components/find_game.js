@@ -75,7 +75,7 @@ class Find_Game extends Component {
                                 <div className="col-2">Vibe</div>
                             </div>
                             <div className="game-list-container">
-                                games_list
+                                
                             </div>
                         </div>
                     </div>
