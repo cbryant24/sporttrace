@@ -20,7 +20,10 @@ if(empty($result)){
 $output = [
      'success' => false
 ];
-die();
+
+
+
+
 if(empty($result)){
         $output['errors'][] = 'Database Error';
  } else {
