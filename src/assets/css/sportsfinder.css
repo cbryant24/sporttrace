@@ -129,6 +129,9 @@ input[type=date], input[type=time]{
 /*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*/
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
+.navbar .container {
+    height: 10vh;
+}
 .nav-link-box{
     display: inline-block;
     float: right;
