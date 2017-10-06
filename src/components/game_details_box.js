@@ -14,8 +14,8 @@ class Game_Details_Box extends Component {
     // }
 
     handle_join_game_click() {
-        console.log('these are the details for clicking join game', this.props)        
-        game_id = this.props.game_id
+        console.log('these are the details for clicking join game', this.props)
+        const game_id = this.props.game_id
         console.log(game_id)
         axios.post('php/data.php?action=join', { game_id })
         this.props.history.push('/your_games')
@@ -29,6 +29,7 @@ class Game_Details_Box extends Component {
             console.log('this is inside the selected game filter and props', item, this.props )
             return item.game_id === this.props.game_id
         })
+        
         console.log('this is selected game after the filter::', selected_game)
         return (
             <div className='col-lg-4 col-12' id="game_details_box">
