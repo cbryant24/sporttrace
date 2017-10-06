@@ -11,10 +11,12 @@ import MapWithAMarker from './display_games_map';
 
 class Your_Games extends Component {
     componentWillMount(){
+        console.log('these are the props from Your Games comp will mount', this.props)
         this.props.get_users_history()
     }
 
     render() {
+        console.log('these are the props from Your Games render', this.props)        
         const { user_game_history } = this.props;
         const history_list = user_game_history.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
@@ -23,12 +25,9 @@ class Your_Games extends Component {
                 <MapWithAMarker
                 lat_lon={this.props}
                 />
-                <Game_Details_Box/>
                 <header className="masthead">
-                    <div>
-    
-                    </div>
                     <div className="row">
+                        <Game_Details_Box/>
                         <div className="col-lg-8 col-12">
                             <div className="game-list-header">
                                 <div className="row">
