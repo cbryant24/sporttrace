@@ -51,19 +51,21 @@ const MyMapComponent = compose(
   console.log('this is the props from the post game::', props);
   console.log('this is the lat and lon::', lat, lng);
   console.log('this is the second conditional statement', props.map_info.active_games)
-  if(props.map_info.active_games.data && props.map_info.active_games.data.data.length > 0 ) {
-    const markers = props.map_info.active_games.data.data.map( (item, idx) => {
-      let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
-      return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />
-    })
-    return (
-      <GoogleMap
-      defaultZoom={7}
-      defaultCenter={ {lat: 33.7175, lng: 117.8311}}
-      center= {{ lat, lng }}>
-      {markers}
-    </GoogleMap>
-    )
+  if(props.map_info.active_games.data) {
+    if(props.map_info.active_games.data.data.length > 0) {
+      const markers = props.map_info.active_games.data.data.map( (item, idx) => {
+        let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
+        return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />
+      })
+      return (
+        <GoogleMap
+          defaultZoom={7}
+          defaultCenter={ {lat: 33.7175, lng: 117.8311}}
+          center= {{ lat, lng }}>
+          {markers}
+        </GoogleMap>
+      )
+    }
   }
   
   return (
