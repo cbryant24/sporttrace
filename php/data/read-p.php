@@ -6,6 +6,9 @@ INNER JOIN `sportsfinder-db`.`game_history`
 ON `game_table`.`game_id`=`game_history`.`game_id`
 WHERE `game_history`.`user_id` ={$_SESSION['user_id']";
 
+print_r($query);
+
+die();
 
 ob_end_flush();
 
@@ -34,4 +37,4 @@ if(empty($result)){
         }
  }
 
-?>                                 
+?>                               
