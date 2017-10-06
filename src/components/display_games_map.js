@@ -51,7 +51,7 @@ const MyMapComponent = compose(
   console.log('this is the props from the post game::', props);
   console.log('this is the lat and lon::', lat, lng);
   console.log('this is the second conditional statement', props.map_info.active_games)
-  if(props.map_info.active_games.data) {
+  if(props.map_info.active_games) {
     if(props.map_info.active_games.data.data.length > 0) {
       const markers = props.map_info.active_games.data.data.map( (item, idx) => {
         let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
