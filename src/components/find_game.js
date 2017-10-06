@@ -30,9 +30,8 @@ class Find_Game extends Component {
     }
 
     handle_zip_submit(e) {
-        debugger
+        console.log('these are the props from find game render', this.props)                
         e.preventDefault();
-        debugger
         if(this.state.current.length < 5) {
             return
         }
@@ -40,6 +39,7 @@ class Find_Game extends Component {
     }
 
     render() {
+        console.log('these are the props from find game render', this.props)        
         const { current } = this.state
         const { active_games } = this.props;
         debugger
