@@ -10,7 +10,7 @@ import { update_game_id } from '../actions';
     const handle_view_click = () => {
         props.update_game_id( game_id )
     }
-
+    
     return (
         <div className='single-game row'>
             <div className='col-3 textpad'>{title}</div>

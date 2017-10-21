@@ -8,3 +8,5 @@ proto
 .DS_Store
 facebook-login/facebook_info.php
 php/mysql_connect.php
+server/config
+server/node_modules

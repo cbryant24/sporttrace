@@ -17,16 +17,14 @@ export default function (state = DEFAULT_STATE, action) {
         case types.GET_SINGLE_GAME:
             return {...state, single_game: action.payload}
         case types.UPDATE_LAT_LON:
-            return {...state, lat_lon_zip: action.payload }
+            return {...state, lat_lon_zip: action.payload}
         case types.GET_USER_HISTORY:
             return {...state, user_game_history: action.payload.data.data}
         case types.SIGNED_IN:
             return {...state, auth: action.payload.data.data}
         case types.UPDATE_ZIPCODE:
-            console.log('the zipcode is hopefully updating', action)
             return {...state, zipcode: action.payload}
         case types.UPDATE_GAME_ID:
-            console.log('this is the update for the game id in the reducer', action)
             return {...state, game_id: action.payload}
         default:
             return state 

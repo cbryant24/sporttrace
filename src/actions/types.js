@@ -5,5 +5,7 @@ export default {
     GET_USER_HISTORY: 'get_user_history',
     SIGNED_IN: 'signed_in',
     UPDATE_ZIPCODE: 'update_zipcode',
-    UPDATE_GAME_ID: 'update_game_id'
+    UPDATE_GAME_ID: 'update_game_id',
+    SIGNIN: 'signin',
+    SIGNUP: 'signup'
 }
