@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "student grade table",
   "main": "app.js",
-  "proxy": {
-    "/auth/*": {
-      "target": "http://localhost:4000"
-    }
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

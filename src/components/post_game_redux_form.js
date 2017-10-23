@@ -57,15 +57,16 @@ const PostGameForm = props => {
             game_description: vals.description,
             game_title: vals.title,
             game_vibe: vals.vibe,
-            lat_lon: {
-                lat: props.lat_lon_zip.lat,
-                lon: props.lat_lon_zip.lat
-            },
+            lat: props.lat_lon_zip.lat,
+            lon: props.lat_lon_zip.lon,
             zip: props.lat_lon_zip.zipcode,
-            ball: vals.ball
+            ball: vals.ball,
+            user_id: props.auth.fb_id
         }
-        axios.post('/php/data.php?action=insert', complete_game)
-        props.history.push('/your_games')
+        axios.post('/api/post_game', complete_game).then( (res) => {
+            console.log('this is the game after it has been posted to the db', res)
+        })
+        // props.history.push('/your_games')
     };
 
     const {handleSubmit, pristine, submitting, auth} = props;
@@ -85,10 +86,13 @@ const PostGameForm = props => {
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
             </div>
             </div>
-            <button style={{marginTop: `10px`}} type="submit" disabled={pristine || submitting } className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+            <button style={{marginTop: `10px`}} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
         </form>
     )
 };
+
+//use on from to prevent from submission
+// disabled={pristine || submitting }
 
 const validation = vals => {
     const errors = {};
@@ -118,6 +122,14 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, null)(reduxForm({
     form: 'post game form',
+    initialValues: {
+        title: 'We ballin at saddleback yall',
+        time: '14:00',
+        date: '2017-12-25',
+        vibe: 'casual',
+        ball: 'active',
+        description: 'come to saddleback we ballin you all night!!'
+    }
 })(PostGameForm))
 
 // export default reduxForm({

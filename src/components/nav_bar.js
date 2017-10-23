@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import logo2 from '../assets/img/logo2.png';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signed_in } from '../actions'
+import { sign_in, sign_out } from '../actions'
 
 
 class Nav_Bar extends Component {
     componentWillMount() {
-        this.props.signed_in()
+        this.props.sign_in();
     }
 
-    createDangerObj(){
-        return { __html: this.props.auth};
+    render_login() {
+        if(this.props.auth) {
+            return <li onClick={ () => this.handle_logout()} className="nav-item"><span className='mx-3'>Logout</span></li>
+        }
+        return <li className="nav-item"><a className='mx-3' href='/signin/facebook'>Login/Signup</a></li>
+    }
+
+    handle_logout() {
+        console.log('hello this the nav logout ', this)
+        this.props.sign_out()
     }
 
     render() {
@@ -22,7 +30,7 @@ class Nav_Bar extends Component {
             <div>
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
                 <div className="container">
-                    <Link to="/"> <img src={logo2} width="190"/> </Link>
+                    {<Link to="/"> <img src={logo2} width="190"/> </Link>}
                     <div className="nav-link-box">
                         <ul className="navbar-nav">
                             <li className="nav-item">
@@ -34,9 +42,7 @@ class Nav_Bar extends Component {
                             <li className='nav-item'>
                                 <Link to='/your_games' className='mx-3'>Your Games</Link>
                             </li>
-                            <li className="nav-item">
-                                {this.props.auth ? <span dangerouslySetInnerHTML={this.createDangerObj()}/> : <Link to="/login_page" className="mx-3">Login</Link>}
-                            </li>
+                            {this.render_login()}
                         </ul>
                     </div>
                 </div>
@@ -52,4 +58,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { signed_in })(Nav_Bar);
+export default connect(mapStateToProps, { sign_in, sign_out })(Nav_Bar);

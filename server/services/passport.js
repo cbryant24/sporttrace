@@ -24,11 +24,12 @@ passport.use(
     callbackURL: "/signin/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('this be the user from passport yall')
     User.
     findOrCreate({ where: {
       fb_id: profile.id,
       email: '',
-      name: profile.displayName
+      first_name: profile.displayName
     }}).spread( (user, created) => {
       if(created === false) {
         console.log('This is the user who has already been created', user)

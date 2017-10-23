@@ -6,10 +6,15 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true
         },
         game_time: DataTypes.DATE,
-        last_name: DataTypes.DATE,
+        game_date: DataTypes.DATE,
+        game_description: DataTypes.STRING,
+        game_title: DataTypes.STRING,
+        game_vibe: DataTypes.STRING,
         longitude: DataTypes.FLOAT,
         latitude: DataTypes.FLOAT,
-        user_id: DataTypes.BIGINT(20),
+        zipcode: DataTypes.INTEGER,
+        ball: DataTypes.STRING,
+        fb_id: DataTypes.BIGINT(20),
         },
         {
             timestamps: false,

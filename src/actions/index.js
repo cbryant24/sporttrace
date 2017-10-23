@@ -4,24 +4,43 @@ import test from '../test/test_data'
 
 const BASE_URL = 'getdata.php'
 
-export function get_active_games(user_zipcode) {
-    const active_games = axios.post('/php/data.php?action=read', { user_zipcode })
-    // const active_games = test
 
-    return {
-        type: types.GET_ACTIVE_GAMES,
-        payload: active_games
-    };
+export function sign_in() {
+    return dispatch => {
+        axios.get('/api/user_info').then( (res) =>{
+            dispatch({
+                type: types.SIGN_IN,
+                payload: res.data
+            })
+        })
+    }
+}
+
+export function sign_out() {
+    return dispatch => {
+        axios.get('/api/signout').then( (res) =>{
+            dispatch({
+                type: types.SIGN_OUT,
+                payload: res.data
+            })
+        })
+    }
+}
+
+export function get_active_games(user_zipcode) {
+    return dispatch => {
+        axios.get('/api/games').then( res => {
+            dispatch({
+                type: types.GET_ACTIVE_GAMES,
+                payload: res.data.data
+            })
+        })
+    }
+    
 };
 
 export function get_single_game(game_id = 0) {
-    // const single_game = axios.get(`${BASE_URL}/${game_id}`);
-    const single_game = test.filter( (game) => game.game_id === game_id)
-
-    return {
-        type: types.GET_SINGLE_GAME,
-        payload: single_game
-    };
+    
 };
 
 export function update_lat_long(new_lat_lon) {
@@ -34,23 +53,7 @@ export function update_lat_long(new_lat_lon) {
 };
 
 export function get_users_history(user_id = 0) {
-    const user_history = axios.get('php/data.php?action=read-p');
-    // const user_history = test.filter( (game) => game.user_id === user_id)
     
-    
-    return {
-        type: types.GET_USER_HISTORY,
-        payload: user_history
-    }
-}
-
-export function signed_in() {
-    const sign_in = axios.post(`/php/navLogin.php`);
-
-    return {
-        type: types.SIGNED_IN,
-        payload: sign_in
-    }
 }
 
 export function update_zip(zip) {
@@ -67,5 +70,9 @@ export function update_game_id(game_id) {
         type: types.UPDATE_GAME_ID,
         payload: game_id
     }
+
+}
+
+export function sign_up() {
 
 }

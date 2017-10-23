@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "description": "Starting setup for react redux project",
   "main": "index.js",
+  "proxy": {
+    "/signin/*": {
+      "target": "http://localhost:4000"
+    },
+    "/api/*": {
+      "target": "http://localhost:4000"
+    },
+    "/api/join_game": {
+      "target": "http://localhost:4000"
+    }
+  },
   "scripts": {
     "start": "node dev_server.js",
     "bundle": "node_modules/.bin/webpack --config webpack.deploy.config.js --progress --colors",
@@ -24,7 +35,8 @@
     "recompose": "^0.25.1",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

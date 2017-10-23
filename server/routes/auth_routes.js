@@ -8,7 +8,7 @@ module.exports = (app) => {
     app.get('/signin/facebook/callback',
     passport.authenticate('facebook'), 
     (req, res) => {
-        res.redirect('/home')
+        res.redirect('/')
     })
 
     app.get('/api/user_info', (req, res) => {

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: DataTypes.BIGINT(20),
+        fb_id: DataTypes.BIGINT(20),
         game_id: DataTypes.BIGINT(20),
         creator: DataTypes.BOOLEAN,
     }, 

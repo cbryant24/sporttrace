@@ -17,13 +17,16 @@ class Find_Game extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.get_active_games()
+    }
+
     handle_zip_code(e) {
         if(/\D/.test(e.target.value)) {
             return
-        } else {
-            let value = e.target.value;
-            this.setState({current: value});
-        }
+        }  
+        let value = e.target.value;
+        this.setState({current: value});
     }
 
     handle_zip_submit(e) {
@@ -38,22 +41,16 @@ class Find_Game extends Component {
         const { current } = this.state
         const { active_games } = this.props;
         var games_list = <div>Enter Zipcode</div>
-        if(active_games.data) {
-            if(active_games.data.data.length > 0) {
-                games_list = active_games.data.data.map( (item, idx) => <Game key={idx} game_info={item}/>  )
-                console.log('this is the games_list inside render area', games_list);
-            }
+        if(active_games.length > 0) {
+            games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         }
         return (
         <div>
-            <NavBar/>
             <MapWithAMarker
             lat_lon={this.props}/>
             <header className="masthead">
                 <form onSubmit={ (e) => this.handle_zip_submit(e)} className="zip-form">
-
-                        <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" placeholder="Enter a Zip Code" style={{width: `50%`, height: `5vh`}}  />
-
+                    <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" placeholder="Enter a Zip Code" style={{width: `50%`, height: `5vh`}}  />
                     <input type="submit" value="Submit" style={{width: `50%`}} />
                 </form>
                 <div className="row">

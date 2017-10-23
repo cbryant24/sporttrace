@@ -5,6 +5,7 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        fb_id: dataTypes.BIGINT(20),
         first_name: dataTypes.STRING,
         last_name: dataTypes.STRING,
         email: dataTypes.STRING,
@@ -12,5 +13,5 @@ module.exports = (sequelize, dataTypes) => {
         timestamps: false,
         freezeTableName: true
     })
-    return User
+    return Users
 }
