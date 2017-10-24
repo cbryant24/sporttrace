@@ -61,7 +61,7 @@ const PostGameForm = props => {
             lon: props.lat_lon_zip.lon,
             zip: props.lat_lon_zip.zipcode,
             ball: vals.ball,
-            user_id: props.auth.fb_id
+            fb_id: props.auth.fb_id
         }
         axios.post('/api/post_game', complete_game).then( (res) => {
             console.log('this is the game after it has been posted to the db', res)
@@ -116,7 +116,8 @@ const validation = vals => {
 
 function mapStateToProps(state) {
     return {
-        lat_lon_zip: state.sports.lat_lon_zip
+        lat_lon_zip: state.sports.lat_lon,
+        auth: state.sports.auth
     }
 }
 

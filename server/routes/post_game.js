@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 let Games = models.games;
+let Games_History = models.game_history
 debugger
 
 router.use(bodyParser.json())
@@ -11,7 +12,6 @@ router.use(bodyParser.json())
 
 router.post('/', function(req, res){
     
-    console.log('this is the body req parsed', req.body);
     Games
     .findOrCreate({where: {
         game_time: req.body.game_time,
@@ -22,13 +22,19 @@ router.post('/', function(req, res){
         longitude: req.body.lon,        
         latitude: req.body.lat,
         zipcode: req.body.zip,
-        ball: req.body.ball,
-        fb_id: req.body.user_id
+        ball: req.body.ball
         }
     })
     .spread( (game, created) => {
         console.log('this is saying if its been created yet', game)
-        if(created) return res.send({game, created})
+        if(created) {
+            Games_History.findOrCreate( {where: {
+                game_id: game.id,
+                fb_id: req.body.fb_id
+            }}).spread( (game_history, created) => {
+                if(created) return
+            })
+        } return res.send({game, created})
         res.send(game)
     }) 
     // res.send(JSON.stringify(table));

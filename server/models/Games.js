@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         latitude: DataTypes.FLOAT,
         zipcode: DataTypes.INTEGER,
         ball: DataTypes.STRING,
-        fb_id: DataTypes.BIGINT(20),
         },
         {
             timestamps: false,

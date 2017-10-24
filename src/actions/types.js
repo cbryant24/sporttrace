@@ -6,6 +6,7 @@ export default {
     SIGN_IN: 'signed_in',
     UPDATE_ZIPCODE: 'update_zipcode',
     UPDATE_GAME_ID: 'update_game_id',
-    SIGN_OUT: 'sign_out'
+    SIGN_OUT: 'sign_out',
+    RESET_GAME_ID: 'reset_game_id'
     
 }

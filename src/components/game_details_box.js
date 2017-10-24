@@ -1,31 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { get_active_games } from '../actions'
 import axios from 'axios';
+import { reset_game_id } from '../actions'
 
 const BASE_URL = 'getdata.php';
 
 class Game_Details_Box extends Component {
-    // componentWillMount() {
-    //     if(this.props.game_id === '') {
-    //         return
-    //     }
-    //     this.props.get_active_games(this.props.zipcode)
-    // }
+    componentWillMount() {
+        this.props.reset_game_id()
+    }
 
-    handle_join_game_click() {
-        const join_info = {
+    handle_button_click() {
+        console.log('hello')
+        debugger
+        const game_info = {
             game_id: this.props.game_id,
             fb_id: this.props.auth.fb_id
         }
-        axios.post('/api/join_game', join_info ).then( (res) => {
-            console.log('this be the res from join_game', res)
-        })
+        if(this.props.history.location.pathname === '/find_game') {
+            axios.post('/api/join_game', game_info ).then( (res) => {
+                console.log('this be the res from join_game', res)
+            })
+        }
+        
+        if(this.props.history.location.pathname === '/your_games') {
+            debugger
+            axios.post('/api/unjoin_game', game_info).then( res => {
+                console.log('this be the res from unjoin_game', res)
+            })
+        }
+        
         // this.props.history.push('/your_games')
     }
 
     render() {
-        if(this.props.game_id === '') {
+        if(this.props.history.location.pathname === '/find_game') {
+            var selected_game = this.props.active_games.filter( (item) => {
+                return item.id === this.props.game_id
+            })
+        }
+        if(this.props.history.location.pathname === '/your_games') {
+            var selected_game = this.props.user_game_history.filter( item => {
+                return item.id === this.props.game_id
+            })
+        }
+        if(selected_game.length === 0) {
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
@@ -36,17 +55,16 @@ class Game_Details_Box extends Component {
                 </div>
             )
         }
-        let selected_game = this.props.active_games.filter( (item) => {
-            return item.id === this.props.game_id
-        })
-        
+
         return (
             <div className='col-lg-4 col-12' id="game_details_box">
                 <div className='gameinfobox'>
                     <h3>{selected_game[0].game_title}</h3>
                     <p>{selected_game[0].game_description}</p>
                     <h6>{`${selected_game[0].game_time} ${selected_game[0].game_date}`}</h6>
-                    <button onClick={ () => this.handle_join_game_click()} className='btn btn-outline btn-xl joinbtn'>Join Game</button>
+                    <button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
+                        {`${this.props.history.location.pathname === '/your_games' ? 'Leave Game':'Join'}`}
+                    </button>
                 </div>
             </div>
         )
@@ -64,4 +82,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { get_active_games } )(Game_Details_Box);
+export default connect(mapStateToProps, { reset_game_id })(Game_Details_Box);

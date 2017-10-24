@@ -52,8 +52,16 @@ export function update_lat_long(new_lat_lon) {
     };
 };
 
-export function get_users_history(user_id = 0) {
-    
+export function get_users_history(fb_id) {
+    return dispatch => {
+        axios.post('/api/history', {fb_id} ).then( res => {
+
+            dispatch({
+                type: types.GET_USER_HISTORY,
+                payload: res.data
+            })
+        })
+    }    
 }
 
 export function update_zip(zip) {
@@ -71,6 +79,14 @@ export function update_game_id(game_id) {
         payload: game_id
     }
 
+}
+
+export function reset_game_id() {
+
+    return {
+        type: types.RESET_GAME_ID,
+        payload: ''
+    }
 }
 
 export function sign_up() {

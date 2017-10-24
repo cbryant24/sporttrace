@@ -14,6 +14,7 @@ class PostGame extends Component {
             <div>
                 <NavBar/>
                 <MapWithAMarker
+                    history={this.props.history}
                     center = {'value'}
                     lat_lon = {this.props}
                      />

@@ -10,24 +10,32 @@ import MapWithAMarker from './display_games_map';
 
 
 class Your_Games extends Component {
-    componentWillMount(){
-        console.log('these are the props from Your Games comp will mount', this.props)
-        this.props.get_users_history()
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.auth === this.props.auth) {
+            if(this.props.user_game_history.length === 0) {
+                this.props.get_users_history(this.props.auth.fb_id)
+                return
+            }
+            return
+        }
+        this.props.get_users_history(this.props.auth.fb_id)
     }
 
     render() {
-        console.log('these are the props from Your Games render', this.props)        
         const { user_game_history } = this.props;
         const history_list = user_game_history.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         return (
             <div>
-                <NavBar/>
                 <MapWithAMarker
+                user_game_history={user_game_history}
+                history={this.props.history}
                 lat_lon={this.props}
                 />
                 <header className="masthead">
                     <div className="row">
-                        {/* <Game_Details_Box/> */}
+                        <Game_Details_Box 
+                        user_game_history={user_game_history}
+                        history={this.props.history}/>
                         <div className="col-lg-8 col-12">
                             <div className="game-list-header">
                                 <div className="row">
@@ -50,7 +58,8 @@ class Your_Games extends Component {
 function mapStateToProps(state) {
     return {
         user_game_history: state.sports.user_game_history,
-        lat_long: state.sports.lat_lon
+        lat_long: state.sports.lat_lon,
+        auth: state.sports.auth
     }
 }
 

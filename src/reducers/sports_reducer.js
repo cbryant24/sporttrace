@@ -18,9 +18,9 @@ export default function (state = DEFAULT_STATE, action) {
         case types.GET_SINGLE_GAME:
             return {...state, single_game: action.payload}
         case types.UPDATE_LAT_LON:
-            return {...state, lat_lon_zip: action.payload}
+            return {...state, lat_lon: action.payload}
         case types.GET_USER_HISTORY:
-            return {...state, user_game_history: action.payload.data.data}
+            return {...state, user_game_history: action.payload}
         case types.SIGN_IN:
             return {...state, auth: action.payload}
         case types.SIGN_OUT:
@@ -28,6 +28,8 @@ export default function (state = DEFAULT_STATE, action) {
         case types.UPDATE_ZIPCODE:
             return {...state, zipcode: action.payload}
         case types.UPDATE_GAME_ID:
+            return {...state, game_id: action.payload}
+        case types.RESET_GAME_ID:
             return {...state, game_id: action.payload}
         default:
             return state 

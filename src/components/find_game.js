@@ -47,6 +47,7 @@ class Find_Game extends Component {
         return (
         <div>
             <MapWithAMarker
+            history={this.props.history}
             lat_lon={this.props}/>
             <header className="masthead">
                 <form onSubmit={ (e) => this.handle_zip_submit(e)} className="zip-form">
