@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
-import { get_users_history } from '../actions';
+import { get_users_history, clear_user_history } from '../actions';
 import Game from './game';
 import ReactDom from 'react-dom';
 import Game_Details_Box from './game_details_box';
@@ -10,31 +10,56 @@ import MapWithAMarker from './display_games_map';
 
 
 class Your_Games extends Component {
-    componentDidUpdate(prevProps, prevState) {
-        if(prevProps.auth === this.props.auth) {
-            if(this.props.user_game_history.length === 0) {
-                this.props.get_users_history(this.props.auth.fb_id)
+    componentWillMount() {
+        const { games, resp } = this.props.user_game_history
+        debugger;
+        if(!this.props.auth && games.length > 0) {
+            this.props.clear_user_history()
+        }
+        if(this.props.auth) {
+            this.props.get_users_history(this.props.auth.fb_id)
+        }
+        
+    }
+
+    componentWillReceiveProps(nextProps) {
+        debugger
+        this.props
+        if(nextProps.auth) {
+            const {games, resp} = nextProps.user_game_history
+            if(games.length === 0 && !resp) {
+                this.props.get_users_history(nextProps.auth.fb_id)
                 return
             }
             return
         }
-        this.props.get_users_history(this.props.auth.fb_id)
     }
 
+    render_games() {
+        debugger
+        const { games } = this.props.user_game_history
+        if(games.length > 0) {
+            let history_list = games.map( (item, idx) => <Game key={idx} game_info={item}/> )
+
+            return history_list
+        }
+        return
+    }
+
+
     render() {
-        const { user_game_history } = this.props;
-        const history_list = user_game_history.map( (item, idx) => <Game key={idx} game_info={item}/>  )
+        debugger
         return (
             <div>
                 <MapWithAMarker
-                user_game_history={user_game_history}
+                user_game_history={this.props.user_game_history.games}
                 history={this.props.history}
                 lat_lon={this.props}
                 />
                 <header className="masthead">
                     <div className="row">
                         <Game_Details_Box 
-                        user_game_history={user_game_history}
+                        user_game_history={this.props.user_game_history.games}
                         history={this.props.history}/>
                         <div className="col-lg-8 col-12">
                             <div className="game-list-header">
@@ -44,7 +69,7 @@ class Your_Games extends Component {
                                     <div className="col-2">Vibe</div>
                                 </div>
                                 <div className="game-list-container">
-                                    {history_list}
+                                    {this.render_games()}
                                 </div>
                             </div>
                         </div>
@@ -63,4 +88,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { get_users_history })(Your_Games)
+export default connect(mapStateToProps, { get_users_history, clear_user_history })(Your_Games)

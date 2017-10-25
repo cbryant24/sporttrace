@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { reset_game_id } from '../actions'
+import { reset_game_id, leave_game } from '../actions'
 
 const BASE_URL = 'getdata.php';
 
@@ -11,8 +11,6 @@ class Game_Details_Box extends Component {
     }
 
     handle_button_click() {
-        console.log('hello')
-        debugger
         const game_info = {
             game_id: this.props.game_id,
             fb_id: this.props.auth.fb_id
@@ -24,10 +22,7 @@ class Game_Details_Box extends Component {
         }
         
         if(this.props.history.location.pathname === '/your_games') {
-            debugger
-            axios.post('/api/unjoin_game', game_info).then( res => {
-                console.log('this be the res from unjoin_game', res)
-            })
+            this.props.leave_game(game_info);        
         }
         
         // this.props.history.push('/your_games')
@@ -82,4 +77,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { reset_game_id })(Game_Details_Box);
+export default connect(mapStateToProps, { reset_game_id, leave_game })(Game_Details_Box);

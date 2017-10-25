@@ -7,6 +7,8 @@ export default {
     UPDATE_ZIPCODE: 'update_zipcode',
     UPDATE_GAME_ID: 'update_game_id',
     SIGN_OUT: 'sign_out',
-    RESET_GAME_ID: 'reset_game_id'
+    RESET_GAME_ID: 'reset_game_id',
+    LEAVE_GAME: 'leave_game',
+    CLEAR_USER_HISTORY: 'clear_user_history'
     
 }

@@ -55,7 +55,7 @@ export function update_lat_long(new_lat_lon) {
 export function get_users_history(fb_id) {
     return dispatch => {
         axios.post('/api/history', {fb_id} ).then( res => {
-
+            console.log('this is history api res', res)
             dispatch({
                 type: types.GET_USER_HISTORY,
                 payload: res.data
@@ -89,6 +89,25 @@ export function reset_game_id() {
     }
 }
 
-export function sign_up() {
+export function clear_user_history() {
+    return {
+        type: types.CLEAR_USER_HISTORY,
+        payload: {
+            games: [],
+            resp: false
+        }
+    }
+}
 
+export function leave_game(game_id, fb_id) {
+    return dixpatch => {
+        axios.post('/api/leave_game', {game_id, fb_id}).then( res => {
+            console.log('this be the res from unjoin_game', res)
+
+            dispatch({
+                type: types.LEAVE_GAME,
+                payload: res.data
+            })
+        })
+    }
 }

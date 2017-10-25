@@ -4,7 +4,10 @@ const DEFAULT_STATE= {
     active_games: [],
     single_game: {},
     lat_lon: {},
-    user_game_history: [],
+    user_game_history: {
+        games: [],
+        resp: false
+    },
     auth: false,
     zipcode: '',
     game_id: '',
@@ -25,12 +28,17 @@ export default function (state = DEFAULT_STATE, action) {
             return {...state, auth: action.payload}
         case types.SIGN_OUT:
             return {...state, auth: action.payload}
+        case types.CLEAR_USER_HISTORY:
+        debugger
+            return {...state, user_game_history: action.payload}
         case types.UPDATE_ZIPCODE:
             return {...state, zipcode: action.payload}
         case types.UPDATE_GAME_ID:
             return {...state, game_id: action.payload}
         case types.RESET_GAME_ID:
             return {...state, game_id: action.payload}
+        case types.LEAVE_GAME:
+            return {...state, user_game_history: action.payload}
         default:
             return state 
     }

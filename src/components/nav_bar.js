@@ -6,9 +6,6 @@ import { sign_in, sign_out } from '../actions'
 
 
 class Nav_Bar extends Component {
-    componentWillMount() {
-        this.props.sign_in();
-    }
 
     render_login() {
         if(this.props.auth) {

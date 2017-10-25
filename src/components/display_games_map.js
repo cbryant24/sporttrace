@@ -78,11 +78,12 @@ const MyMapComponent = compose(
   }
 
   if(pathname === '/your_games') {
-    let lat = props.map_info.user_game_history.length > 0 ? props.map_info.user_game_history[0].latitude : 33.7175
-    let lng = props.map_info.user_game_history.length > 0 ? props.map_info.user_game_history[0].longitude : -117.8311
+    debugger
+    let lat = props.map_info.user_game_history.games.length > 0 ? props.map_info.user_game_history.games[0].latitude : 33.7175
+    let lng = props.map_info.user_game_history.games.length > 0 ? props.map_info.user_game_history.games[0].longitude : -117.8311
 
     if(props.map_info.user_game_history) {
-      const markers = props.map_info.user_game_history.map( (item, idx) => {
+      const markers = props.map_info.user_game_history.games.map( (item, idx) => {
         let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
         return <Marker key={idx} position={lat_lon} onClick={props.onMarkerClick} />
       })
