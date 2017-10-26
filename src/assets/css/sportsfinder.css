@@ -21,7 +21,6 @@ body {
   background: url("../img/bg-pattern.png"), -moz-linear-gradient(bottom right,#ff0000, #fff544); /* For Firefox 3.6 to 15 */;
   background: url("../img/bg-pattern.png"), linear-gradient(to bottom right,#ff0000, #fff544); /* Standard syntax */;  
   background-repeat: repeat;
-  height: 100vh;
 }
 
 a {
@@ -363,7 +362,6 @@ header.masthead.home {
   color: white;
   height: 100%;
   overflow: scroll;
-  margin-top: 0.7vh;
 }
 
 .textpad{
@@ -479,7 +477,7 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 
 .col-md-4, .col-lg-4, .col-md-8, .col-lg-8{
   /*background-color: black;*/
-  margin-top: -7px;
+  /* margin-top: -7px; */
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin:.5rem 0;
@@ -494,6 +492,16 @@ select {
   letter-spacing: 1px;
   font-size: 10px;
 }
+
+/* .zip-div {
+  margin-bottom: 7px;
+} */
+
+.zip-div input, textarea {
+  padding: 0;
+}
+
+
 /*
 .col-sm-6{
   padding: 0 5%;

@@ -46,17 +46,22 @@ class Find_Game extends Component {
         }
         return (
         <div>
-            <MapWithAMarker
-            history={this.props.history}
-            lat_lon={this.props}/>
+            <div>
+                <MapWithAMarker
+                history={this.props.history}
+                lat_lon={this.props}/>
+            </div>
             <header className="masthead">
-                <form onSubmit={ (e) => this.handle_zip_submit(e)} className="zip-form">
-                    <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" placeholder="Enter a Zip Code" style={{width: `50%`, height: `5vh`}}  />
-                    <input type="submit" value="Submit" style={{width: `50%`}} />
-                </form>
+                <div className="zip-div">
+                    <form onSubmit={ (e) => this.handle_zip_submit(e)}>
+                        <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" placeholder="Enter a Zip Code" style={{width: `50%`}}  />
+                        <input type="submit" value="Submit" style={{width: `50%`}} />
+                    </form>
+                </div>
+                
                 <div className="row">
                     <Game_Details_Box history={this.props.history}/>
-                    <div className="col-lg-8 col-12" id="game_container">
+                    <div className="col-lg-8 col-12" >
                         <div className="game-list-header">
                             <div className="row">
                                 <div className="col-3">Title</div>

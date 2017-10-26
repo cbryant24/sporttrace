@@ -9,7 +9,7 @@ class Nav_Bar extends Component {
 
     render_login() {
         if(this.props.auth) {
-            return <li onClick={ () => this.handle_logout()} className="nav-item"><span className='mx-3'>Logout</span></li>
+            return <li onClick={ () => this.handle_logout()} className="nav-item"><a href='' className='mx-3'>Logout</a></li>
         }
         return <li className="nav-item"><a className='mx-3' href='/signin/facebook'>Login/Signup</a></li>
     }
@@ -24,7 +24,7 @@ class Nav_Bar extends Component {
         console.log('Look the props from the Nav Bar Render ', this.props)
 
         return (
-            <div>
+            <div className='col-12'>
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
                 <div className="container">
                     {<Link to="/"> <img src={logo2} width="190"/> </Link>}
