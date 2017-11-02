@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 export default () => {
     return(
         <div>
-        <NavBar/>
 
             <header className="masthead home">
                 <div className="container h-100">

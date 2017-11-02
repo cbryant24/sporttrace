@@ -15,9 +15,9 @@ import { update_lat_long } from '../actions'
 const MapWithASearchBox = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places',
-    loadingElement: <div style={{ height: `0%` }} />,
-    containerElement: <div style={{ height: `0px` }} />,
-    mapElement: <div style={{ height: `0%` }} />,
+    loadingElement: <div/>,
+    containerElement: <div/>,
+    mapElement: <div className='test' style={{ height: `0%` }} />,
   }),
   lifecycle({
     componentWillMount() {
@@ -78,8 +78,9 @@ const MapWithASearchBox = compose(
   withScriptjs,
   withGoogleMap
 )(props =>
-<div>
-  <StandaloneSearchBox
+  <div>
+    <label>Location</label>
+    <StandaloneSearchBox
     ref={props.onSearchBoxMounted}
     bounds={props.bounds}
     controlPosition={12}
@@ -87,23 +88,10 @@ const MapWithASearchBox = compose(
     <input
         type="text"
         placeholder="Address"
-        style={{
-            color: 'black',
-            boxSizing: `border-box`,
-            border: `1px solid transparent`,
-            width: `240px`,
-            height: `32px`,
-            marginTop: `27px`,
-            paddingTop: `0 12px`,
-            borderRadius: `3px`,
-            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-            fontSize: `14px`,
-            outline: `none`,
-            textOverflow: `ellipses`,
-        }}
-  />
+        className='form-control' />
+    
     </StandaloneSearchBox>
-</div>
+  </div>
   
 );
 

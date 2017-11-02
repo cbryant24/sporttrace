@@ -12,7 +12,6 @@ class PostGame extends Component {
     render() {
         return (
             <div>
-                <NavBar/>
                 <MapWithAMarker
                     history={this.props.history}
                     center = {'value'}

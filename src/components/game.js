@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { update_game_id } from '../actions';
 
  const Game = props => {
-     debugger
     const {game_description, game_date, game_time, game_title, game_vibe, id} = props.game_info;
     
     const handle_view_click = () => {

@@ -9,6 +9,8 @@ import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
 import { sign_in } from '../actions';
+import Side_Nav from './side_nav'
+
 
 
 
@@ -16,11 +18,15 @@ class App extends Component {
     componentWillMount() {
         this.props.sign_in();
     }
+    background_dismiss() {
+        console.log('hello front page')
+    }
 
 
     render() {
         return (
             <div>
+                <Side_Nav/>
                 <NavBar/>
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/find_game" component={FindGame}/>

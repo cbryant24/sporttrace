@@ -128,6 +128,12 @@ input[type=date], input[type=time]{
 /*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*//*NAVBAR*/
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
+
+.side-menu-conatianer {
+  position: absolute;
+  z-index: 90;
+}
+
 .navbar .container {
     height: 10vh;
 }
@@ -164,6 +170,7 @@ input[type=date], input[type=time]{
     height: 10vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
+    z-index: 1
 }
 
 #mainNav .navbar-brand {
@@ -201,6 +208,13 @@ a.mx-3 {
      background-color: red;
   }
 } */  
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    display: none;
+  }
+}
+
 @media (max-width: 992px){
   .navbar-expand-lg .navbar-nav {
       -ms-flex-direction: row;
@@ -229,6 +243,20 @@ a.mx-3 {
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
+
+
+
+/*@media (max-width: 614px) {
+.navbar .container {
+  width: 397px;
+}
+}*/
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+
+
 
 /*BACKGROUND*//*BACKGROUND*//*BACKGROUND*//*BACKGROUND*//*BACKGROUND*/
 /*BACKGROUND*//*BACKGROUND*//*BACKGROUND*//*BACKGROUND*//*BACKGROUND*/
@@ -511,3 +539,214 @@ select {
 }*/
 
 
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+/*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*/
+/*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*/
+/*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*//*MODAL*/
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+
+#backdrop   {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,.5);
+  z-index: 5;
+  }
+  
+  #dataOutput {
+  background-color: red;
+  }
+  
+  .hide {
+      display: none;
+  }
+  
+  #modal  {
+      position: fixed;
+      top: -80%;
+      left: 25%;
+      background-color: white;
+      height: 65%;
+      width: 50%;
+      -webkit-transition-duration: 600ms;
+      transition-duration: 600ms;
+      z-index: 7;
+  }
+  
+  .modal-trans {
+      transform: translateY(150%)
+  }
+  
+  .modal-trans-out {
+      transform: translateY(-150%)
+  }
+  
+  .stop-scroll {
+      overflow: hidden
+  }
+  
+  .testing {
+      transform:translateY(200px)
+  }
+  
+  
+  .close-icon:hover {
+      cursor: pointer; 
+      cursor: hand;
+  }
+  
+  
+  #modal ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  }
+
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+/*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*/
+/*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*/
+/*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*/
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+
+#side-backdrop   {
+position: fixed;
+top: 0; 
+left: 0;
+height: 100vh;
+width: 100vw;
+background-color: rgba(0,0,0,.5);
+z-index: 5;
+}
+
+
+.side-hide {
+    display: none;
+}
+
+#side-nav  {
+    position: fixed;
+    height: 100vh;
+    width: 25vw;
+    background: rgba(0, 0, 0, 0.9);
+    -webkit-transition-duration: 600ms;
+    transition-duration: 600ms;
+    z-index: 7;
+}
+
+.side-trans {
+    transform: translateX(0vw)
+}
+
+.side-trans-out {
+    transform: translateX(-25vw)
+}
+
+.close-icon:hover {
+    cursor: pointer; 
+    cursor: hand;
+}
+
+/* #side-nav {
+  background: rgba(0, 0, 0, 0.9);
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  z-index: 5
+} */
+
+/* #mainNav .navbar-brand {
+color: #fdcc52;
+font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+font-weight: 200;
+letter-spacing: 1px; 
+color: fade(white, 70%);
+} */
+
+#side-menu > li > a{
+font-size: 11px;
+font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+letter-spacing: 2px;
+/* margin: 10px 0px; */
+text-transform: uppercase; 
+color: rgba(255, 255, 255, 0.7); 
+}
+
+#side-menu > li {
+  margin-top: 7%;
+}
+
+#side-nav > span {
+  float: right;
+  padding: 2px 10px;
+}
+
+#side-menu {
+  list-style: none;
+}
+
+a.mx-3 {
+  font-size: 11px;
+  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#side-nav > li > a:hover,
+#side-nav li > a:focus:hover {
+  color: yellow; 
+}
+
+.ham-icon svg {
+  font-size: 35px;
+  color: white;
+  float: left;
+  margin-left: 1vh;
+  margin-top: 1vh;
+}
+
+@media (min-width: 768px)  {
+  .side-menu-conatianer {
+    display: none;
+  }
+  #side-menu {
+    margin-top: 7vh
+  }
+}
+
+@media (max-width: 768px)  {
+  #side-menu {
+    margin-top: 7vh;
+    padding-left: 3vh;
+  }
+}
+
+@media (max-width: 480px) {
+  #side-menu > li > a{
+    font-size: 6px;
+  }
+}
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
+/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
+/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+.map-searchbar {
+  height: 90px;
+}

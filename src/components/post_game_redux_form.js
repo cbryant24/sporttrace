@@ -82,7 +82,10 @@ const PostGameForm = props => {
             <div className="col-sm-6 col-12">
             <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
             <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
-            <Search_Bar/>
+            <div className='form-group'>
+                
+                <Search_Bar/>
+            </div>
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
             </div>
             </div>
