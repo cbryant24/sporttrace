@@ -750,3 +750,9 @@ a.mx-3 {
 .map-searchbar {
   height: 90px;
 }
+
+.form-error {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: 30px;
+}

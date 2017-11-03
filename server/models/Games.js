@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        game_time: DataTypes.DATE,
+        game_time: DataTypes.BIGINT(20),
         game_date: DataTypes.DATE,
         game_description: DataTypes.STRING,
         game_title: DataTypes.STRING,
@@ -22,13 +22,3 @@ module.exports = (sequelize, DataTypes) => {
     );
     return Games;
 }
-
-
-
-
-// video_game: {
-//     type: DataTypes.STRING,
-//     validate: {
-//         len: [2,20]
-//     }
-// }

@@ -22,7 +22,7 @@ const MapWithASearchBox = compose(
   lifecycle({
     componentWillMount() {
       const refs = {}
-
+      debugger
       this.setState({
         bounds: null,
         center: {
@@ -92,7 +92,6 @@ const MapWithASearchBox = compose(
     
     </StandaloneSearchBox>
   </div>
-  
 );
 
 function mapStateToProps(state) {

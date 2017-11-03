@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import Search_Bar from './map_searchbar';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import validator from 'validator';
 
 
 
@@ -12,7 +13,7 @@ const renderInput = ({input, label, type, meta: {touched, error}}) => {
         <div className="form-group">
             <label> {label} </label>
             <input {...input} className="form-control" type={type}/>
-            <div className="text-danger"> {touched && error} </div>
+            <div className="form-error text-center"> {touched && error} </div>
         </div>
 
     )
@@ -24,7 +25,7 @@ const renderCheckBox = ({input, label, type, meta: {touched, error}}) => {
             <label> {label}
             <input {...input} style={{width: `20%`}} className="form-control" type={type}/>
             </label>
-            <div className="text-danger"> {touched && error} </div>
+            <div className="form-error"> {touched && error} </div>
         </div>
 
     )
@@ -40,7 +41,7 @@ const renderSelect = ({input, label, type, meta: {touched, error}}) => {
                 <option value="casual">Casual</option>
                 <option value="competitive">Competitive</option>
             </select>
-            <div className="text-danger"> {touched && error} </div>
+            <div className="form-error text-center"> {touched && error} </div>
         </div>
     )
 };
@@ -49,8 +50,6 @@ const PostGameForm = props => {
 
     const handleFormVals = vals => {
         debugger
-        console.log('form vals', vals)
-        console.log(props)
         let complete_game = {
             game_time: vals.time,
             game_date: vals.date,
@@ -63,7 +62,7 @@ const PostGameForm = props => {
             ball: vals.ball,
             fb_id: props.auth.fb_id
         }
-        axios.post('/api/post_game', complete_game).then( (res) => {
+        axios.post('/api/post_game_jkdsjssljs', complete_game).then( (res) => {
             console.log('this is the game after it has been posted to the db', res)
         })
         // props.history.push('/your_games')
@@ -83,13 +82,13 @@ const PostGameForm = props => {
             <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
             <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
             <div className='form-group'>
-                
-                <Search_Bar/>
+                <Search_Bar visited={true}/>
+                {<div className='form-error text-center'>Please Enter a valid location</div>}
             </div>
             <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
             </div>
             </div>
-            <button style={{marginTop: `10px`}} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+            <button disabled style={{marginTop: `10px`}} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
         </form>
     )
 };
@@ -97,21 +96,36 @@ const PostGameForm = props => {
 //use on from to prevent from submission
 // disabled={pristine || submitting }
 
-const validation = vals => {
+const validate = vals => {
+    debugger
     const errors = {};
+    var current_date = new Date().toISOString()
+    current_date = current_date.slice(0, current_date.indexOf('T'))
+    const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@ ]+$/)
 
-    if (!vals.title) {
+    if (!vals.title) 
         errors.title = 'Enter a Game Title'
-    }
-    if (!vals.time) {
+    
+    if(!alpha_numeric.test(vals.title))
+        errors.title = 'Enter a Valid Game Title'
+
+    if (!vals.time) 
         errors.time = 'Enter a Game Time'
-    }
-    if (!vals.date) {
+
+    if (!vals.date) 
         errors.date = 'Enter a Game Date'
-    }
-    if (!vals.vibe) {
-        errors.vibe = 'Select the pace of the game'
-    }
+    
+    if (!vals.vibe) 
+        errors.vibe = 'Select the style of game'
+    
+    if(!validator.isAfter(vals.date)) 
+        if(!validator.equals(vals.date, current_date))
+            errors.date = 'Enter Future Date'
+    
+
+    if(vals.description.length > 0 && !alpha_numeric.test(vals.description))
+        errors.description = 'Enter a Valid Description'
+
     return errors;
 };
 
@@ -132,8 +146,9 @@ export default connect(mapStateToProps, null)(reduxForm({
         date: '2017-12-25',
         vibe: 'casual',
         ball: 'active',
-        description: 'come to saddleback we ballin you all night!!'
-    }
+        description: ''
+    },
+    validate
 })(PostGameForm))
 
 // export default reduxForm({
