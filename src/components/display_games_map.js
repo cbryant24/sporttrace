@@ -34,7 +34,7 @@ import { connect } from 'react-redux';
 
 const MyMapComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places",    
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places,embed",    
     loadingElement: <div style={{ height: `100%`}} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%`, marginTop: `10vh`}} />,

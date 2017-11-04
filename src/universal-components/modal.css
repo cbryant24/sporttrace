@@ -50,10 +50,6 @@
         overflow: hidden
     }
     
-    .testing {
-        transform:translateY(200px)
-    }
-    
     
     .close-icon:hover {
         cursor: pointer; 

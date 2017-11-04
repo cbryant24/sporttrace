@@ -81,6 +81,8 @@ class PostGameForm extends Component {
             ball: vals.ball,
             address: this.props.location.address,
             photo: this.props.location.photo,
+            address_url: this.props.location.address_url,
+            place_id: this.props.location.place_id,
             fb_id: this.props.auth.fb_id
         }
         

@@ -14,7 +14,7 @@ import { update_lat_long } from '../actions'
 
 const MapWithASearchBox = compose(
   withProps({
-    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places',
+    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places,embed',
     loadingElement: <div/>,
     containerElement: <div/>,
     mapElement: <div className='test' style={{ height: `0%` }} />,
@@ -56,7 +56,9 @@ const MapWithASearchBox = compose(
               lon: places[0].geometry.viewport.b.b,
               zipcode,
               address: places[0].adr_address,
-              photo: places[0].photos ? places[0].photos[0].html_attributions[0]:''
+              photo: places[0].photos ? places[0].photos[0].html_attributions[0]:'',
+              address_url: places[0].url,
+              place_id: places[0].place_id
             })
           }
           

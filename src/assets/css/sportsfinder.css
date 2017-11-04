@@ -569,11 +569,11 @@ select {
   
   #modal  {
       position: fixed;
-      top: -80%;
-      left: 25%;
-      background-color: rgba(0,0,0,0.7);
-      height: 65%;
-      width: 50%;
+      top: -116%;
+      left: 15%;
+      background-color: rgba(0,0,0,0.8);
+      height: 83%;
+      width: 70%;
       -webkit-transition-duration: 600ms;
       transition-duration: 600ms;
       z-index: 7;
@@ -600,12 +600,89 @@ select {
       cursor: pointer; 
       cursor: hand;
   }
+
+  .close-icon {
+    float: right;
+    height: 30px;
+    z-index: 12;
+  }
+
+  .close-icon svg {
+    z-index: -4;
+  }
   
   
   #modal ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
+  }
+
+  .extended-address {
+    font-size: 32px;
+  }
+
+  .street-address {
+    font-size: 24px;
+  }
+
+  .extended-address, .street-address {
+    display: block;
+  }
+
+  .locality, .region, .postal-code, .country-name {
+    display: inline
+  }
+
+  #modal iframe {
+    margin-top: 3%;
+    margin-left: 9%;
+    width: 83%;
+    height: 45%;
+  }
+
+  #modal .game_info, #modal .game_address {
+    overflow: scroll;
+    max-height: 20vh;
+    
+  }
+
+  #modal .game_info p {
+    display: inline
+  }
+
+  .modal-btn {
+    min-width: 49%;
+    margin: 0;
+    padding: 9px 9%;
+    margin: 2% 1% 0 0;
+    border-color: #262626;
+    background-color: #262626;
+  }
+
+  #modal-header {
+    z-index: -1;
+  }
+
+  @media (max-width: 768px)  {
+    .mobile-modal-text p, .mobile-modal-text h4, .mobile-modal-text h5, .mobile-modal-text h3
+    {
+      font-size: 23%;
+    }
+
+    .modal-btn {
+      min-width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px)  {
+    #modal iframe {
+      height: 40%;
+  }
+  }
+  
+  @media (max-width: 480px) {
+    
   }
 
 
