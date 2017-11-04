@@ -18,10 +18,6 @@ class App extends Component {
     componentWillMount() {
         this.props.sign_in();
     }
-    background_dismiss() {
-        console.log('hello front page')
-    }
-
 
     render() {
         return (

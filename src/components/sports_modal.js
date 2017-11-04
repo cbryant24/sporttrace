@@ -1,54 +1,45 @@
 import React, { Component } from 'react';
 import ScrollLock from 'react-scrolllock';
-import Md_Close from 'react-icons/lib/md/close'
+import Md_Close from 'react-icons/lib/md/close';
+import { connect } from 'react-redux'
+import { open_close_modal } from '../actions'
 
 
-class Mobile_Nav extends Component {
-    constructor(props) {
-        super(props)
+class Sports_Modal extends Component {
+    componentWillReceiveProps(nextProps) {
+        debugger
+        this.props
+        nextProps
+    }
 
-        this.state = {
-            back_drop_hide: false,
-            modal_in: false 
+    render_game() {
+        const {game_title, game_date, game_time, game_description, game_vibe, address, ball, photo, open} = this.props.displayed_game
+        
+        const address_elements = this.props.address.replace(/class/g, 'className')
+
+        if(photo) {
+            return (
+                <div>
+                    hello
+                </div>
+            )
         }
     }
 
-    open_modal() {
-        this.setState({
-            modal_in: true,
-            back_drop_hide: true
-        })
-        
-    }
-    close_modal() {
-        this.setState({
-            back_drop_hide: false,
-            modal_in: false
-        }) 
-    }
-    
-    backdrop_click() {
-        this.setState({
-            back_drop_hide: false,
-            modal_in: false
-        })
-        console.log('hello everyone')
-    }
-
     render() {
+        debugger
         return (
             <div>
-                {this.state.back_drop_hide?  <ScrollLock/> : ''}
-                <button onClick={() => this.open_modal()} className='btn btn-outline-primary'>Click Me</button>
-                <div onClick={()=> this.backdrop_click()}className={this.state.back_drop_hide ? '':'hide'} id='backdrop'>
+                {this.props.modal ?  <ScrollLock/> : ''}
+                <div onClick={()=> this.props.open_close_modal(false)} className={this.props.modal ? '':'hide'} id='backdrop'>
                 </div>
-                <div id='modal' className={`container ${this.state.modal_in ? 'modal-trans': 'modal-trans-out'}`}>
+                <div id='modal' className={`container ${this.props.modal ? 'modal-trans': 'modal-trans-out'}`}>
                     <div className='row'>
                         <div id='modal-header' className='col-12'>
-                            <h2>Basketball App</h2>
-                            <span onClick={ () => {this.close_modal()}}><Md_Close/></span>
+                            <h2>{this.props.title}</h2>
+                            <span onClick={ () => {this.props.open_close_modal(false)}}><Md_Close/></span>
                         </div>
-                        <hr/>
+                        {this.render_game()}
                     </div>
                 </div>
             </div>
@@ -57,4 +48,11 @@ class Mobile_Nav extends Component {
     }
 }
 
-export default Mobile_Nav
+function mapStateToProps(state) {
+    return {
+        modal: state.sports.modal,
+        displayed_game: state.sports.selected_game
+    }
+}
+
+export default connect(mapStateToProps, { open_close_modal })(Sports_Modal)

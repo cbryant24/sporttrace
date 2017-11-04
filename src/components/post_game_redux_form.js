@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import Search_Bar from './map_searchbar';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import validator from 'validator';
+import Post_Game_Modal from './sports_modal';
+import { open_close_modal, selected_game } from '../actions'
 
 
 
@@ -46,58 +48,87 @@ const renderSelect = ({input, label, type, meta: {touched, error}}) => {
     )
 };
 
-const PostGameForm = props => {
+class PostGameForm extends Component {
+    constructor(props) {
+        super(props)
 
-    const handleFormVals = vals => {
-        debugger
-        let complete_game = {
+        this.state = {
+            flashing_error: false,
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.state.flashing_error && nextProps.location.lat )
+            this.setState({ flashing_error: false})
+        
+    }
+    handleFormVals(vals) {
+        if(!this.props.location.lat) {
+            this.setState({
+                flashing_error: true
+            })
+            return
+        }
+        const complete_game = {
             game_time: vals.time,
             game_date: vals.date,
             game_description: vals.description,
             game_title: vals.title,
             game_vibe: vals.vibe,
-            lat: props.lat_lon_zip.lat,
-            lon: props.lat_lon_zip.lon,
-            zip: props.lat_lon_zip.zipcode,
+            lat: this.props.location.lat,
+            lon: this.props.location.lon,
+            zip: this.props.location.zipcode,
             ball: vals.ball,
-            fb_id: props.auth.fb_id
+            address: this.props.location.address,
+            photo: this.props.location.photo,
+            fb_id: this.props.auth.fb_id
         }
-        axios.post('/api/post_game_jkdsjssljs', complete_game).then( (res) => {
-            console.log('this is the game after it has been posted to the db', res)
-        })
+        
+        this.props.open_close_modal(true);
+        this.props.selected_game(complete_game)
+        // axios.post('/api/post_game_jkdsjssljs', complete_game).then( (res) => {
+        //     console.log('this is the game after it has been posted to the db', res)
+        // })
         // props.history.push('/your_games')
-    };
+    };    
 
-    const {handleSubmit, pristine, submitting, auth} = props;
+    render() {
+        const {handleSubmit, pristine, submitting, auth, error} = this.props;
+        
+            
 
-    return (
-        <form onSubmit={handleSubmit((vals)=> handleFormVals(vals))}>
-            <div className="row">
-            <div className="col-sm-6 col-12">
-            <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
-            <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
-            <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
+        return (
+            <div>
+                <Post_Game_Modal title='Create Game' history={this.props.history}/>
+                 <form onSubmit={ handleSubmit((vals)=> this.handleFormVals(vals))}>
+                    <div className="row">
+                        <div className="col-sm-6 col-12">
+                        <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
+                        <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
+                        <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
+                        </div>
+                        <div className="col-sm-6 col-12">
+                        <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
+                        <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
+                        <div className='form-group'>
+                            <Search_Bar/>
+                            {this.state.flashing_error ? <div className='text-center flashing-error'>Please Enter a valid location</div>: ''}
+                        </div>
+                        <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
+                        </div>
+                    </div>
+                    <button disabled={pristine && auth ? true : false} style={{marginTop: `10px`}} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+                 </form>
             </div>
-            <div className="col-sm-6 col-12">
-            <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
-            <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
-            <div className='form-group'>
-                <Search_Bar visited={true}/>
-                {<div className='form-error text-center'>Please Enter a valid location</div>}
-            </div>
-            <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
-            </div>
-            </div>
-            <button disabled style={{marginTop: `10px`}} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
-        </form>
-    )
+
+        )
+    }
 };
 
 //use on from to prevent from submission
 // disabled={pristine || submitting }
 
 const validate = vals => {
-    debugger
     const errors = {};
     var current_date = new Date().toISOString()
     current_date = current_date.slice(0, current_date.indexOf('T'))
@@ -133,12 +164,12 @@ const validate = vals => {
 
 function mapStateToProps(state) {
     return {
-        lat_lon_zip: state.sports.lat_lon,
+        location: state.sports.lat_lon,
         auth: state.sports.auth
     }
 }
 
-export default connect(mapStateToProps, null)(reduxForm({
+export default connect(mapStateToProps, { open_close_modal, selected_game })(reduxForm({
     form: 'post game form',
     initialValues: {
         title: 'We ballin at saddleback yall',

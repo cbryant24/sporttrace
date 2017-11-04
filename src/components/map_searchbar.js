@@ -22,7 +22,6 @@ const MapWithASearchBox = compose(
   lifecycle({
     componentWillMount() {
       const refs = {}
-      debugger
       this.setState({
         bounds: null,
         center: {
@@ -44,7 +43,6 @@ const MapWithASearchBox = compose(
         onPlacesChanged: () => {
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
-          debugger
           if(places[0].address_components) {
             let i = 0;            
             while(i < places[0].address_components.length) {
@@ -57,6 +55,8 @@ const MapWithASearchBox = compose(
               lat: places[0].geometry.viewport.f.b,
               lon: places[0].geometry.viewport.b.b,
               zipcode,
+              address: places[0].adr_address,
+              photo: places[0].photos ? places[0].photos[0].html_attributions[0]:''
             })
           }
           

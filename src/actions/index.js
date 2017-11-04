@@ -39,7 +39,11 @@ export function get_active_games(user_zipcode) {
     
 };
 
-export function get_single_game(game_id = 0) {
+export function selected_game(game_info) {
+    return {
+        type: types.SELECTED_GAME,
+        payload: game_info
+    }
     
 };
 
@@ -109,5 +113,12 @@ export function leave_game(game_id, fb_id) {
                 payload: res.data
             })
         })
+    }
+}
+
+export function open_close_modal(boolean) {
+    return {
+        type: types.OPEN_CLOSE_MODAL,
+        payload: boolean
     }
 }
