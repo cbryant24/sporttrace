@@ -389,6 +389,7 @@ header.masthead.home {
   letter-spacing: 1px;
   color: white;
   height: 100%;
+  max-height: 38.5vh;
   overflow: scroll;
 }
 
@@ -571,12 +572,26 @@ select {
       position: fixed;
       top: -116%;
       left: 15%;
+      color: white;
       background-color: rgba(0,0,0,0.8);
       height: 83%;
       width: 70%;
       -webkit-transition-duration: 600ms;
       transition-duration: 600ms;
       z-index: 7;
+  }
+
+  #modal-success {
+    position: fixed;
+    top: -47%;
+    left: 27%;
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+    height: 48%;
+    width: 46%;
+    -webkit-transition-duration: 600ms;
+    transition-duration: 600ms;
+    z-index: 7;
   }
   
   .modal-trans {
@@ -638,7 +653,7 @@ select {
     margin-top: 3%;
     margin-left: 9%;
     width: 83%;
-    height: 45%;
+    height: 43%;
   }
 
   #modal .game_info, #modal .game_address {
@@ -655,7 +670,7 @@ select {
     min-width: 49%;
     margin: 0;
     padding: 9px 9%;
-    margin: 2% 1% 0 0;
+    margin: .5% 1% 0 0;
     border-color: #262626;
     background-color: #262626;
   }
@@ -684,6 +699,18 @@ select {
   @media (max-width: 480px) {
     
   }
+
+  #modal-success button {
+    min-width: 100%
+  }
+
+  #modal-success #modal-header {
+    margin-top: 14vh;
+  }
+
+  #modal-success button {
+    margin-top: 20px;
+}
 
 
 /*|_______________________________________________________________________________________________|*/

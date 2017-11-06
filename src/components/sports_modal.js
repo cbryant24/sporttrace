@@ -3,7 +3,7 @@ import ScrollLock from 'react-scrolllock';
 import Md_Close from 'react-icons/lib/md/close';
 import { connect } from 'react-redux';
 import { open_close_modal } from '../actions';
-// import Iframe from 'react-iframe'
+import axios from 'axios'
 
 
 
@@ -12,6 +12,7 @@ class Sports_Modal extends Component {
         this.props
         nextProps
     }
+
 
     render_address() {
         const { address } = this.props.displayed_game
@@ -26,7 +27,41 @@ class Sports_Modal extends Component {
         return address_elements
     }
 
+    create_game() {
+        this.props.open_close_modal(false)
+        setTimeout( () => this.props.open_close_modal(true), 1000 )
+        
+        this.props.history.push('/your_games')
+        // axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
+        //     console.log('this is the game after it has been posted to the db', res)
+        // })
+
+
+    }
+
     render() {
+        if(this.props.history.location.pathname === '/your_games') {
+            return (
+                <div>
+                    {this.props.modal ?  <ScrollLock/> : ''}
+                    <div onClick={ ()=> this.props.open_close_modal(false) } className={this.props.modal ? '':'hide'} id='backdrop'>
+                    </div>
+                    <div id='modal-success' className={`container ${this.props.modal ? 'modal-trans': 'modal-trans-out'}`}>
+                        <div onClick={ ()=> this.props.open_close_modal(false) } className='close-icon'>
+                            {<Md_Close />}
+                        </div>
+                        <div>
+                            <div id='modal-header' className='col-12'>
+                            <hr />
+                                <h2 className='text-center'>Game Created!</h2>
+                            </div>
+                            <hr />
+                        </div>
+                        <button onClick={ ()=> this.props.open_close_modal(false) } className='btn btn-outline btn-xl modal-btn'>Close</button>
+                    </div>
+                </div>
+            )
+        }
         const {game_title, game_date, game_time, game_description, game_vibe, address, ball, photo, open} = this.props.displayed_game
         return (
             <div>
@@ -38,7 +73,7 @@ class Sports_Modal extends Component {
                         {<Md_Close />}
                     </div>
                     <div>
-                        <div onClick={ () => console.log('hello') } id='modal-header' className='col-12'>
+                        <div id='modal-header' className='col-12'>
                             <h2 className='text-center'>{this.props.title}</h2>
                             <hr />
                         </div>
@@ -58,8 +93,8 @@ class Sports_Modal extends Component {
                     <iframe className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${this.props.displayed_game.place_id ? this.props.displayed_game.place_id:"ChIJWXNsX7jHwoARaduMfEQ0HuU"}`}>
                     </iframe>
                     <div className='row'>
-                        <button className='btn btn-outline btn-xl modal-btn'>Create Game</button>
-                        <button className='btn btn-outline btn-xl modal-btn'>Cancel</button>
+                        <button onClick={ () => this.create_game() } className='btn btn-outline btn-xl modal-btn'>Create Game</button>
+                        <button onClick={ ()=> this.props.open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button>
                     </div>
                 </div>
             </div>

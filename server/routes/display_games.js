@@ -7,16 +7,15 @@ const router = express.Router();
 let Games = models.games;
 
 let sequelize = models.sequelize;
-
 router.use(bodyParser.json())
 
 router.get('/', function(req, res){
+    var today = new Date().getTime()
+    // var today_formatted = today.replace(/(\d+)\/(\d+)\/(\d+)/, '$3$1$2' )
 
-    var today = new Date().toLocaleDateString()
-    var today_formatted = today.replace(/(\d+)\/(\d+)\/(\d+)/, '$3$1$2' )
-
-    sequelize.query(`SELECT * FROM \`games\` WHERE game_date >= ${today_formatted}`, { model: Games })
+    sequelize.query(`SELECT * FROM \`games\` WHERE game_date >= ${today}`, { model: Games })
         .then( tbl_games => {
+            tbl_games.forEach( tbl_game => tbl_game.dataValues.formatted_date = new Date(tbl_game.dataValues.game_date).toLocaleString().replace(/:\d+(?= ) /, '').toLowerCase())
             let games = {
                 success: true,
                 data: tbl_games
@@ -32,7 +31,7 @@ router.get('/zip', function(req, res) {
 
         let games = {
             success: true,
-            data: tbl_games
+            data: ''
         }
     })
     res.status(200)

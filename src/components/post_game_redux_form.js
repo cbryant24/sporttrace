@@ -69,9 +69,9 @@ class PostGameForm extends Component {
             })
             return
         }
+        debugger
         const complete_game = {
-            game_time: vals.time,
-            game_date: vals.date,
+            game_date: new Date(`${vals.date} ${vals.time}`).getTime(),
             game_description: vals.description,
             game_title: vals.title,
             game_vibe: vals.vibe,
@@ -80,7 +80,6 @@ class PostGameForm extends Component {
             zip: this.props.location.zipcode,
             ball: vals.ball,
             address: this.props.location.address,
-            photo: this.props.location.photo,
             address_url: this.props.location.address_url,
             place_id: this.props.location.place_id,
             fb_id: this.props.auth.fb_id
@@ -95,21 +94,19 @@ class PostGameForm extends Component {
     };    
 
     render() {
-        const {handleSubmit, pristine, submitting, auth, error} = this.props;
-        
-            
+        const {handleSubmit, pristine, submitting, auth, error} = this.props;            
 
         return (
             <div>
                 <Post_Game_Modal title='Create Game' history={this.props.history}/>
                  <form onSubmit={ handleSubmit((vals)=> this.handleFormVals(vals))}>
                     <div className="row">
-                        <div className="col-sm-6 col-12">
+                        <div className={ this.props.history.location.pathname === '/your_games' ? 'col-12':'col-sm-6 col-12'}>
                         <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
                         <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
                         <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
                         </div>
-                        <div className="col-sm-6 col-12">
+                        <div className={ this.props.history.location.pathname === '/your_games' ? 'col-12':'col-sm-6 col-12'}>
                         <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
                         <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
                         <div className='form-group'>

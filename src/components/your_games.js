@@ -6,13 +6,13 @@ import Game from './game';
 import ReactDom from 'react-dom';
 import Game_Details_Box from './game_details_box';
 import MapWithAMarker from './display_games_map';
+import Your_Game_Modal from './sports_modal'
 
 
 
 class Your_Games extends Component {
     componentWillMount() {
         const { games, resp } = this.props.user_game_history
-        debugger;
         if(!this.props.auth && games.length > 0) {
             this.props.clear_user_history()
         }
@@ -23,8 +23,6 @@ class Your_Games extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger
-        this.props
         if(nextProps.auth) {
             const {games, resp} = nextProps.user_game_history
             if(games.length === 0 && !resp) {
@@ -36,7 +34,6 @@ class Your_Games extends Component {
     }
 
     render_games() {
-        debugger
         const { games } = this.props.user_game_history
         if(games.length > 0) {
             let history_list = games.map( (item, idx) => <Game key={idx} game_info={item}/> )
@@ -48,9 +45,9 @@ class Your_Games extends Component {
 
 
     render() {
-        debugger
         return (
             <div>
+            <Your_Game_Modal title='Create Game' history={this.props.history}/>
                 <MapWithAMarker
                 user_game_history={this.props.user_game_history.games}
                 history={this.props.history}
@@ -84,6 +81,7 @@ function mapStateToProps(state) {
     return {
         user_game_history: state.sports.user_game_history,
         lat_long: state.sports.lat_lon,
+        modal: state.sports.modal,
         auth: state.sports.auth
     }
 }

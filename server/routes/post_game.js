@@ -14,7 +14,6 @@ router.post('/', function(req, res){
     
     Games
     .findOrCreate({where: {
-        game_time: req.body.game_time,
         game_date: req.body.game_date,
         game_description: req.body.game_description,
         game_title: req.body.game_title,
@@ -30,7 +29,8 @@ router.post('/', function(req, res){
         if(created) {
             Games_History.findOrCreate( {where: {
                 game_id: game.id,
-                fb_id: req.body.fb_id
+                fb_id: req.body.fb_id,
+                creator: 1
             }}).spread( (game_history, created) => {
                 if(created) return
             })

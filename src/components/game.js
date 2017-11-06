@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { update_game_id } from '../actions';
 
  const Game = props => {
-    const {game_description, game_date, game_time, game_title, game_vibe, id} = props.game_info;
+    const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date } = props.game_info;
     
     const handle_view_click = () => {
         props.update_game_id( id )
     }
-    
+    debugger
     return (
         <div className='single-game row'>
             <div className='col-3 textpad'>{game_title}</div>
-            <div className='col-3 textpad'>{`${game_date} ${game_time}`}</div> 
+            <div className='col-3 textpad'>{ formatted_date }</div> 
             <div className='col-2 textpad'>{ game_vibe }</div>
             <div className='col-4'>
                 <button onClick={ () => handle_view_click() } className='btn btn-outline btn-xl viewbtn'>View</button>

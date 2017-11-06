@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { reset_game_id, leave_game } from '../actions'
 
-const BASE_URL = 'getdata.php';
 
 class Game_Details_Box extends Component {
     componentWillMount() {
@@ -27,6 +26,13 @@ class Game_Details_Box extends Component {
         
         // this.props.history.push('/your_games')
     }
+
+    // render_button() {
+    //     let current_date = new Date().getTime()
+    //     if(this.props.game.game_date < current_date && this.props.game.creator) {
+            
+    //     }
+    // }
 
     render() {
         if(this.props.history.location.pathname === '/find_game') {
@@ -57,6 +63,9 @@ class Game_Details_Box extends Component {
                     <h3>{selected_game[0].game_title}</h3>
                     <p>{selected_game[0].game_description}</p>
                     <h6>{`${selected_game[0].game_time} ${selected_game[0].game_date}`}</h6>
+                    <button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
+                        {`${this.props.history.location.pathname === '/your_games' ? 'Leave Game':'Join'}`}
+                    </button>
                     <button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
                         {`${this.props.history.location.pathname === '/your_games' ? 'Leave Game':'Join'}`}
                     </button>

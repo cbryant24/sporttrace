@@ -78,7 +78,6 @@ const MyMapComponent = compose(
   }
 
   if(pathname === '/your_games') {
-    debugger
     let lat = props.map_info.user_game_history.games.length > 0 ? props.map_info.user_game_history.games[0].latitude : 33.7175
     let lng = props.map_info.user_game_history.games.length > 0 ? props.map_info.user_game_history.games[0].longitude : -117.8311
 
