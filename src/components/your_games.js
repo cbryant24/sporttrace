@@ -24,7 +24,6 @@ class Your_Games extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger
         if(nextProps.auth) {
             const {games, resp} = nextProps.user_game_history
             if(games.length === 0 && !resp) {

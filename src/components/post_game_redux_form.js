@@ -1,51 +1,12 @@
 import React, { Component } from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, reset} from 'redux-form';
 import Search_Bar from './map_searchbar';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Post_Game_Modal from './sports_modal';
-import { open_close_modal, selected_game, open_close_form } from '../actions'
+import { open_close_modal, selected_game, open_close_form, update_lat_long } from '../actions'
+import { renderInput, renderCheckBox, renderSelect } from './helpers';
 
-
-
-
-const renderInput = ({input, label, type, meta: {touched, error}}) => {
-    return (
-        <div className="form-group">
-            <label> {label} </label>
-            <input {...input} className="form-control" type={type}/>
-            <div className="form-error text-center"> {touched && error} </div>
-        </div>
-
-    )
-};
-
-const renderCheckBox = ({input, label, type, meta: {touched, error}}) => {
-    return (
-        <div style={{width: `50%`, display: `inline`}}>
-            <label> {label}
-            <input {...input} style={{width: `20%`}} className="form-control" type={type}/>
-            </label>
-            <div className="form-error"> {touched && error} </div>
-        </div>
-
-    )
-};
-
-
-const renderSelect = ({input, label, type, meta: {touched, error}}) => {
-    return (
-        <div className="form-group">
-            <label> {label} </label>
-            <select {...input} className="form-control" type={type}>
-                <option></option>
-                <option value="casual">Casual</option>
-                <option value="competitive">Competitive</option>
-            </select>
-            <div className="form-error text-center"> {touched && error} </div>
-        </div>
-    )
-};
 
 class PostGameForm extends Component {
     constructor(props) {
@@ -91,12 +52,15 @@ class PostGameForm extends Component {
     };    
 
     handle_cancel() {
+        this.props.reset();
+        this.props.update_lat_long({})
         this.props.open_close_form(false)
-        debugger
-        this.setState({edit_game: false})
+        if(this.props.history.location.pathname === '/post_game')
+            this.props.history.push('/')
     }
 
     render() {
+        debugger
         const {handleSubmit, pristine, submitting, auth, error} = this.props;            
 
         return (
@@ -113,14 +77,14 @@ class PostGameForm extends Component {
                         <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
                         <Field name="ball" component={renderCheckBox} label="Ball" type="checkbox" className="game_vibe_input" />
                         <div className='form-group'>
-                            <Search_Bar/>
+                            <Search_Bar reset_vals='nothin'/>
                             {this.state.flashing_error ? <div className='text-center flashing-error'>Please Enter a valid location</div>: ''}
                         </div>
                         <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
                         </div>
                     </div>
-                    <button disabled={pristine && auth ? true : false} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
-                    <button onClick={() => this.handle_cancel()} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Cancel</button>
+                    <button disabled={auth ? false : true} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+                    <button onClick={() => this.handle_cancel()} type='button' className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Cancel</button>
                  </form>
             </div>
 
@@ -154,7 +118,6 @@ const validate = vals => {
     if (!vals.vibe) 
         errors.vibe = 'Select the style of game'
     
-    debugger
     if(vals.date < current_date )
         errors.date = 'Enter a Future Game Date' 
     
@@ -175,7 +138,7 @@ function mapStateToProps(state, props) {
         return `${year}-${month}-${day}`
     })    
     let initialValues = {}  
-    if(props.selection) {
+    if(props.selection && props.selection.length > 0) {
         var edit_date = new Date(props.selection[0].game_date)
         edit_date = edit_date.toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
             day = day < 10 ? `0${day}`:day
@@ -201,7 +164,7 @@ function mapStateToProps(state, props) {
     }
 }
 
-export default connect(mapStateToProps, { open_close_modal, selected_game, open_close_form })(reduxForm({
+export default connect(mapStateToProps, { open_close_modal, selected_game, open_close_form, update_lat_long })(reduxForm({
     form: 'post game form',
     validate
 })(PostGameForm))

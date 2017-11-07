@@ -12,7 +12,7 @@ const DEFAULT_STATE= {
     zipcode: '',
     game_id: '',
     auth: '',
-    modal: false,
+    modal: {},
     open_form: false
 };
 

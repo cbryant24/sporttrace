@@ -42,15 +42,15 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
-  const { pathname } = props.location.location
+  const { pathname } = props.location
   const {lat_long} = props.map_info  
-  if(pathname === '/post_game') {
+  if(pathname === '/post_game' || props.open_form) {
     let lat = lat_long.lat || 34.043017
     let lng = lat_long.lon || -118.267254
 
     return (
       <GoogleMap
-      defaultZoom={15}
+      defaultZoom={19}
       center= {{ lat, lng }}>
         <Marker position={{ lat, lng }} onClick={props.onMarkerClick} />
       </GoogleMap>
@@ -119,18 +119,21 @@ class MyFancyComponent extends React.PureComponent {
   }
 
   render() {
-    console.log(this.props)
     return (
       <MyMapComponent
-        location={this.props.history}
+        location={this.props.history.location}
         onMarkerClick={this.handleMarkerClick}
         map_info={this.props.lat_lon}
+        open_form={this.props.open_form}
       />
     )
   }
 }
 
-export default MyFancyComponent
+function mapStateToProps(state) {
+  return {
+    open_form: state.sports.open_form
+  }
+}
 
-
-// isMarkerShown={this.state.isMarkerShown}
+export default connect(mapStateToProps)(MyFancyComponent)

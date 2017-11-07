@@ -11,7 +11,6 @@ router.use(bodyParser.json())
 
 router.get('/', function(req, res){
     var today = new Date().getTime()
-    // var today_formatted = today.replace(/(\d+)\/(\d+)\/(\d+)/, '$3$1$2' )
 
     sequelize.query(`SELECT * FROM \`games\` WHERE game_date >= ${today}`, { model: Games })
         .then( tbl_games => {

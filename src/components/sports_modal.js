@@ -41,19 +41,20 @@ class Sports_Modal extends Component {
 
     render() {
         if(this.props.history.location.pathname === '/your_games') {
+
             return (
                 <div>
-                    {this.props.modal ?  <ScrollLock/> : ''}
-                    <div onClick={ ()=> this.props.open_close_modal(false) } className={this.props.modal ? '':'hide'} id='backdrop'>
+                    {this.props.modal.open ?  <ScrollLock/> : ''}
+                    <div onClick={ ()=> this.props.open_close_modal({open, }) } className={this.props.modal.open ? '':'hide'} id='backdrop'>
                     </div>
-                    <div id='modal-success' className={`container ${this.props.modal ? 'modal-trans': 'modal-trans-out'}`}>
+                    <div id='modal-success' className={`container ${this.props.modal.open ? 'modal-trans': 'modal-trans-out'}`}>
                         <div onClick={ ()=> this.props.open_close_modal(false) } className='close-icon'>
-                            {<Md_Close />}
+                            <Md_Close />
                         </div>
                         <div>
                             <div id='modal-header' className='col-12'>
                             <hr />
-                                <h2 className='text-center'>Game Created!</h2>
+                                <h2 className='text-center'>{this.props.modal.data}</h2>
                             </div>
                             <hr />
                         </div>
@@ -65,8 +66,8 @@ class Sports_Modal extends Component {
         const {game_title, game_date, game_time, game_description, game_vibe, address, ball, photo, open} = this.props.displayed_game
         return (
             <div>
-                {this.props.modal ?  <ScrollLock/> : ''}
-                <div onClick={ ()=> this.props.open_close_modal(false) } className={this.props.modal ? '':'hide'} id='backdrop'>
+                {this.props.modal.open ?  <ScrollLock/> : ''}
+                <div onClick={ ()=> this.props.open_close_modal(false) } className={this.props.modal.open ? '':'hide'} id='backdrop'>
                 </div>
                 <div id='modal' className={`container ${this.props.modal ? 'modal-trans': 'modal-trans-out'}`}>
                     <div onClick={ ()=> this.props.open_close_modal(false) } className='close-icon'>

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 
 sequelize = models.sequelize;
+const Games_History = models.game_history
 
 router.use(bodyParser.json())
 
@@ -33,6 +34,19 @@ router.put('/update', (req, res) => {
             res.status(200).send({affectedCount, affectedRows, students})
         })
     })
+})
+
+router.post('/delete', (req, res) => {
+    console.log('this is the req body from delete', req.body)
+    Games_History.destroy( { where: {id: req.body.selected_game[0].id, fb_id: req.body.selected_game[0].fb_id}})
+        .then(
+            sequelize.query(`SELECT * FROM \`games\` JOIN \`game_history\` ON games.id = game_history.game_id WHERE game_history.fb_id = ${req.body.selected_game[0].id}`, { type: sequelize.QueryTypes.SELECT})
+            .then( (games) => {
+                res.send(games)
+            }).catch(err => {
+                console.log('this is error from the delete', err)
+            })
+        )
 })
 
 module.exports = router;

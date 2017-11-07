@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { reset_game_id, leave_game, open_close_form } from '../actions';
+import { reset_game_id, leave_game, open_close_form, open_close_modal } from '../actions';
 import Edit_Game_Form from './post_game_redux_form';
+import Join_Game_Modal from './sports_modal'
 
 
 class Game_Details_Box extends Component {
@@ -17,44 +18,35 @@ class Game_Details_Box extends Component {
         this.props.reset_game_id()
     }
 
+    componentWillUnmount() {
+        this.props.open_close_form(false)
+    }
+
     handle_button_click(option, selected_game) {
+        debugger
         switch(option) {
             case 'leave': 
-                return axios.post('api/history/update', {selected_game}).then( res => {
+                return axios.post('api/history/delete', {selected_game}).then( res => {
                     console.log('this is the res from leaving a game', res)
+                    this.props.mod
                     this.props.history.push('/your_games')
                 })
             case 'join': 
-                return axios.post('/api/join_game', {selected_game} ).then( (res) => {
+                return axios.post('/api/join_game', {selected_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
                     console.log('this be the res from join_game', res)
+                    setTimeout( () => {this.props.open_close_modal(res.data.created, res.data.message), 1000})
                     this.props.history.push('/your_games')
+                    
                 })
             case 'edit':
                 this.setState({selected_game})
                 return this.props.open_close_form(true)
-
         }
-        // const game_info = {
-        //     game_id: this.props.game_id,
-        //     fb_id: this.props.auth.fb_id
-        // }
-        // if(this.props.history.location.pathname === '/find_game') {
-        //     axios.post('/api/join_game', game_info ).then( (res) => {
-        //         console.log('this be the res from join_game', res)
-        //     })
-        // }
-        
-        // if(this.props.history.location.pathname === '/your_games') {
-        //     this.props.leave_game(game_info);        
-        // }
-        
-        // this.props.history.push('/your_games')
     }
     
     render() {
         const {active_games, user_game_history} = this.props
         const current_date = new Date().getTime()
-        debugger
         if(this.props.open_form) {
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
@@ -101,7 +93,6 @@ class Game_Details_Box extends Component {
         }
 
         if(this.props.history.location.pathname === '/your_games') {
-            debugger
             var selected_game = user_game_history.games.filter( item => {
                 return item.id === this.props.game_id
             })
@@ -114,15 +105,15 @@ class Game_Details_Box extends Component {
                         <h6>{selected_game[0].formatted_date}</h6>
                         {selected_game[0].game_date > current_date ?
                         <div>
-                            <button onClick={ () => this.handle_button_click('edit', selected_game)} className='btn btn-outline btn-xl modal-btn'>
+                            {selected_game[0].creator ? <button onClick={ () => this.handle_button_click('edit',selected_game)} className='btn btn-outline btn-xl modal-btn'>
                                 Edit Game
-                            </button>
+                            </button>:''}
                             <button onClick={ () => this.handle_button_click('leave',selected_game)} className='btn btn-outline btn-xl modal-btn'>
                                 Leave Game
                             </button>
                         </div>:
                         <button onClick={ () => this.handle_button_click( 'recreate' , selected_game)} className='btn btn-outline btn-xl joinbtn'>
-                        Recreate Game
+                            Recreate Game
                         </button>
                         }
                         {this.props.auth.fb_id === selected_game[0].fb_id ? '':<button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
@@ -149,4 +140,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { reset_game_id, leave_game, open_close_form })(Game_Details_Box);
+export default connect(mapStateToProps, { reset_game_id, leave_game, open_close_form, open_close_modal })(Game_Details_Box);
