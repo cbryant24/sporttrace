@@ -29,12 +29,12 @@ class Sports_Modal extends Component {
 
     create_game() {
         this.props.open_close_modal(false)
-        setTimeout( () => this.props.open_close_modal(true), 1000 )
-        
+        debugger
         this.props.history.push('/your_games')
-        // axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
-        //     console.log('this is the game after it has been posted to the db', res)
-        // })
+        axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
+            console.log('this is the game after it has been posted to the db', res)
+            this.props.open_close_modal(true)
+        })
 
 
     }

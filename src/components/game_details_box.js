@@ -1,77 +1,138 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { reset_game_id, leave_game } from '../actions'
+import { reset_game_id, leave_game, open_close_form } from '../actions';
+import Edit_Game_Form from './post_game_redux_form';
 
 
 class Game_Details_Box extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            selected_game: {}
+        }
+    }
     componentWillMount() {
         this.props.reset_game_id()
     }
 
-    handle_button_click() {
-        const game_info = {
-            game_id: this.props.game_id,
-            fb_id: this.props.auth.fb_id
+    handle_button_click(option, selected_game) {
+        switch(option) {
+            case 'leave': 
+                return axios.post('api/history/update', {selected_game}).then( res => {
+                    console.log('this is the res from leaving a game', res)
+                    this.props.history.push('/your_games')
+                })
+            case 'join': 
+                return axios.post('/api/join_game', {selected_game} ).then( (res) => {
+                    console.log('this be the res from join_game', res)
+                    this.props.history.push('/your_games')
+                })
+            case 'edit':
+                this.setState({selected_game})
+                return this.props.open_close_form(true)
+
         }
-        if(this.props.history.location.pathname === '/find_game') {
-            axios.post('/api/join_game', game_info ).then( (res) => {
-                console.log('this be the res from join_game', res)
-            })
-        }
+        // const game_info = {
+        //     game_id: this.props.game_id,
+        //     fb_id: this.props.auth.fb_id
+        // }
+        // if(this.props.history.location.pathname === '/find_game') {
+        //     axios.post('/api/join_game', game_info ).then( (res) => {
+        //         console.log('this be the res from join_game', res)
+        //     })
+        // }
         
-        if(this.props.history.location.pathname === '/your_games') {
-            this.props.leave_game(game_info);        
-        }
+        // if(this.props.history.location.pathname === '/your_games') {
+        //     this.props.leave_game(game_info);        
+        // }
         
         // this.props.history.push('/your_games')
     }
-
-    // render_button() {
-    //     let current_date = new Date().getTime()
-    //     if(this.props.game.game_date < current_date && this.props.game.creator) {
-            
-    //     }
-    // }
-
+    
     render() {
-        if(this.props.history.location.pathname === '/find_game') {
-            var selected_game = this.props.active_games.filter( (item) => {
-                return item.id === this.props.game_id
-            })
+        const {active_games, user_game_history} = this.props
+        const current_date = new Date().getTime()
+        debugger
+        if(this.props.open_form) {
+            return (
+                <div className='col-lg-4 col-12' id="game_details_box">
+                    <div className='gameinfobox'>
+                        <Edit_Game_Form  
+                        selection={this.state.selected_game} 
+                        history={this.props.history}/>
+                    </div>
+             </div>
+            )
         }
-        if(this.props.history.location.pathname === '/your_games') {
-            var selected_game = this.props.user_game_history.filter( item => {
-                return item.id === this.props.game_id
-            })
-        }
-        if(selected_game.length === 0) {
+
+        if(!this.props.game_id) {
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
                         <h3>No Game Selected</h3>
-                        <p></p>
-                        <h6></h6>
                     </div>
                 </div>
             )
         }
+        if(this.props.history.location.pathname === '/find_game') {
+            debugger
+            var selected_game = active_games.filter( item => {
+                return item.id === this.props.game_id
+            })
+            return (
+                <div className='col-lg-4 col-12' id="game_details_box">
+                    <div className='gameinfobox'>
+                        <h3>{selected_game[0].game_title}</h3>
+                        <p>{selected_game[0].game_description}</p>
+                        <h6>{selected_game[0].formatted_date}</h6>
+                        {this.props.auth.fb_id !== selected_game[0].fb_id ? 
+                        <button onClick={ () => this.handle_button_click('join', selected_game)} className='btn btn-outline btn-xl joinbtn'>
+                            Join Game
+                        </button>:
+                        <button onClick={ () => this.handle_button_click('leave', selected_game)} className='btn btn-outline btn-xl joinbtn'>
+                            Leave Game
+                        </button>
+                    }
+                    </div>
+                 </div>
+            )
+        }
 
-        return (
-            <div className='col-lg-4 col-12' id="game_details_box">
-                <div className='gameinfobox'>
-                    <h3>{selected_game[0].game_title}</h3>
-                    <p>{selected_game[0].game_description}</p>
-                    <h6>{`${selected_game[0].game_time} ${selected_game[0].game_date}`}</h6>
-                    <button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
-                        {`${this.props.history.location.pathname === '/your_games' ? 'Leave Game':'Join'}`}
-                    </button>
-                    <button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
-                        {`${this.props.history.location.pathname === '/your_games' ? 'Leave Game':'Join'}`}
-                    </button>
-                </div>
-            </div>
-        )
+        if(this.props.history.location.pathname === '/your_games') {
+            debugger
+            var selected_game = user_game_history.games.filter( item => {
+                return item.id === this.props.game_id
+            })
+            
+            return (
+                <div className='col-lg-4 col-12' id="game_details_box">
+                    <div className='gameinfobox'>
+                        <h3>{selected_game[0].game_title}</h3>
+                        <p>{selected_game[0].game_description}</p>
+                        <h6>{selected_game[0].formatted_date}</h6>
+                        {selected_game[0].game_date > current_date ?
+                        <div>
+                            <button onClick={ () => this.handle_button_click('edit', selected_game)} className='btn btn-outline btn-xl modal-btn'>
+                                Edit Game
+                            </button>
+                            <button onClick={ () => this.handle_button_click('leave',selected_game)} className='btn btn-outline btn-xl modal-btn'>
+                                Leave Game
+                            </button>
+                        </div>:
+                        <button onClick={ () => this.handle_button_click( 'recreate' , selected_game)} className='btn btn-outline btn-xl joinbtn'>
+                        Recreate Game
+                        </button>
+                        }
+                        {this.props.auth.fb_id === selected_game[0].fb_id ? '':<button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
+                            Join Game
+                        </button>}
+                    </div>
+                 </div>
+            )
+        }
+        
     }
         
 }
@@ -79,11 +140,13 @@ class Game_Details_Box extends Component {
 function mapStateToProps(state) {
     return {
         active_games: state.sports.active_games,
+        user_game_history: state.sports.user_game_history,
         auth: state.sports.auth,
         zipcode: state.sports.zipcode,
         game_id: state.sports.game_id,
-        auth: state.sports.auth
+        auth: state.sports.auth,
+        open_form: state.sports.open_form
     }
 }
 
-export default connect(mapStateToProps, { reset_game_id, leave_game })(Game_Details_Box);
+export default connect(mapStateToProps, { reset_game_id, leave_game, open_close_form })(Game_Details_Box);

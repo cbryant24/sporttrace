@@ -9,13 +9,11 @@ let sequelize = models.sequelize
 router.use(bodyParser.json())
 
 router.post('/', (req, res) => {
-    console.log('this is the unjoin game server req', req.body)
     Games_History.destroy( { where: {id: req.body.game_id, fb_id: req.body.fb_id}})
         .then(
             sequelize.query(`SELECT * FROM \`games\` JOIN \`game_history\` ON games.id = game_history.game_id WHERE game_history.fb_id = ${req.body.fb_id}`, { type: sequelize.QueryTypes.SELECT})
             .then( (games) => {
                 res.send(games)
-                console.log(games)
             })
         )
 })

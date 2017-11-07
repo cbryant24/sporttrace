@@ -10,7 +10,9 @@ import {
 } from "react-google-maps";
 import SearchBox from "react-google-maps/lib/components/places/SearchBox";
 import { connect } from 'react-redux';
-import { update_lat_long } from '../actions'
+import { update_lat_long } from '../actions';
+import {Field, reduxForm} from 'redux-form';
+
 
 const MapWithASearchBox = compose(
   withProps({
@@ -58,7 +60,8 @@ const MapWithASearchBox = compose(
               address: places[0].adr_address,
               photo: places[0].photos ? places[0].photos[0].html_attributions[0]:'',
               address_url: places[0].url,
-              place_id: places[0].place_id
+              place_id: places[0].place_id,
+              city: places[0].vicinity || 'City Unknown'
             })
           }
           
@@ -103,4 +106,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { update_lat_long })(MapWithASearchBox)
+export default connect(mapStateToProps, { update_lat_long })(reduxForm({
+  form: 'post game form'
+})(MapWithASearchBox))
+

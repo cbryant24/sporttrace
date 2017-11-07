@@ -12,7 +12,8 @@ const DEFAULT_STATE= {
     zipcode: '',
     game_id: '',
     auth: '',
-    modal: false
+    modal: false,
+    open_form: false
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -41,6 +42,8 @@ export default function (state = DEFAULT_STATE, action) {
             return {...state, user_game_history: action.payload}
         case types.OPEN_CLOSE_MODAL:
             return {...state, modal: action.payload}
+        case types.OPEN_CLOSE_FORM: 
+            return {...state, open_form: action.payload}
         default:
             return state 
     }

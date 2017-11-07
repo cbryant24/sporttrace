@@ -122,3 +122,10 @@ export function open_close_modal(boolean) {
         payload: boolean
     }
 }
+
+export function open_close_form(boolean) {
+    return {
+        type: types.OPEN_CLOSE_FORM,
+        payload: boolean
+    }
+}

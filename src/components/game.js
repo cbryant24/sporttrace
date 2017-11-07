@@ -6,9 +6,11 @@ import { update_game_id } from '../actions';
     const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date } = props.game_info;
     
     const handle_view_click = () => {
+        debugger
+        if(props.open_form) return
+        
         props.update_game_id( id )
     }
-    debugger
     return (
         <div className='single-game row'>
             <div className='col-3 textpad'>{game_title}</div>
@@ -24,7 +26,8 @@ import { update_game_id } from '../actions';
 function mapStateToProps(state) {
     return {
         auth: state.sports.auth,
-        game_id: state.sports.game_id
+        game_id: state.sports.game_id,
+        open_form: state.sports.open_form
     }
 }
 

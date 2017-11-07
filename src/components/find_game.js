@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
-import { get_active_games } from '../actions';
+import { get_active_games, reset_game_id } from '../actions';
 import Game from './game';
 import Game_Details_Box from './game_details_box';
 import MapWithAMarker from './display_games_map';
@@ -18,6 +18,7 @@ class Find_Game extends Component {
     }
 
     componentWillMount() {
+        this.props.reset_game_id()
         this.props.get_active_games()
     }
 
@@ -88,4 +89,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { get_active_games })(Find_Game)
+export default connect(mapStateToProps, { get_active_games, reset_game_id })(Find_Game)

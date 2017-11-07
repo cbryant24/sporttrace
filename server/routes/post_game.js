@@ -21,11 +21,12 @@ router.post('/', function(req, res){
         longitude: req.body.lon,        
         latitude: req.body.lat,
         zipcode: req.body.zip,
+        city: req.body.city,
+        fb_id: req.body.fb_id,
         ball: req.body.ball
         }
     })
     .spread( (game, created) => {
-        console.log('this is saying if its been created yet', game)
         if(created) {
             Games_History.findOrCreate( {where: {
                 game_id: game.id,

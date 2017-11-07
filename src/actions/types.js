@@ -10,5 +10,6 @@ export default {
     RESET_GAME_ID: 'reset_game_id',
     LEAVE_GAME: 'leave_game',
     CLEAR_USER_HISTORY: 'clear_user_history',
-    OPEN_CLOSE_MODAL: 'open_close_modal'
+    OPEN_CLOSE_MODAL: 'open_close_modal',
+    OPEN_CLOSE_FORM: 'open_close_form'
 }

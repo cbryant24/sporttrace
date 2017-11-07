@@ -3,9 +3,8 @@ import {Field, reduxForm} from 'redux-form';
 import Search_Bar from './map_searchbar';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import validator from 'validator';
 import Post_Game_Modal from './sports_modal';
-import { open_close_modal, selected_game } from '../actions'
+import { open_close_modal, selected_game, open_close_form } from '../actions'
 
 
 
@@ -54,6 +53,7 @@ class PostGameForm extends Component {
 
         this.state = {
             flashing_error: false,
+            edit_game: this.props.edit_game
         }
     }
 
@@ -82,16 +82,19 @@ class PostGameForm extends Component {
             address: this.props.location.address,
             address_url: this.props.location.address_url,
             place_id: this.props.location.place_id,
+            city: this.props.location.city,
             fb_id: this.props.auth.fb_id
         }
         
         this.props.open_close_modal(true);
         this.props.selected_game(complete_game)
-        // axios.post('/api/post_game_jkdsjssljs', complete_game).then( (res) => {
-        //     console.log('this is the game after it has been posted to the db', res)
-        // })
-        // props.history.push('/your_games')
     };    
+
+    handle_cancel() {
+        this.props.open_close_form(false)
+        debugger
+        this.setState({edit_game: false})
+    }
 
     render() {
         const {handleSubmit, pristine, submitting, auth, error} = this.props;            
@@ -116,7 +119,8 @@ class PostGameForm extends Component {
                         <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
                         </div>
                     </div>
-                    <button disabled={pristine && auth ? true : false} style={{marginTop: `10px`}} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+                    <button disabled={pristine && auth ? true : false} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+                    <button onClick={() => this.handle_cancel()} className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Cancel</button>
                  </form>
             </div>
 
@@ -129,8 +133,10 @@ class PostGameForm extends Component {
 
 const validate = vals => {
     const errors = {};
-    var current_date = new Date().toISOString()
-    current_date = current_date.slice(0, current_date.indexOf('T'))
+    const current_date = new Date().toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
+        day = day < 10 ? `0${day}`:day
+        return `${year}-${month}-${day}`
+    })    
     const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@ ]+$/)
 
     if (!vals.title) 
@@ -148,12 +154,12 @@ const validate = vals => {
     if (!vals.vibe) 
         errors.vibe = 'Select the style of game'
     
-    if(!validator.isAfter(vals.date)) 
-        if(!validator.equals(vals.date, current_date))
-            errors.date = 'Enter Future Date'
+    debugger
+    if(vals.date < current_date )
+        errors.date = 'Enter a Future Game Date' 
     
 
-    if(vals.description.length > 0 && !alpha_numeric.test(vals.description))
+    if(vals.description && !alpha_numeric.test(vals.description))
         errors.description = 'Enter a Valid Description'
 
     return errors;
@@ -161,23 +167,42 @@ const validate = vals => {
 
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+    var date = new Date()
+    var time = `${date.getHours()}:${date.getMinutes()<10?'0':''}${date.getMinutes()}`
+    const current_date = date.toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
+        day = day < 10 ? `0${day}`:day
+        return `${year}-${month}-${day}`
+    })    
+    let initialValues = {}  
+    if(props.selection) {
+        var edit_date = new Date(props.selection[0].game_date)
+        edit_date = edit_date.toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
+            day = day < 10 ? `0${day}`:day
+            return `${year}-${month}-${day}`
+        })    
+        let hours = new Date(props.selection[0].game_date).getHours();
+        let min = new Date(props.selection[0].game_date).getMinutes(); 
+        initialValues = {
+            title: props.selection[0].game_title,
+            time: `${hours < 10 ? `0${hours}`:hours}:${min < 10 ? `0${min}`:min}`,
+            date: edit_date,
+            vibe: props.selection[0].game_vibe,
+            description: props.selection[0].game_description,
+            ball: props.selection[0].ball,
+        }
+    }
     return {
         location: state.sports.lat_lon,
-        auth: state.sports.auth
+        auth: state.sports.auth,
+        selection: props.selection,
+        initialValues,
+        open_form: state.sports.open_form
     }
 }
 
-export default connect(mapStateToProps, { open_close_modal, selected_game })(reduxForm({
+export default connect(mapStateToProps, { open_close_modal, selected_game, open_close_form })(reduxForm({
     form: 'post game form',
-    initialValues: {
-        title: 'We ballin at saddleback yall',
-        time: '14:00',
-        date: '2017-12-25',
-        vibe: 'casual',
-        ball: 'active',
-        description: ''
-    },
     validate
 })(PostGameForm))
 
