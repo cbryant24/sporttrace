@@ -32,12 +32,7 @@ class Game_Details_Box extends Component {
                     this.props.history.push('/your_games')
                 })
             case 'join': 
-                return axios.post('/api/join_game', {selected_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
-                    console.log('this be the res from join_game', res)
-                    setTimeout( () => {this.props.open_close_modal(res.data.created, res.data.message), 1000})
-                    this.props.history.push('/your_games')
-                    
-                })
+                return this.props.open_close_modal({open: true, type: 'confirmation'})
             case 'edit':
                 this.setState({selected_game})
                 return this.props.open_close_form(true)

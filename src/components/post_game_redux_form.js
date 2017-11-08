@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Post_Game_Modal from './sports_modal';
 import { open_close_modal, selected_game, open_close_form, update_lat_long } from '../actions'
-import { renderInput, renderCheckBox, renderSelect } from './helpers';
+import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate } from './helpers';
 
 
 class PostGameForm extends Component {
@@ -31,8 +31,10 @@ class PostGameForm extends Component {
             return
         }
         debugger
+        const game_milliseconds = new Date(`${vals.date} ${vals.time}`).getTime()
         const complete_game = {
-            game_date: new Date(`${vals.date} ${vals.time}`).getTime(),
+            game_date: game_milliseconds,
+            formatted_date: `${format_date({data_type: 'mm-dd-yyyy', type: 'set', game_milliseconds})}, ${format_time({data_type: 'hh:mm', type: 'set', game_milliseconds}) }`,
             game_description: vals.description,
             game_title: vals.title,
             game_vibe: vals.vibe,
@@ -46,9 +48,10 @@ class PostGameForm extends Component {
             city: this.props.location.city,
             fb_id: this.props.auth.fb_id
         }
+
+        this.props.selected_game(complete_game);
+        this.props.open_close_modal({open: true, type: 'confirmation'});
         
-        this.props.open_close_modal(true);
-        this.props.selected_game(complete_game)
     };    
 
     handle_cancel() {
@@ -61,7 +64,7 @@ class PostGameForm extends Component {
 
     render() {
         debugger
-        const {handleSubmit, pristine, submitting, auth, error} = this.props;            
+        const {handleSubmit, pristine, submitting, error} = this.props;            
 
         return (
             <div>
@@ -83,7 +86,7 @@ class PostGameForm extends Component {
                         <Field name='description' component={renderInput} label="Description" type="text-area" className="game_description_input" placeholder="Your Description"/>
                         </div>
                     </div>
-                    <button disabled={auth ? false : true} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
+                    <button disabled={this.props.auth.fb_id ? false : true} type="submit"  className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Submit</button>
                     <button onClick={() => this.handle_cancel()} type='button' className="ml-3 btn btn-outline btn-xl viewbtn postsubmit justify-content-center">Cancel</button>
                  </form>
             </div>
@@ -95,60 +98,20 @@ class PostGameForm extends Component {
 //use on from to prevent from submission
 // disabled={pristine || submitting }
 
-const validate = vals => {
-    const errors = {};
-    const current_date = new Date().toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
-        day = day < 10 ? `0${day}`:day
-        return `${year}-${month}-${day}`
-    })    
-    const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@ ]+$/)
 
-    if (!vals.title) 
-        errors.title = 'Enter a Game Title'
-    
-    if(!alpha_numeric.test(vals.title))
-        errors.title = 'Enter a Valid Game Title'
-
-    if (!vals.time) 
-        errors.time = 'Enter a Game Time'
-
-    if (!vals.date) 
-        errors.date = 'Enter a Game Date'
-    
-    if (!vals.vibe) 
-        errors.vibe = 'Select the style of game'
-    
-    if(vals.date < current_date )
-        errors.date = 'Enter a Future Game Date' 
-    
-
-    if(vals.description && !alpha_numeric.test(vals.description))
-        errors.description = 'Enter a Valid Description'
-
-    return errors;
-};
 
 
 
 function mapStateToProps(state, props) {
-    var date = new Date()
-    var time = `${date.getHours()}:${date.getMinutes()<10?'0':''}${date.getMinutes()}`
-    const current_date = date.toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
-        day = day < 10 ? `0${day}`:day
-        return `${year}-${month}-${day}`
-    })    
-    let initialValues = {}  
+    let initialValues = {}
     if(props.selection && props.selection.length > 0) {
-        var edit_date = new Date(props.selection[0].game_date)
-        edit_date = edit_date.toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
-            day = day < 10 ? `0${day}`:day
-            return `${year}-${month}-${day}`
-        })    
-        let hours = new Date(props.selection[0].game_date).getHours();
-        let min = new Date(props.selection[0].game_date).getMinutes(); 
+        const time = format_time({data_type: 'hh:mm', type: 'current'})
+        const current_date = format_date({data_type: 'yyyy-mm-dd', type: 'current'})
+        const edit_date = format_date({data_type: 'yyyy-mm-dd', type: 'set', game_milliseconds: props.selection[0].game_date})
+        const edit_time = format_time({data_type: 'hh:mm', type: 'set', game_milliseconds:props.selection[0].game_date})
         initialValues = {
             title: props.selection[0].game_title,
-            time: `${hours < 10 ? `0${hours}`:hours}:${min < 10 ? `0${min}`:min}`,
+            time: edit_time,
             date: edit_date,
             vibe: props.selection[0].game_vibe,
             description: props.selection[0].game_description,

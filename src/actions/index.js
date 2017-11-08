@@ -116,10 +116,10 @@ export function leave_game(game_id, fb_id) {
     }
 }
 
-export function open_close_modal(boolean, data = '') {
+export function open_close_modal(modal_info) {
     return {
         type: types.OPEN_CLOSE_MODAL,
-        payload: {open: boolean, data}
+        payload: modal_info
     }
 }
 
