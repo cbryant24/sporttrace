@@ -12,6 +12,7 @@ import Your_Game_Modal from './sports_modal'
 
 class Your_Games extends Component {
     componentWillMount() {
+        debugger
         this.props.reset_game_id()
         const { games, resp } = this.props.user_game_history
         if(!this.props.auth && games.length > 0) {
@@ -24,7 +25,8 @@ class Your_Games extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.auth) {
+        debugger
+        if(nextProps.auth.fb_id) {
             const {games, resp} = nextProps.user_game_history
             if(games.length === 0 && !resp) {
                 this.props.get_users_history(nextProps.auth.fb_id)

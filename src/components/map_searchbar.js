@@ -58,7 +58,6 @@ const MapWithASearchBox = compose(
               lon: places[0].geometry.viewport.b.b,
               zipcode,
               address: places[0].adr_address,
-              address_url: places[0].url,
               place_id: places[0].place_id,
               city: places[0].vicinity || 'City Unknown'
             })

@@ -23,7 +23,7 @@ class App extends Component {
         return (
             <div>
                 <Side_Nav/>
-                <NavBar/>
+                <NavBar history={this.props.history}/>
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/find_game" component={FindGame}/>
                 <Route path="/post_game" component= {PostGame} />

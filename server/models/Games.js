@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         zipcode: DataTypes.INTEGER,
         city: DataTypes.STRING,
         ball: DataTypes.STRING,
-        fb_id: DataTypes.BIGINT(20)
+        fb_id: DataTypes.BIGINT(20),
+        google_place_id: DataTypes.STRING,
+        formatted_date: DataTypes.STRING,
+        address_elements: DataTypes.TEXT
         },
         {
             timestamps: false,

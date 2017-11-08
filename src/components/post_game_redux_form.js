@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Post_Game_Modal from './sports_modal';
 import { open_close_modal, selected_game, open_close_form, update_lat_long } from '../actions'
-import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate } from './helpers';
+import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate, get_address } from './helpers';
 
 
 class PostGameForm extends Component {
@@ -42,15 +42,14 @@ class PostGameForm extends Component {
             lon: this.props.location.lon,
             zip: this.props.location.zipcode,
             ball: vals.ball,
-            address: this.props.location.address,
-            address_url: this.props.location.address_url,
+            address_elements: get_address(this.props.location.address),
             place_id: this.props.location.place_id,
             city: this.props.location.city,
             fb_id: this.props.auth.fb_id
         }
 
         this.props.selected_game(complete_game);
-        this.props.open_close_modal({open: true, type: 'confirmation'});
+        this.props.open_close_modal({open: true, type: 'confirmation', title: 'Create Game?', game_status: 'create'});
         
     };    
 
@@ -63,7 +62,6 @@ class PostGameForm extends Component {
     }
 
     render() {
-        debugger
         const {handleSubmit, pristine, submitting, error} = this.props;            
 
         return (

@@ -38,10 +38,9 @@ export const renderSelect = ({input, label, type, meta: {touched, error}}) => {
 };
 
 export const format_time = vals => {
-    debugger
     const date = new Date();
     if(vals.data_type === 'hh:mm' && vals.type === 'set') {
-        let hours = new Date(vals.game_milliseconds).getHours() > 12 ? new Date(vals.game_milliseconds).getHours() - 12 : new Date(vals.game_milliseconds).getHours()
+        let hours = new Date(vals.game_milliseconds).getHours() > 12 ? new Date(vals.game_milliseconds).getHours() - 12 + 'pm' : new Date(vals.game_milliseconds).getHours()
         let min = new Date(vals.game_milliseconds).getMinutes()
         return `${add_remove_chars({type: 'leading_zero', char: hours})}:${add_remove_chars({type: 'leading_zero', char: min})}`
     }
@@ -55,7 +54,6 @@ export const format_time = vals => {
 }
 
 export const format_date = vals => {
-    debugger
     if(vals.data_type === 'mm-dd-yyyy' && vals.type === 'set') {
         let set_date = new Date(vals.game_milliseconds).toLocaleDateString()
         let formatted_date = set_date.replace(/(\d+)\/(\d+)\/(\d+)/, (str, month, day, year) => {
@@ -97,10 +95,15 @@ export const format_date = vals => {
     }
 }
 
-
+export const get_address = (address) => {
+    const address_elements = {}
+    address.split('</span>').filter( item => item.length > 0).map( item => {
+        address_elements[item.match(/class="(.*)(?=">)/)[1]] = item.match(/>([\w\d-_ ]+)/)[1]
+    })
+    return address_elements
+}
 
 function add_remove_chars(val) {
-    debugger
     if(val.type === 'leading_zero') 
         if(val.char.toString().length < 1) 
             val.char = `0${val.char}`

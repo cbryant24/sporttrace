@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { update_game_id, update_lat_long } from '../actions';
+import { update_lat_long, selected_game } from '../actions';
 
  const Game = props => {
     const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date } = props.game_info;
     
     const handle_view_click = () => {
+        debugger
         if(props.open_form) return
         
-        props.update_game_id( id )
+        props.selected_game(props.game_info)
     }
     return (
         <div className='single-game row'>
@@ -25,10 +26,9 @@ import { update_game_id, update_lat_long } from '../actions';
 function mapStateToProps(state) {
     return {
         auth: state.sports.auth,
-        game_id: state.sports.game_id,
         open_form: state.sports.open_form,
         lat_lon: state.sports.lat_lon
     }
 }
 
-export default connect(mapStateToProps, { update_game_id, update_lat_long })(Game)
+export default connect(mapStateToProps, { selected_game, update_lat_long })(Game)

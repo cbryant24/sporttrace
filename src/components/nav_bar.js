@@ -16,6 +16,8 @@ class Nav_Bar extends Component {
     }
 
     handle_logout() {
+        debugger
+        this.props.history.push('/')
         this.props.sign_out()
     }
 

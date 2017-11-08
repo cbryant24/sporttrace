@@ -8,59 +8,61 @@ import axios from 'axios'
 
 
 class Sports_Modal extends Component {
-    componentWillReceiveProps(nextProps) {
-        this.props
-        nextProps
-    }
-
-
     render_address() {
-        const { address } = this.props.displayed_game
-
-        const address_elements = address.split('</span>').filter( item => item.length > 0).map( (item, idx) => {
-            return (
-                <h4 key={idx} className={item.match(/class="(.*)(?=">)/)[1]}>
-                    {`${item.match(/>([\w\d-_ ]+)/)[1]} `}
-                </h4>
-            )
-        })
-        return address_elements
+        const { address_elements } = this.props.displayed_game
+        let complete_address = [];
+        let i = 0;
+        for (let address_component in address_elements) {
+                complete_address.push(<div key={i++} className={address_component}>{address_elements[address_component]}</div>)
+        }
+        return complete_address
     }
 
     create_join_game() {
-        this.props.open_close_modal(false)
-
-        if(this.props.history.location.pahtname === '/post_game') {
-            this.props.history.push('/your_games')
-            return axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
+        debugger
+        if(this.props.modal.game_status === 'create') {
+            debugger
+            this.props.open_close_modal(false)
+            axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
                 console.log('this is the game after it has been posted to the db', res)
                 //add history push to after the success creation on failure keep them here with error message
-                this.props.open_close_modal({open: true, type: 'response', message: res.msg})
+                if(res.data.created) {
+                    setTimeout(() => this.props.open_close_modal({open: true, type: 'response', message: res.data.msg}), 1000)
+                    this.props.history.push('/your_games')
+                    return
+                }
+                setTimeout(() => this.props.open_close_modal({open: true, type: 'response', message: res.data.msg}), 500)
+                
+                
             })
         }
 
-        return axios.post('/api/join_game', {selected_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
-            console.log('this be the res from join_game', res)
-            setTimeout( () => {this.props.open_close_modal({open: true, message: res.data.message, type: 'response'}), 1000})
-            this.props.history.push('/your_games')
-        })
+        if(this.props.modal.game_status === 'join') {
+            debugger
+            this.props.open_close_modal(false)
+            axios.post('/api/join_game', {selected_game: this.props.displayed_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                console.log('this be the res from join_game', res)
+                debugger
+                setTimeout( () => this.props.open_close_modal({open: true, message: res.data.message, type: 'response'}), 1000)
+                this.props.history.push('/your_games')
 
-
+                return
+            })
+        }
     }
 
     render() {
         debugger
-        const {game_title, game_date, game_time, game_description, game_vibe, address, ball, photo, open} = this.props.displayed_game;
+        const {game_title, formatted_date, game_description, game_vibe, address, ball, photo, open} = this.props.displayed_game;
         const { modal, open_close_modal } = this.props       
         if(modal.type === 'response') {
-
             return (
                 <div>
                     {modal.open ?  <ScrollLock/> : ''}
                     <div onClick={ ()=> open_close_modal({open: false}) } className={modal.open ? '':'hide'} id='backdrop'>
                     </div>
                     <div id='modal-success' className={`container ${modal.open ? 'modal-trans': 'modal-trans-out'}`}>
-                        <div onClick={ ()=> modal.open_close_modal({open: false}) } className='close-icon'>
+                        <div onClick={ ()=> open_close_modal({open: false}) } className='close-icon'>
                             <Md_Close />
                         </div>
                         <div>
@@ -87,7 +89,7 @@ class Sports_Modal extends Component {
                         </div>
                         <div>
                             <div id='modal-header' className='col-12'>
-                                <h2 className='text-center'>{title}</h2>
+                                <h2 className='text-center'>{modal.title}</h2>
                                 <hr />
                             </div>
                         </div>
@@ -98,7 +100,7 @@ class Sports_Modal extends Component {
                             </div>
                             <div className='col-6 game_info'>
                                 <h3>Game Info</h3>
-                                <p>{game_time} </p><p> {game_date}</p>
+                                <p>{formatted_date}</p>
                                 <h4>{game_title}</h4>
                                 <h4>{game_description}</h4>
                             </div>
@@ -106,7 +108,7 @@ class Sports_Modal extends Component {
                         <iframe className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${this.props.displayed_game.place_id ? this.props.displayed_game.place_id:"ChIJWXNsX7jHwoARaduMfEQ0HuU"}`}>
                         </iframe>
                         <div className='row'>
-                            <button onClick={ () => this.create_game() } className='btn btn-outline btn-xl modal-btn'>Create Game</button>
+                            <button onClick={ () => this.create_join_game() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
                             <button onClick={ ()=> open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button>
                         </div>
                     </div>
@@ -120,7 +122,8 @@ class Sports_Modal extends Component {
 function mapStateToProps(state) {
     return {
         modal: state.sports.modal,
-        displayed_game: state.sports.selected_game
+        displayed_game: state.sports.selected_game,
+        auth: state.sports.auth
     }
 }
 
