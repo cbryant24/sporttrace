@@ -18,8 +18,20 @@ class Find_Game extends Component {
     }
 
     componentWillMount() {
-        this.props.reset_game_id()
+        debugger
+        if(this.props.auth) {
+            this.props.get_active_games({type: 'user', fb_id: this.props.auth.fb_id})
+            return
+        }
         this.props.get_active_games()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        debugger
+        if(nextProps.auth.fb_id !== this.props.auth.fb_id) {
+            this.props.get_active_games({type: 'user', fb_id: nextProps.auth.fb_id})
+            return
+        }
     }
 
     handle_zip_code(e) {
@@ -85,7 +97,8 @@ function mapStateToProps(state) {
     return {
         active_games: state.sports.active_games,
         lat_long: state.sports.lat_lon,
-        zipcode: state.sports.zipcode
+        zipcode: state.sports.zipcode,
+        auth: state.sports.auth
     }
 }
 

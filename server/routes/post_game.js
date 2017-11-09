@@ -31,18 +31,23 @@ router.post('/', function(req, res){
     })
     .spread( (game, created) => {
         if(created) {
+            console.log('this is the game before history', game, created)
             Games_History.findOrCreate( {where: {
                 game_id: game.id,
                 fb_id: req.body.fb_id,
                 creator: 1
             }}).spread( (game_history, created) => {
-                const message = created ? 'Game Has Been Successfully Joined!':'Error, Game Not Joined Please Try Again'        
-                res.status(200).send({created, game_history, msg: message})
+
             })
-        } 
+            let msg = 'Game Has Been Successfully Created!'       
+            res.status(200).send({created, game, msg})
+            return
+        }
+        let msg = 'Error, Game Not Created Please Try Again' 
+        res.status(200).send({msg})
+        return
+
     }) 
 })
-
-
 
 module.exports = router;

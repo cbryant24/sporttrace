@@ -173,7 +173,7 @@ function Your_Games() {
 //Need to check if they already have an active game on there profile
 function Cancel_Game() {
     this.load_display = function(game_details) {
-        debugger
+        
         let $gameinfobox = $('.gameinfobox')
         let game_arr = game_details.target.attributes[3].textContent.split('|');
         let $game_title = $('<h3>', {

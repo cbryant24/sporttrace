@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { reset_game_id, leave_game, open_close_form, open_close_modal, selected_game } from '../actions';
+import { reset_game_id, leave_game, open_close_form, open_close_modal, update_selected_game } from '../actions';
 import Edit_Game_Form from './post_game_redux_form';
 import Join_Game_Modal from './sports_modal'
 
@@ -13,20 +13,19 @@ class Game_Details_Box extends Component {
 
     componentWillUnmount() {
         this.props.open_close_form(false)
-        this.props.selected_game({})
+        this.props.update_selected_game({})
     }
 
     handle_button_click(option, selected_game) {
-        debugger
         if(!this.props.auth) {
             this.props.open_close_modal({open: true, type: 'response', message: 'Please Sign In To Join'})
             return
         }
         switch(option) {
             case 'leave': 
-                return this.props.open_close_modal({open: true, type: 'confirmation', game_status: 'leave'})
+                return this.props.open_close_modal({open: true, title: 'Leave Game?', type: 'confirmation', game_status: 'leave'})
             case 'join': 
-                return this.props.open_close_modal({open: true, title: 'Join Game', type: 'confirmation', game_status: 'join'})
+                return this.props.open_close_modal({open: true, title: 'Join Game?', type: 'confirmation', game_status: 'join'})
             case 'edit':
                 this.setState({selected_game})
                 return this.props.open_close_form(true)
@@ -34,7 +33,7 @@ class Game_Details_Box extends Component {
     }
     
     render() {
-        debugger
+        
         const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, creator } = this.props.selected_game;        
         // const {active_games, user_game_history} = this.props
         if(this.props.open_form) {
@@ -51,6 +50,7 @@ class Game_Details_Box extends Component {
         }
 
         if(!this.props.selected_game.id) {
+            
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
@@ -61,6 +61,7 @@ class Game_Details_Box extends Component {
         }
 
         if(this.props.history.location.pathname === '/find_game') {
+            
             // var selected_game = active_games.filter( item => {
             //     return item.id === this.props.game_id
             // })
@@ -85,13 +86,14 @@ class Game_Details_Box extends Component {
         }
 
         if(this.props.history.location.pathname === '/your_games') {
+            
             // var selected_game = user_game_history.games.filter( item => {
             //     return item.id === this.props.game_id
             // })
             let current_date = new Date().getTime()
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
-                    <Join_Game_Modal history={this.props.history}/>
+                    {/* <Join_Game_Modal history={this.props.history}/> */}
                     <div className='gameinfobox'>
                         <h3>{game_title}</h3>
                         <p>{game_description}</p>
@@ -135,4 +137,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { reset_game_id, leave_game, open_close_form, open_close_modal, selected_game })(Game_Details_Box);
+export default connect(mapStateToProps, { reset_game_id, leave_game, open_close_form, open_close_modal, update_selected_game })(Game_Details_Box);

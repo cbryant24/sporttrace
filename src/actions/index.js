@@ -27,19 +27,30 @@ export function sign_out() {
     }
 }
 
-export function get_active_games(user_zipcode) {
+export function get_active_games(filter = {}) {
+    if(filter.type === 'user') {
+        return dispatch => {
+            axios.post('/api/games/user', {fb_id: filter.fb_id}).then( res => {
+                dispatch({
+                    type: types.GET_ACTIVE_GAMES,
+                    payload: res.data.data
+                })
+            })
+        }
+    }
     return dispatch => {
         axios.get('/api/games').then( res => {
+            debugger
             dispatch({
                 type: types.GET_ACTIVE_GAMES,
                 payload: res.data.data
             })
         })
     }
-    
+
 };
 
-export function selected_game(game_info) {
+export function update_selected_game(game_info) {
     return {
         type: types.SELECTED_GAME,
         payload: game_info

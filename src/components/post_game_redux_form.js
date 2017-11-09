@@ -4,7 +4,7 @@ import Search_Bar from './map_searchbar';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Post_Game_Modal from './sports_modal';
-import { open_close_modal, selected_game, open_close_form, update_lat_long } from '../actions'
+import { open_close_modal, update_selected_game, open_close_form, update_lat_long } from '../actions'
 import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate, get_address } from './helpers';
 
 
@@ -30,7 +30,7 @@ class PostGameForm extends Component {
             })
             return
         }
-        debugger
+        
         const game_milliseconds = new Date(`${vals.date} ${vals.time}`).getTime()
         const complete_game = {
             game_date: game_milliseconds,
@@ -47,8 +47,7 @@ class PostGameForm extends Component {
             city: this.props.location.city,
             fb_id: this.props.auth.fb_id
         }
-
-        this.props.selected_game(complete_game);
+        this.props.update_selected_game(complete_game);
         this.props.open_close_modal({open: true, type: 'confirmation', title: 'Create Game?', game_status: 'create'});
         
     };    
@@ -125,7 +124,7 @@ function mapStateToProps(state, props) {
     }
 }
 
-export default connect(mapStateToProps, { open_close_modal, selected_game, open_close_form, update_lat_long })(reduxForm({
+export default connect(mapStateToProps, { open_close_modal, update_selected_game, open_close_form, update_lat_long })(reduxForm({
     form: 'post game form',
     validate
 })(PostGameForm))

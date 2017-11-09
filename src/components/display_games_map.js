@@ -10,7 +10,7 @@
 
   
 // const MapWithAMarker = withScriptjs(withGoogleMap (props => {
-//   debugger
+//   
 //   props
 //     return (
 //     <GoogleMap

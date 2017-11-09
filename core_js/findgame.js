@@ -201,7 +201,7 @@ function Join_Game() {
 function View_Game() {
     this.load_display = function(game_details) {
         $('.gameinfobox').empty()
-        debugger
+        
         let $gameinfobox = $('.gameinfobox')
         let game_arr = game_details.target.attributes[2].textContent.split('|');
         let $game_title = $('<h3>', {

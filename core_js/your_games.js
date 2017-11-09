@@ -15,7 +15,7 @@ $('document').ready( () => {
 
     $('.viewbtn').on('click', function(event){
         const { latitude, longitude } = this.game
-        debugger
+        
         event.preventDefault();
         marker.setMap(null);
         var myLatLng = {lat: latitude, lng: longitude}

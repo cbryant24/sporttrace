@@ -9,51 +9,57 @@ import axios from 'axios'
 
 class Sports_Modal extends Component {
     render_address() {
-        const { address_elements } = this.props.displayed_game
+        debugger
+        let address_elements = this.props.displayed_game.address_elements
+        address_elements = typeof address_elements === 'string'? JSON.parse(address_elements):address_elements
         let complete_address = [];
         let i = 0;
         for (let address_component in address_elements) {
-                complete_address.push(<div key={i++} className={address_component}>{address_elements[address_component]}</div>)
+                complete_address.push(<div key={i++} className={address_component}>{address_elements[address_component]}  </div>)
         }
         return complete_address
     }
 
-    create_join_game() {
+    game_status() {
         debugger
-        if(this.props.modal.game_status === 'create') {
-            debugger
-            this.props.open_close_modal(false)
-            axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
-                console.log('this is the game after it has been posted to the db', res)
-                //add history push to after the success creation on failure keep them here with error message
-                if(res.data.created) {
-                    setTimeout(() => this.props.open_close_modal({open: true, type: 'response', message: res.data.msg}), 1000)
-                    this.props.history.push('/your_games')
+        switch(this.props.modal.game_status) {
+            case 'create':
+                this.props.open_close_modal(false)
+                axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
+                    debugger
+                    console.log('this is the game after it has been posted to the db', res)
+                    //add history push to after the success creation on failure keep them here with error message
+                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                    res.data.created ? this.props.history.push('/your_games'):''
                     return
-                }
-                setTimeout(() => this.props.open_close_modal({open: true, type: 'response', message: res.data.msg}), 500)
-                
-                
-            })
-        }
-
-        if(this.props.modal.game_status === 'join') {
-            debugger
-            this.props.open_close_modal(false)
-            axios.post('/api/join_game', {selected_game: this.props.displayed_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
-                console.log('this be the res from join_game', res)
-                debugger
-                setTimeout( () => this.props.open_close_modal({open: true, message: res.data.message, type: 'response'}), 1000)
-                this.props.history.push('/your_games')
-
+                })
+                break
+            case 'join':
+                this.props.open_close_modal(false)
+                axios.post('/api/join_game', {selected_game: this.props.displayed_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                    console.log('this be the res from join_game', res)
+                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                    res.data.created ? this.props.history.push('/your_games'):''
+                    return
+                })
+                break
+            case 'leave':
+                this.props.open_close_modal(false)
+                axios.post('/api/history/leave', {selected_game: this.props.displayed_game, leaving_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                    console.log('this be the res from join_game', res)
+                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                    res.data.created ? this.props.history.push('/your_games'):''
+                    return
+                })
+                break
+            default: 
                 return
-            })
+
         }
     }
 
     render() {
-        debugger
-        const {game_title, formatted_date, game_description, game_vibe, address, ball, photo, open} = this.props.displayed_game;
+        const {game_title, formatted_date, game_description, game_vibe, address, ball, photo, google_place_id} = this.props.displayed_game;
         const { modal, open_close_modal } = this.props       
         if(modal.type === 'response') {
             return (
@@ -78,6 +84,7 @@ class Sports_Modal extends Component {
             )
         }
         if(modal.type === 'confirmation') {
+            debugger
             return (
                 <div>
                     {modal.open ?  <ScrollLock/> : ''}
@@ -105,10 +112,10 @@ class Sports_Modal extends Component {
                                 <h4>{game_description}</h4>
                             </div>
                         </div>
-                        <iframe className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${this.props.displayed_game.place_id ? this.props.displayed_game.place_id:"ChIJWXNsX7jHwoARaduMfEQ0HuU"}`}>
+                        <iframe className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${google_place_id ? google_place_id:"ChIJWXNsX7jHwoARaduMfEQ0HuU"}`}>
                         </iframe>
                         <div className='row'>
-                            <button onClick={ () => this.create_join_game() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
+                            <button onClick={ () => this.game_status() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
                             <button onClick={ ()=> open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
-import { get_users_history, clear_user_history, reset_game_id } from '../actions';
+import { get_users_history, clear_user_history } from '../actions';
 import Game from './game';
 import ReactDom from 'react-dom';
 import Game_Details_Box from './game_details_box';
@@ -12,13 +12,14 @@ import Your_Game_Modal from './sports_modal'
 
 class Your_Games extends Component {
     componentWillMount() {
-        debugger
-        this.props.reset_game_id()
+        
         const { games, resp } = this.props.user_game_history
         if(!this.props.auth && games.length > 0) {
+            debugger
             this.props.clear_user_history()
         }
         if(this.props.auth) {
+            debugger
             this.props.get_users_history(this.props.auth.fb_id)
         }
         
@@ -50,7 +51,7 @@ class Your_Games extends Component {
     render() {
         return (
             <div>
-            <Your_Game_Modal title='Create Game' history={this.props.history}/>
+            <Your_Game_Modal history={this.props.history}/>
                 <MapWithAMarker
                 user_game_history={this.props.user_game_history.games}
                 history={this.props.history}
@@ -88,4 +89,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { get_users_history, clear_user_history, reset_game_id })(Your_Games)
+export default connect(mapStateToProps, { get_users_history, clear_user_history })(Your_Games)
