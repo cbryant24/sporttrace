@@ -33,7 +33,6 @@ class Game_Details_Box extends Component {
     }
     
     render() {
-        
         const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, creator } = this.props.selected_game;        
         // const {active_games, user_game_history} = this.props
         if(this.props.open_form) {

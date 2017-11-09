@@ -18,7 +18,6 @@ class Find_Game extends Component {
     }
 
     componentWillMount() {
-        debugger
         if(this.props.auth) {
             this.props.get_active_games({type: 'user', fb_id: this.props.auth.fb_id})
             return
@@ -34,21 +33,21 @@ class Find_Game extends Component {
         }
     }
 
-    handle_zip_code(e) {
-        if(/\D/.test(e.target.value)) {
-            return
-        }  
-        let value = e.target.value;
-        this.setState({current: value});
-    }
+    // handle_zip_code(e) {
+    //     if(/\D/.test(e.target.value)) {
+    //         return
+    //     }  
+    //     let value = e.target.value;
+    //     this.setState({current: value});
+    // }
 
-    handle_zip_submit(e) {
-        e.preventDefault();
-        if(this.state.current.length < 5) {
-            return
-        }
-        this.props.get_active_games(this.state.current)
-    }
+    // handle_zip_submit(e) {
+    //     e.preventDefault();
+    //     if(this.state.current.length < 5) {
+    //         return
+    //     }
+    //     this.props.get_active_games(this.state.current)
+    // }
 
     render() {
         const { current } = this.state
@@ -66,10 +65,10 @@ class Find_Game extends Component {
             </div>
             <header className="masthead">
                 <div className="zip-div">
-                    <form onSubmit={ (e) => this.handle_zip_submit(e)}>
+                    {/* <form onSubmit={ (e) => this.handle_zip_submit(e)}>
                         <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" placeholder="Enter a Zip Code" style={{width: `50%`}}  />
                         <input type="submit" value="Submit" style={{width: `50%`}} />
-                    </form>
+                    </form> */}
                 </div>
                 
                 <div className="row">

@@ -31,19 +31,19 @@ export function get_active_games(filter = {}) {
     if(filter.type === 'user') {
         return dispatch => {
             axios.post('/api/games/user', {fb_id: filter.fb_id}).then( res => {
+                debugger
                 dispatch({
                     type: types.GET_ACTIVE_GAMES,
-                    payload: res.data.data
+                    payload: res.data
                 })
             })
         }
     }
     return dispatch => {
         axios.get('/api/games').then( res => {
-            debugger
             dispatch({
                 type: types.GET_ACTIVE_GAMES,
-                payload: res.data.data
+                payload: res.data
             })
         })
     }
@@ -115,7 +115,7 @@ export function clear_user_history() {
 }
 
 export function leave_game(game_id, fb_id) {
-    return dixpatch => {
+    return dispatch => {
         axios.post('/api/leave_game', {game_id, fb_id}).then( res => {
             console.log('this be the res from unjoin_game', res)
 
