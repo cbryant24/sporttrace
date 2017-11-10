@@ -39,13 +39,10 @@ router.put('/update', (req, res) => {
 router.post('/leave', (req, res) => {
     console.log('this is the req body from delete', req.body)
     Games_History.destroy( { where: {id: req.body.selected_game.id, fb_id: req.body.leaving_fb_id}})
-        .then(
-            sequelize.query(`SELECT * FROM \`games\` JOIN \`game_history\` ON games.id = game_history.game_id WHERE game_history.fb_id = ${req.body.selected_game.id}`, { type: sequelize.QueryTypes.SELECT})
-            .then( () => {
-                const msg = 'You Have Successfully Left The Game'
-                res.send({created: true, game_joined, msg})
-            })
-        )
+        .then( () => {
+            const msg = 'You Have Successfully Left The Game'
+            res.send({destroyed: true,  msg})
+        })
 })
 
 module.exports = router;

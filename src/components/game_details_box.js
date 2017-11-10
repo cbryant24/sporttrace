@@ -60,7 +60,6 @@ class Game_Details_Box extends Component {
         }
 
         if(this.props.history.location.pathname === '/find_game') {
-            
             // var selected_game = active_games.filter( item => {
             //     return item.id === this.props.game_id
             // })
@@ -71,14 +70,9 @@ class Game_Details_Box extends Component {
                         <h3>{game_title}</h3>
                         <p>{game_description}</p>
                         <h6>{formatted_date}</h6>
-                        {this.props.auth.fb_id !== this.props.selected_game.fb_id ? 
                         <button onClick={ () => this.handle_button_click('join')} className='btn btn-outline btn-xl joinbtn'>
                             Join Game
-                        </button>:
-                        <button onClick={ () => this.handle_button_click('leave')} className='btn btn-outline btn-xl joinbtn'>
-                            Leave Game
                         </button>
-                    }
                     </div>
                  </div>
             )
@@ -111,9 +105,6 @@ class Game_Details_Box extends Component {
                             Recreate Game
                         </button>
                         }
-                        {this.props.auth.fb_id === this.props.selected_game.fb_id ? '':<button onClick={ () => this.handle_button_click()} className='btn btn-outline btn-xl joinbtn'>
-                            Join Game
-                        </button>}
                     </div>
                  </div>
             )

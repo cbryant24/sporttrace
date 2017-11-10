@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import ScrollLock from 'react-scrolllock';
 import Md_Close from 'react-icons/lib/md/close';
 import { connect } from 'react-redux';
-import { open_close_modal } from '../actions';
+import { open_close_modal, get_users_history, update_selected_game } from '../actions';
 import axios from 'axios'
 
 
 
 class Sports_Modal extends Component {
     render_address() {
-        debugger
         let address_elements = this.props.displayed_game.address_elements
         address_elements = typeof address_elements === 'string'? JSON.parse(address_elements):address_elements
         let complete_address = [];
@@ -21,12 +20,10 @@ class Sports_Modal extends Component {
     }
 
     game_status() {
-        debugger
         switch(this.props.modal.game_status) {
             case 'create':
                 this.props.open_close_modal(false)
                 axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
-                    debugger
                     console.log('this is the game after it has been posted to the db', res)
                     //add history push to after the success creation on failure keep them here with error message
                     setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
@@ -46,9 +43,11 @@ class Sports_Modal extends Component {
             case 'leave':
                 this.props.open_close_modal(false)
                 axios.post('/api/history/leave', {selected_game: this.props.displayed_game, leaving_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                    this.props.get_users_history(this.props.auth.fb_id)
+                    this.props.update_selected_game({})
                     console.log('this be the res from join_game', res)
                     setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
-                    res.data.created ? this.props.history.push('/your_games'):''
+                    res.data.destroyed ? this.props.history.push('/your_games'):''
                     return
                 })
                 break
@@ -84,7 +83,6 @@ class Sports_Modal extends Component {
             )
         }
         if(modal.type === 'confirmation') {
-            debugger
             return (
                 <div>
                     {modal.open ?  <ScrollLock/> : ''}
@@ -134,4 +132,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { open_close_modal })(Sports_Modal)
+export default connect(mapStateToProps, { open_close_modal, get_users_history, update_selected_game })(Sports_Modal)

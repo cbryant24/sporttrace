@@ -26,7 +26,6 @@ class Find_Game extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger
         if(nextProps.auth.fb_id !== this.props.auth.fb_id) {
             this.props.get_active_games({type: 'user', fb_id: nextProps.auth.fb_id})
             return

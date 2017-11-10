@@ -28,5 +28,8 @@
     "safe-json-stringify": "^1.0.4",
     "sequelize": "^4.8.3",
     "validator": "^9.1.1"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1"
   }
 }

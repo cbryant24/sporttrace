@@ -5,25 +5,31 @@
     "version": "0.2.0",
     "configurations": [
 
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceRoot}/server/routes/display_games.js"
-        },
-        {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "webRoot": "${workspaceRoot}/server/routes/display_games.js"
-        },
+        // {
+        //     "type": "chrome",
+        //     "request": "launch",
+        //     "name": "Launch Chrome",
+        //     "url": "http://localhost:8080",
+        //     "webRoot": "${workspaceRoot}/server/routes/display_games.js"
+        // },
+        // {
+        //     "type": "chrome",
+        //     "request": "attach",
+        //     "name": "Attach to Chrome",
+        //     "port": 9222,
+        //     "webRoot": "${workspaceRoot}/server/routes/display_games.js"
+        // },
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/server/routes/display_games.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program Helper File",
+            "program": "${workspaceFolder}/server/routes/helpers.js"
         }
     ]
 }

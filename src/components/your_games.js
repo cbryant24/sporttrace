@@ -15,18 +15,15 @@ class Your_Games extends Component {
         
         const { games, resp } = this.props.user_game_history
         if(!this.props.auth && games.length > 0) {
-            debugger
             this.props.clear_user_history()
         }
         if(this.props.auth) {
-            debugger
             this.props.get_users_history(this.props.auth.fb_id)
         }
         
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger
         if(nextProps.auth.fb_id) {
             const {games, resp} = nextProps.user_game_history
             if(games.length === 0 && !resp) {

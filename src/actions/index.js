@@ -31,7 +31,6 @@ export function get_active_games(filter = {}) {
     if(filter.type === 'user') {
         return dispatch => {
             axios.post('/api/games/user', {fb_id: filter.fb_id}).then( res => {
-                debugger
                 dispatch({
                     type: types.GET_ACTIVE_GAMES,
                     payload: res.data

@@ -12,7 +12,7 @@ router.use(bodyParser.json())
 router.post('/', (req, res) => {
     console.log('this is the join game req', req.body)
     Games_History.findOrCreate( {where: {
-        game_id: req.body.selected_game.game_id,
+        game_id: req.body.selected_game.id,
         fb_id: req.body.joining_fb_id,
         creator: req.body.selected_game.fb_id === req.body.joining_fb_id ? 1:0
     }}).spread( (game_joined, created) => {
