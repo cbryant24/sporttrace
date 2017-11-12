@@ -6,7 +6,6 @@ import Game from './game';
 import ReactDom from 'react-dom';
 import Game_Details_Box from './game_details_box';
 import MapWithAMarker from './display_games_map';
-import Your_Game_Modal from './sports_modal'
 
 
 
@@ -24,6 +23,7 @@ class Your_Games extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        debugger
         if(nextProps.auth.fb_id) {
             const {games, resp} = nextProps.user_game_history
             if(games.length === 0 && !resp) {
@@ -48,7 +48,6 @@ class Your_Games extends Component {
     render() {
         return (
             <div>
-            <Your_Game_Modal history={this.props.history}/>
                 <MapWithAMarker
                 user_game_history={this.props.user_game_history.games}
                 history={this.props.history}
@@ -63,7 +62,7 @@ class Your_Games extends Component {
                                 <div className="row">
                                     <div className="col-3">Title</div>
                                     <div className="col-3">Time</div>
-                                    <div className="col-2">Vibe</div>
+                                    <div className="col-3">Vibe/Total Players</div>
                                 </div>
                                 <div className="game-list-container">
                                     {this.render_games()}

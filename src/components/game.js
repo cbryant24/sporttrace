@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import { update_lat_long, update_selected_game } from '../actions';
 
  const Game = props => {
-    const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date } = props.game_info;
+    const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, players } = props.game_info;
     
     const handle_view_click = () => {
         if(props.open_form) return
         
         props.update_selected_game(props.game_info)
     }
+    debugger
     return (
         <div className='single-game row'>
             <div className='col-3 textpad'>{game_title}</div>
             <div className='col-3 textpad'>{ formatted_date }</div> 
-            <div className='col-2 textpad'>{ game_vibe }</div>
-            <div className='col-4'>
+            <div className='col-3'>
+                <div className='textpad'>{ game_vibe }</div>
+                <div className='textpad'>{ players }</div>
+            </div>
+            <div className='col-3'>
                 <button onClick={ () => handle_view_click() } className='btn btn-outline btn-xl viewbtn'>View</button>
             </div>
         </div>

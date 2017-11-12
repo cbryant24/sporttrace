@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ScrollLock from 'react-scrolllock';
 import Md_Close from 'react-icons/lib/md/close';
 import { connect } from 'react-redux';
-import { open_close_modal, get_users_history, update_selected_game } from '../actions';
+import { open_close_modal, get_users_history, update_selected_game, open_close_form } from '../actions';
 import axios from 'axios'
 
 
@@ -51,6 +51,16 @@ class Sports_Modal extends Component {
                     return
                 })
                 break
+            case 'update':
+            this.props.open_close_modal(false)
+            axios.put('/api/history/update', {selected_game: this.props.displayed_game, updating_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                this.props.open_close_form(false)
+                this.props.get_users_history(this.props.auth.fb_id)
+                this.props.update_selected_game({})
+                setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                return
+            })
+            break
             default: 
                 return
 
@@ -59,10 +69,10 @@ class Sports_Modal extends Component {
 
     render() {
         const {game_title, formatted_date, game_description, game_vibe, address, ball, photo, google_place_id} = this.props.displayed_game;
-        const { modal, open_close_modal } = this.props       
+        const { modal, open_close_modal, open } = this.props   
         if(modal.type === 'response') {
             return (
-                <div>
+                <div className='modal-contain'>
                     {modal.open ?  <ScrollLock/> : ''}
                     <div onClick={ ()=> open_close_modal({open: false}) } className={modal.open ? '':'hide'} id='backdrop'>
                     </div>
@@ -83,8 +93,9 @@ class Sports_Modal extends Component {
             )
         }
         if(modal.type === 'confirmation') {
+            debugger
             return (
-                <div>
+                <div className='modal-contain'>
                     {modal.open ?  <ScrollLock/> : ''}
                     <div onClick={ ()=> open_close_modal({open: false}) } className={modal.open ? '':'hide'} id='backdrop'>
                     </div>
@@ -110,7 +121,7 @@ class Sports_Modal extends Component {
                                 <h4>{game_description}</h4>
                             </div>
                         </div>
-                        <iframe className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${google_place_id ? google_place_id:"ChIJWXNsX7jHwoARaduMfEQ0HuU"}`}>
+                        <iframe className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${google_place_id ? google_place_id:""}`}>
                         </iframe>
                         <div className='row'>
                             <button onClick={ () => this.game_status() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
@@ -132,4 +143,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { open_close_modal, get_users_history, update_selected_game })(Sports_Modal)
+export default connect(mapStateToProps, { open_close_modal, get_users_history, update_selected_game, open_close_form })(Sports_Modal)

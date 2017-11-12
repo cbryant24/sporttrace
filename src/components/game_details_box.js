@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { reset_game_id, leave_game, open_close_form, open_close_modal, update_selected_game } from '../actions';
 import Edit_Game_Form from './post_game_redux_form';
-import Join_Game_Modal from './sports_modal'
 
 
 class Game_Details_Box extends Component {
@@ -27,7 +26,6 @@ class Game_Details_Box extends Component {
             case 'join': 
                 return this.props.open_close_modal({open: true, title: 'Join Game?', type: 'confirmation', game_status: 'join'})
             case 'edit':
-                this.setState({selected_game})
                 return this.props.open_close_form(true)
         }
     }
@@ -38,10 +36,9 @@ class Game_Details_Box extends Component {
         if(this.props.open_form) {
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
-                    <Join_Game_Modal history={this.props.history}/>
                     <div className='gameinfobox'>
                         <Edit_Game_Form  
-                        selection={this.state.selected_game} 
+                        selection={this.props.selected_game} 
                         history={this.props.history}/>
                     </div>
              </div>
@@ -65,7 +62,6 @@ class Game_Details_Box extends Component {
             // })
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
-                    <Join_Game_Modal history={this.props.history}/>
                     <div className='gameinfobox'>
                         <h3>{game_title}</h3>
                         <p>{game_description}</p>
@@ -86,7 +82,6 @@ class Game_Details_Box extends Component {
             let current_date = new Date().getTime()
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
-                    {/* <Join_Game_Modal history={this.props.history}/> */}
                     <div className='gameinfobox'>
                         <h3>{game_title}</h3>
                         <p>{game_description}</p>

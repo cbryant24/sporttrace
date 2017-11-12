@@ -41,7 +41,7 @@ const game_things = [
 exports.get_player_count = game => {
     return Game_History
     .findAndCountAll({
-        where: { game_id: game.id}
+        where: { game_id: game.game_id || game.id}
     }).then( results => {
         return results.count
     })
@@ -50,10 +50,10 @@ exports.get_player_count = game => {
 
 exports.selected_player_counts = (games) => {
     let selected_games = [];
-    const add_player_counts = games.map( game =>  {
+    const add_player_counts = games.map( get_game =>  {
         return {
-            game, 
-            count: exports.get_player_count(game)
+            game: get_game, 
+            count: exports.get_player_count(get_game)
         };
     })
     return selected_games = Promise.all(

@@ -40,17 +40,31 @@ export const renderSelect = ({input, label, type, meta: {touched, error}}) => {
 export const format_time = vals => {
     const date = new Date();
     if(vals.data_type === 'hh:mm' && vals.type === 'set') {
-        let hours = new Date(vals.game_milliseconds).getHours() > 12 ? new Date(vals.game_milliseconds).getHours() - 12 + 'pm' : new Date(vals.game_milliseconds).getHours()
+        let am_pm = new Date(vals.game_milliseconds).getHours() > 12 ? 'pm':'am'
+        let hours = new Date(vals.game_milliseconds).getHours() > 12 ? new Date(vals.game_milliseconds).getHours() - 12 : new Date(vals.game_milliseconds).getHours()
+        let min = new Date(vals.game_milliseconds).getMinutes()
+        return `${add_remove_chars({type: 'leading_zero', char: hours})}:${add_remove_chars({type: 'leading_zero', char: min})}${am_pm}`
+    }
+
+    if(vals.data_type === 'hh:mm' && vals.type === 'set mili') {
+        let hours = new Date(vals.game_milliseconds).getHours()
         let min = new Date(vals.game_milliseconds).getMinutes()
         return `${add_remove_chars({type: 'leading_zero', char: hours})}:${add_remove_chars({type: 'leading_zero', char: min})}`
     }
 
     if(vals.data_type === 'hh:mm' && vals.type === 'current') {
-        let hours = date.getHours().toString().match(/^\d+(?=:)/).join('') > 12 ? vals.time.match(/^\d+(?=:)/).join('') - 12 : vals.time.match(/^\d+(?=:)/).join('')
-        let min = date.getHours().toString().match(/\d+$/).join('')
+        let am_pm = new Date().getHours() > 12 ? 'pm':'am'        
+        let hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours()
+        hours = hours == '0' || hours == '00'? '12' : hours
+        let min = date.getMinutes()
+        return `${add_remove_chars({type: 'leading_zero', char: hours})}:${add_remove_chars({type: 'leading_zero', char: min})}${am_pm}`
+    }
+
+    if(vals.data_type === 'hh:mm' && vals.type === 'current mili') {
+        let hours = date.getHours()
+        let min = date.getMinutes()
         return `${add_remove_chars({type: 'leading_zero', char: hours})}:${add_remove_chars({type: 'leading_zero', char: min})}`
     }
-    
 }
 
 export const format_date = vals => {
@@ -85,8 +99,8 @@ export const format_date = vals => {
     }
 
     if(vals.data_type === 'yyyy-mm-dd' && vals.type === 'current') {
-        var date = new Date().toLocaleDateString;
-        date = date.replace(/(\d+)\/|-(\d+)\/|-(\d+)/, (str, month, day, year) => {
+        var date = new Date().toLocaleDateString();
+        date = date.replace(/(\d+)\D(\d+)\D(\d+)/g, (str, month, day, year) => {
             month = add_remove_chars({type: 'leading_zero', char: month})
             day = add_remove_chars({type: 'leading_zero', char: day})
             return `${year}-${month}-${day}`
@@ -97,6 +111,7 @@ export const format_date = vals => {
 
 export const get_address = (address) => {
     const address_elements = {}
+    if(!address) return 
     address.split('</span>').filter( item => item.length > 0).map( item => {
         address_elements[item.match(/class="(.*)(?=">)/)[1]] = item.match(/>([\w\d-_ ]+)/)[1]
     })
@@ -105,8 +120,8 @@ export const get_address = (address) => {
 
 function add_remove_chars(val) {
     if(val.type === 'leading_zero') 
-        if(val.char.toString().length < 1) 
-            val.char = `0${val.char}`
+        if(val.char.toString().length < 2) 
+            val.char = `0${val.char.toString()}`
         return val.char
 
 }

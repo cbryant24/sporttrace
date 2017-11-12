@@ -31,6 +31,7 @@ export function get_active_games(filter = {}) {
     if(filter.type === 'user') {
         return dispatch => {
             axios.post('/api/games/user', {fb_id: filter.fb_id}).then( res => {
+                debugger
                 dispatch({
                     type: types.GET_ACTIVE_GAMES,
                     payload: res.data
@@ -69,6 +70,7 @@ export function update_lat_long(new_lat_lon) {
 export function get_users_history(fb_id) {
     return dispatch => {
         axios.post('/api/history', {fb_id} ).then( res => {
+            debugger
             console.log('this is history api res', res)
             dispatch({
                 type: types.GET_USER_HISTORY,

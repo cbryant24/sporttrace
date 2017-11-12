@@ -131,7 +131,7 @@ input[type=date], input[type=time]{
 
 .side-menu-conatianer {
   position: absolute;
-  z-index: 90;
+  z-index: 5;
 }
 
 .navbar .container {
@@ -549,6 +549,10 @@ select {
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
 
+.modal-contain {
+  position: absolute;
+  z-index: 5;
+}
 
 #backdrop   {
   position: fixed;
@@ -576,8 +580,8 @@ select {
       background-color: rgba(0,0,0,0.8);
       height: 83%;
       width: 70%;
-      -webkit-transition-duration: 600ms;
-      transition-duration: 600ms;
+      -webkit-transition-duration: 2000ms;
+      transition-duration: 2000ms;
       z-index: 7;
   }
 

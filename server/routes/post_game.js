@@ -24,7 +24,7 @@ router.post('/', function(req, res){
         city: req.body.city,
         fb_id: req.body.fb_id,
         address_elements: string_address,
-        google_place_id: req.body.place_id,
+        google_place_id: req.body.google_place_id,
         ball: req.body.ball,
         formatted_date: req.body.formatted_date
         }

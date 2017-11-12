@@ -90,7 +90,7 @@ const MapWithASearchBox = compose(
     onPlacesChanged={ () => props.onPlacesChanged()}>
     <input
         type="text"
-        placeholder="Address"
+        placeholder={props.init_val || "Address"}
         className='form-control' />
     
     </StandaloneSearchBox>

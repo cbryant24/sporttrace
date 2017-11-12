@@ -9,6 +9,7 @@ import stylebruh from '../assets/css/sportsfinder.css';
 import NavBar from './nav_bar';
 import { connect } from 'react-redux';
 import { sign_in } from '../actions';
+import Modal from './sports_modal';
 import Side_Nav from './side_nav'
 
 
@@ -23,6 +24,7 @@ class App extends Component {
         return (
             <div>
                 <Side_Nav/>
+                <Modal history={this.props.history}/>
                 <NavBar history={this.props.history}/>
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/find_game" component={FindGame}/>
