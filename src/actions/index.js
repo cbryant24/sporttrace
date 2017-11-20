@@ -1,6 +1,5 @@
 import types from './types';
 import axios from 'axios';
-import test from '../test/test_data'
 
 const BASE_URL = 'getdata.php'
 

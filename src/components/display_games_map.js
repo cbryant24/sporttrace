@@ -1,32 +1,3 @@
-// import React, { Component } from 'react';
-// import {
-//     withScriptjs,
-//     withGoogleMap,
-//     GoogleMap,
-//     Marker,
-//   } from "react-google-maps";
-// import { connect } from 'react-redux'
-
-
-  
-// const MapWithAMarker = withScriptjs(withGoogleMap (props => {
-//   
-//   props
-//     return (
-//     <GoogleMap
-//       defaultZoom={8}
-//       defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-//       <Marker
-//         position={{ lat: -34.397, lng: 150.644 }} />
-//       <Marker
-//         position={{ lat: -34.197, lng: 150.644 }} />
-//     </GoogleMap>
-//   )
-// }
-// ));
-
-// export default MapWithAMarker
-
 import React from "react";
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
@@ -35,9 +6,9 @@ import { connect } from 'react-redux';
 const MyMapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places,embed",    
-    loadingElement: <div style={{ height: `100%`}} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%`, marginTop: `10vh`}} />,
+    loadingElement: <div style={{ height: `100%`, width: '100vw'}} />,
+    containerElement: <div style={{ height: `50vh`, width: '100vw'}} />,
+    mapElement: <div style={{ height: `100%`, width: '100vw', marginTop: `10vh`}} />,
   }),
   withScriptjs,
   withGoogleMap
@@ -68,7 +39,7 @@ const MyMapComponent = compose(
       })
       return (
         <GoogleMap
-          defaultZoom={5}
+          defaultZoom={10}
           defaultCenter={ {lat: 33.7175, lng: 117.8311}}
           center= {{ lat, lng }}>
           {markers}
@@ -88,7 +59,7 @@ const MyMapComponent = compose(
       })
       return (
         <GoogleMap
-          defaultZoom={5}
+          defaultZoom={10}
           defaultCenter={ {lat: 33.7175, lng: -117.8311}}
           center= {{ lat, lng }}>
           {markers}

@@ -5,6 +5,7 @@ import { get_active_games, reset_game_id } from '../actions';
 import Game from './game';
 import Game_Details_Box from './game_details_box';
 import MapWithAMarker from './display_games_map';
+import Location_Display from './location_display'
 
 
 
@@ -32,26 +33,10 @@ class Find_Game extends Component {
         }
     }
 
-    // handle_zip_code(e) {
-    //     if(/\D/.test(e.target.value)) {
-    //         return
-    //     }  
-    //     let value = e.target.value;
-    //     this.setState({current: value});
-    // }
-
-    // handle_zip_submit(e) {
-    //     e.preventDefault();
-    //     if(this.state.current.length < 5) {
-    //         return
-    //     }
-    //     this.props.get_active_games(this.state.current)
-    // }
-
     render() {
         const { current } = this.state
         const { active_games } = this.props;
-        var games_list = <div>Enter Zipcode</div>
+        var games_list = <div>No Actice Games</div>
         if(active_games.length > 0) {
             games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         }
@@ -62,15 +47,10 @@ class Find_Game extends Component {
                 history={this.props.history}
                 lat_lon={this.props}/>
             </div>
+            
             <header className="masthead">
-                <div className="zip-div">
-                    {/* <form onSubmit={ (e) => this.handle_zip_submit(e)}>
-                        <input onChange={ (e) => this.handle_zip_code(e)} value={current} type="text" name="name" placeholder="Enter a Zip Code" style={{width: `50%`}}  />
-                        <input type="submit" value="Submit" style={{width: `50%`}} />
-                    </form> */}
-                </div>
-                
                 <div className="row">
+                    <Location_Display history={this.props.history}/>
                     <Game_Details_Box history={this.props.history}/>
                     <div className="col-lg-8 col-12" >
                         <div className="game-list-header">

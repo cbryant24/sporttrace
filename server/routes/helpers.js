@@ -5,39 +5,6 @@ const Games = models.games;
 
 const sequelize = models.sequelize
 
-const game_things = [
-    {
-    ball: "1",
-    city:"9200 Irvine Center Drive #200, Irvine",
-    fb_id:10155734599536894,
-    formatted_date:"12-31-2017, 12:59",
-    game_date:1514753940000,
-    game_description:"we balling at the fuze yall",
-    game_title:"Come to learningfuze yall we balling",
-    game_vibe:"casual",
-    google_place_id:"ChIJKZcT2t_n3IARhA7AdKhMkuQ",
-    id:45,
-    latitude:33.6335,
-    longitude:-117.742,
-    zipcode:92618,
-    },
-    {
-        ball: "1",
-        city:"9200 Irvine Center Drive #200, Irvine",
-        fb_id:10155734599536894,
-        formatted_date:"12-31-2017, 12:59",
-        game_date:1514753940000,
-        game_description:"we balling at the fuze yall",
-        game_title:"Come to learningfuze yall we balling",
-        game_vibe:"casual",
-        google_place_id:"ChIJKZcT2t_n3IARhA7AdKhMkuQ",
-        id:49,
-        latitude:33.6335,
-        longitude:-117.742,
-        zipcode:92618,
-    }
-]
-
 exports.get_player_count = game => {
     return Game_History
     .findAndCountAll({

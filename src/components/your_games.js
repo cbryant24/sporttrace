@@ -6,6 +6,7 @@ import Game from './game';
 import ReactDom from 'react-dom';
 import Game_Details_Box from './game_details_box';
 import MapWithAMarker from './display_games_map';
+import Location_Display from './location_display';
 
 
 
@@ -55,6 +56,7 @@ class Your_Games extends Component {
                 />
                 <header className="masthead">
                     <div className="row">
+                        <Location_Display history={this.props.history}/>
                         <Game_Details_Box 
                         history={this.props.history}/>
                         <div className="col-lg-8 col-12">

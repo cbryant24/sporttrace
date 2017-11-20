@@ -15,7 +15,7 @@ router.post('/', function(req, res){
     Games
     .findOrCreate({where: {
         game_date: req.body.game_date,
-        game_description: req.body.game_description.match(/[\w!'# ]/g).join(''),
+        game_description: req.body.game_description ? req.body.game_description.match(/[\w!'# ]/g).join(''):'',
         game_title: req.body.game_title.match(/[\w!'# ]/g).join(''),
         game_vibe: req.body.game_vibe.match(/[\w]/g).join(''),
         longitude: req.body.lon,       

@@ -31,7 +31,7 @@ class Game_Details_Box extends Component {
     }
     
     render() {
-        const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, creator } = this.props.selected_game;        
+        const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, creator, city } = this.props.selected_game;        
         // const {active_games, user_game_history} = this.props
         if(this.props.open_form) {
             return (
@@ -66,6 +66,7 @@ class Game_Details_Box extends Component {
                         <h3>{game_title}</h3>
                         <p>{game_description}</p>
                         <h6>{formatted_date}</h6>
+                        <p>{ city }</p>
                         <button onClick={ () => this.handle_button_click('join')} className='btn btn-outline btn-xl joinbtn'>
                             Join Game
                         </button>
@@ -86,6 +87,7 @@ class Game_Details_Box extends Component {
                         <h3>{game_title}</h3>
                         <p>{game_description}</p>
                         <h6>{formatted_date}</h6>
+                        <p>{ city }</p>
                         {game_date > current_date ?
                         <div>
                             {creator ? 
