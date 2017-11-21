@@ -101,8 +101,6 @@ class Game_Details_Box extends Component {
                         <p>{ city }</p>
                         {game_date > current_date ?
                         <div>
-                             {/* determining which button action to display based on date of game and if user created game 
-                             determing if user created game handled by backend verification */}
                             {creator ? 
                             <button onClick={ () => this.handle_button_click('edit')} className='btn btn-outline btn-xl modal-btn'>
                                 Edit Game

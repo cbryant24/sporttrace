@@ -20,7 +20,6 @@ module.exports = (app) => {
     app.get('/api/user_info', (req, res) => {
         user = req.user ? req.user:'';
         res.send(user);
-        
     })
 
     app.get('/api/signout', (req, res) => {
