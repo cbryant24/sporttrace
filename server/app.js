@@ -1,6 +1,7 @@
 /**@module app */
 const express = require('express');
 const getRoute = require('./routes/index');
+const path = require('path');
 
 const cookie_session = require('cookie-session');
 const passport = require('passport');
@@ -10,6 +11,9 @@ const cookie_key = require('./config/fb_keys').cookie_key
 const app = express();
 
 require('./services/passport');
+
+app.use(express.static(path.resolve(__dirname, '..', 'dist')));
+console.log(path.resolve(__dirname, '..', 'dist'));
 
 /**
  * middleware for handling all routing for client request
@@ -32,6 +36,9 @@ app.use(passport.initialize());
 app.use(passport.session())
 require('./routes/auth_routes')(app)
 
+app.get('*', function(req, res) {
+    res.sendFile(path.resolve(__dirname, '..', 'index.html'));
+})
 // app.get('/', function(req, res) {
 //     res.end();
 // })

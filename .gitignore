@@ -7,5 +7,6 @@ proto
 .DS_Store
 facebook-login/facebook_info.php
 php/mysql_connect.php
-server/config
+server/config/fb_keys.js
+server/config/mysqlCredentials.js
 server/node_modules
