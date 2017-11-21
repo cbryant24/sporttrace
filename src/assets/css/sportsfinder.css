@@ -7,11 +7,6 @@
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
 
-/*html,
-body {
-  width: 100%;
-  height: 100%; 
-}*/
 
 body {
   font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; 
@@ -82,9 +77,7 @@ hr {
   padding: 15px 50px;
   margin: 10px;
 }
-/* .joinbtn{
-  display: block;
-} */
+
 .viewbtn, .joinbtn{
   margin: 0;
   padding: 15px 17%;
@@ -150,7 +143,6 @@ input[type=date], input[type=time]{
 .navbar-nav {
     -ms-flex-direction: row;
     flex-direction: row;
-    /*width: 367px;*/
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -202,13 +194,6 @@ a.mx-3 {
   }
 
 
-/*
-@media (max-width: 992px) {
-  #mainNav {
-     background-color: red;
-  }
-} */  
-
 @media (max-width: 767px) {
   .navbar-nav {
     display: none;
@@ -235,22 +220,6 @@ a.mx-3 {
   }
 }
 
-/*@media (max-width: 614px) {
-  .navbar .container {
-    width: 397px;
-  }
-}*/
-
-/*|_______________________________________________________________________________________________|*/
-/*|_______________________________________________________________________________________________|*/
-
-
-
-/*@media (max-width: 614px) {
-.navbar .container {
-  width: 397px;
-}
-}*/
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
@@ -389,9 +358,8 @@ header.masthead.home {
   letter-spacing: 1px;
   color: white;
   height: 100%;
-  /* max-height: 38.5vh; */
   overflow: scroll;
-  min-height: 38vh;
+  height: 41vh;
   max-height: 41vh;
 }
 
@@ -465,38 +433,7 @@ h5{
 /*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*/
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
-/*
-footer {
-  padding: 15px 0;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.3);
-  background-color: #222222;
-  height: 7vh; 
-}
-footer p {
-  font-size: 12px;
-  margin: 0; 
-}
-footer ul {
-  margin-bottom: 0; 
-}
-footer ul li a {
-  font-size: 11px;
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.3); 
-}
-footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li a.active {
-  text-decoration: none; 
-}*/
 
-/*BOOTSTRAP OVERRIDE*//*BOOTSTRAP OVERRIDE*//*BOOTSTRAP OVERRIDE*/
-/*BOOTSTRAP OVERRIDE*//*BOOTSTRAP OVERRIDE*//*BOOTSTRAP OVERRIDE*/
-
-
-/*.col-2{
-  display: inline-block;
-}*/
 .row{
   max-width: 100%;
   margin: 0;
@@ -515,10 +452,6 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
     padding-top: 0;
 }
 
-.col-md-4, .col-lg-4, .col-md-8, .col-lg-8{
-  /*background-color: black;*/
-  /* margin-top: -7px; */
-}
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin:.5rem 0;
     font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; 
@@ -533,22 +466,9 @@ select {
   font-size: 10px;
 }
 
-/* .zip-div {
-  margin-bottom: 7px;
-} */
-
 .zip-div input, textarea {
   padding: 0;
 }
-
-
-/*
-.col-sm-6{
-  padding: 0 5%;
-}*/
-/*.col-12{
-  padding: 0;
-}*/
 
 
 /*|_______________________________________________________________________________________________|*/
@@ -646,14 +566,6 @@ select {
   transition: transform 500ms ease-in;
   }
   
-  /* .modal-trans {
-      transform: translateY(150%)
-  }
-  
-  .modal-trans-out {
-      transform: translateY(-150%)
-  } */
-  
   .stop-scroll {
       overflow: hidden
   }
@@ -684,14 +596,6 @@ select {
       margin: 0;
       padding: 0;
   }
-
-  /* .extended-address {
-    font-size: 16px;
-  }
-
-  .street-address {
-    font-size: 16px;
-  } */
 
   .extended-address, .street-address {
     display: block;
@@ -789,10 +693,6 @@ select {
     margin-top: 20px;
 }
 
-/* .modal-description, .modal-game-title, .modal-date{
-  display: inline-block;
-} */
-
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
 
@@ -841,26 +741,10 @@ z-index: 5;
     cursor: hand;
 }
 
-/* #side-nav {
-  background: rgba(0, 0, 0, 0.9);
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  z-index: 5
-} */
-
-/* #mainNav .navbar-brand {
-color: #fdcc52;
-font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-font-weight: 200;
-letter-spacing: 1px; 
-color: fade(white, 70%);
-} */
-
 #side-menu > li > a{
 font-size: 11px;
 font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
 letter-spacing: 2px;
-/* margin: 10px 0px; */
 text-transform: uppercase; 
 color: rgba(255, 255, 255, 0.7); 
 }
