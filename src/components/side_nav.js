@@ -7,6 +7,11 @@ import ScrollLock from 'react-scrolllock';
 import Md_Close from 'react-icons/lib/md/close';
 import Md_Menu from 'react-icons/lib/md/menu'
 
+
+/**
+ * @class
+ * @classdesc a react class component the renders the mobile navigation menu
+ */
 class Side_Nav extends Component {
     constructor(props) {
         super(props)
@@ -17,6 +22,10 @@ class Side_Nav extends Component {
         }
     }
 
+    /**
+     * @function render_login
+     * @returns a jsx element that logs the user in or out depending on logged in status
+     */
     render_login() {
         if(this.props.auth) {
             return <li onClick={ () => this.handle_logout()} className="side-nav-item"><a href='' className=''>Logout</a></li>
@@ -24,10 +33,18 @@ class Side_Nav extends Component {
         return <li className="nav-item"><a href='/signin/facebook'>Login/Signup</a></li>
     }
 
+    /**
+     * @function handle_logout
+     * @returns logs the user out of there profile
+     */
     handle_logout() {
         this.props.sign_out()
     }
 
+    /**
+     * @function open_nav
+     * @returns updates component state and opens side navigation
+     */
     open_nav() {
         this.setState({
             nav_in: true,
@@ -35,6 +52,11 @@ class Side_Nav extends Component {
         })
         
     }
+
+    /**
+     * @function close_nav
+     * @returns updates component state and closes side navigation
+     */
     close_nav() {
         this.setState({
             back_drop_hide: false,
@@ -42,6 +64,10 @@ class Side_Nav extends Component {
         }) 
     }
     
+    /**
+     * @function backdrop_click
+     * @returns updates component state and closes side navigation
+     */
     backdrop_click() {
         this.setState({
             back_drop_hide: false,
@@ -82,6 +108,12 @@ class Side_Nav extends Component {
         
     }
 }
+
+/**
+ * @function mapStateToProps
+ * @param {object} state 
+ * @returns adds the state of auth to props to determine if user can signin or signout
+ */
 
 function mapStateToProps(state) {
     return {

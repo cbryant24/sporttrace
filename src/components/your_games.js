@@ -9,10 +9,18 @@ import MapWithAMarker from './display_games_map';
 import Location_Display from './location_display';
 
 
+/**
+ * @class 
+ * @classdesc Holds the all game information games user has created or joined
+ * @returns a class component with all games listed that user is apart of
+ */
 
 class Your_Games extends Component {
+    /**
+     * @function componentWillMount
+     * @returns action creator call to update state with users games if signed in or clear games if user is not signed in
+     */
     componentWillMount() {
-        
         const { games, resp } = this.props.user_game_history
         if(!this.props.auth && games.length > 0) {
             this.props.clear_user_history()
@@ -22,9 +30,12 @@ class Your_Games extends Component {
         }
         
     }
-
+    /**
+     * @function componentWillReceiveProps
+     * @param {object} nextProps 
+     * @returns signed in users will update the state with their games for display
+     */
     componentWillReceiveProps(nextProps) {
-        debugger
         if(nextProps.auth.fb_id) {
             const {games, resp} = nextProps.user_game_history
             if(games.length === 0 && !resp) {
@@ -35,6 +46,10 @@ class Your_Games extends Component {
         }
     }
 
+    /**
+     * @function render_games
+     * @returns an array of jsx elements of the users games for display
+     */
     render_games() {
         const { games } = this.props.user_game_history
         if(games.length > 0) {
@@ -78,6 +93,12 @@ class Your_Games extends Component {
     }
 }
 
+
+/**
+ * @function mapStateToProps
+ * @param {object} state 
+ * @returns user games from the databse to display and latitude longitutude form map location and markers
+ */
 function mapStateToProps(state) {
     return {
         user_game_history: state.sports.user_game_history,

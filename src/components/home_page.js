@@ -2,6 +2,11 @@ import React from 'react';
 import NavBar from './nav_bar';
 import {Link} from 'react-router-dom';
 
+
+/**
+ * @function 
+ * @returns function react component that displays home page buttons 
+ */
 export default () => {
     return(
         <div>

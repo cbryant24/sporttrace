@@ -1,4 +1,17 @@
+/**@module games_table */
+
+/**
+ * @function 
+ * @param {object} sequelize 
+ * @param {object} DataTypes 
+ * @returns model of games sql database table
+ */
+
 module.exports = (sequelize, DataTypes) => {
+    /**
+     * defining the table columns and datatypes for sql table games using npm library sequelize
+     * to create models of sql database tables for route access
+     */
     const Games = sequelize.define('games', {
         id: {
             type: DataTypes.INTEGER,

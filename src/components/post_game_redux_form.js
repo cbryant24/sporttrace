@@ -6,24 +6,38 @@ import axios from 'axios';
 import { open_close_modal, update_selected_game, open_close_form, update_lat_long } from '../actions'
 import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate, get_address } from './helpers';
 
-
+/**
+ * @class 
+ * @classdesc a react class component that renders a redux form and builds a game object for the database
+ */
 class PostGameForm extends Component {
     constructor(props) {
         super(props)
-
+        /**
+         * flashing error to alert the user if they have not selected a location
+         */
         this.state = {
             flashing_error: false,
             location_change: false
         }
     }
-
+    /**
+     * @function componenWillReceiveProps
+     * @param {object} nextProps 
+     * @returns determines if the user submitted the form without selecting a location and turns on the warning
+     */
     componentWillReceiveProps(nextProps) {
         if(this.state.flashing_error && nextProps.location.lat )
             this.setState({ flashing_error: false})
         if(nextProps.location !== this.props.location)
             this.setState({location_change: true})
     }
-
+    /**
+     * @function compare_form_vals
+     * @param {object} init_val 
+     * @param {object} new_vals 
+     * @returns a boolean wether the user has changed the vals of an active game they created and want to change
+     */
     compare_form_vals(init_val, new_vals) {
         for(let form_field in init_val) {
             if(init_val[form_field] !== new_vals[form_field])
@@ -31,6 +45,14 @@ class PostGameForm extends Component {
         }
         return true
     }
+
+    /**
+     * @function handleFormVals
+     * @param {object} vals 
+     * @returns 
+     *  open modal or flashing error with determined status of 
+     *  response if error or confirmation with completed game object
+     */
     handleFormVals(vals) {
         if(!this.props.auth) {
             this.props.open_close_modal({open: true, type: 'response', message: 'Please Sign In To Join'})
@@ -48,6 +70,9 @@ class PostGameForm extends Component {
                 this.props.open_close_modal({open: true, type: 'response', message: 'Change game info to update game'})
                 return
             }
+            /**
+             * building the game object with the data from redux from that the user has selected to edit
+             */
             const game_milliseconds = new Date(`${vals.date} ${vals.time}`).getTime()
             const complete_game = {
                 game_date: game_milliseconds,
@@ -69,6 +94,9 @@ class PostGameForm extends Component {
             return
 
         }
+        /**
+         * building the game object with the data from redux form that the user has input to create a new game
+         */
         const game_milliseconds = new Date(`${vals.date} ${vals.time}`).getTime()
         const complete_game = {
             game_date: game_milliseconds,
@@ -89,7 +117,10 @@ class PostGameForm extends Component {
         this.props.open_close_modal({open: true, type: 'confirmation', title: 'Create Game?', game_status: 'create'});
         
     };    
-
+    /**
+     * @function handle_cancel
+     * @returns resets and closes redux form if open and clears the latitude and longitude of the previously selected game and sends user to home
+     */
     handle_cancel() {
         this.props.reset();
         this.props.update_lat_long({})
@@ -128,16 +159,21 @@ class PostGameForm extends Component {
     }
 };
 
-//use on from to prevent from submission
-// disabled={pristine || submitting }
-
-
-
-
+/**
+ * @function mapStateToProps
+ * @param {object} state 
+ * @param {object} props 
+ * @returns passing values to state to initialiize redux form with user selected game values to update
+ * @returns location from state of user selected location from react-google-maps search bar component for complete game object
+ */
 
 function mapStateToProps(state, props) {
     let initialValues = {}
     if(props.selection) {
+        /**
+         * normalizing date and time info for user selected and user input data
+         * for html input form elements
+         */
         const time = format_time({data_type: 'hh:mm', type: 'current mili'})
         const current_date = format_date({data_type: 'yyyy-mm-dd', type: 'current'})
         const edit_date = format_date({
@@ -172,10 +208,3 @@ export default connect(mapStateToProps, { open_close_modal, update_selected_game
     form: 'post game form',
     validate
 })(PostGameForm))
-
-// export default reduxForm({
-//     form: 'post game form',
-//     validate: validation
-// })(PostGameForm)
-
-

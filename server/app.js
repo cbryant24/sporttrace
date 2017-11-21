@@ -1,3 +1,4 @@
+/**@module app */
 const express = require('express');
 const getRoute = require('./routes/index');
 
@@ -10,9 +11,9 @@ const app = express();
 
 require('./services/passport');
 
-app.use('/', express.static(__dirname + '/public'))
-app.use('/assets', express.static(__dirname + '/public'))
-
+/**
+ * middleware for handling all routing for client request
+ */
 app.use('/', getRoute);
 
 app.use(body_parser.json());
@@ -23,12 +24,16 @@ app.use(
     })
 )
 
+/**
+ * allows for passport to create a session to store serialized
+ * cookie data for post initial user login/creation
+ */
 app.use(passport.initialize());
 app.use(passport.session())
 require('./routes/auth_routes')(app)
 
-app.get('/', function(req, res) {
-    res.end();
-})
+// app.get('/', function(req, res) {
+//     res.end();
+// })
 
 app.listen(4000, () => console.log('listening on port 4000'));

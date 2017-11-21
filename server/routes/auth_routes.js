@@ -1,6 +1,12 @@
+/**@module auth_routes */
+
 const passport = require('passport');
 
-
+/**
+ * @function
+ * @param {Object} app 
+ * @returns routing provided by passport library, handle user login and logout requests from the client
+ */
 module.exports = (app) => {
     app.get('/signin/facebook',
     passport.authenticate('facebook'))
@@ -19,7 +25,6 @@ module.exports = (app) => {
 
     app.get('/api/signout', (req, res) => {
         req.logOut();
-        res.send('');
         res.redirect('/');
     })
 }

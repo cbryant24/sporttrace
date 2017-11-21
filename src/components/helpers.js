@@ -1,5 +1,11 @@
 import React from 'react';
 
+
+/**
+ * @function renderInput
+ * @param {obj} param0 redux form object values and methods
+ * @return input field for redux form for game creation and editing
+ */
 export const renderInput = ({input, label, type, meta: {touched, error}}) => {
     return (
         <div className="form-group">
@@ -10,6 +16,12 @@ export const renderInput = ({input, label, type, meta: {touched, error}}) => {
 
     )
 };
+
+/**
+ * @function renderCheckBox
+ * @param {obj} param0 redux form object values and methods
+ * @return checkbox field for redux form for game creation and editing
+ */
 
 export const renderCheckBox = ({input, label, type, meta: {touched, error}}) => {
     return (
@@ -22,6 +34,12 @@ export const renderCheckBox = ({input, label, type, meta: {touched, error}}) => 
 
     )
 };
+
+/**
+ * @function renderSelect
+ * @param {obj} param0 redux form object values and methods
+ * @return select field for redux form for game creation and editing
+ */
 
 export const renderSelect = ({input, label, type, meta: {touched, error}}) => {
     return (
@@ -36,6 +54,12 @@ export const renderSelect = ({input, label, type, meta: {touched, error}}) => {
         </div>
     )
 };
+
+/**
+ * @function format_time
+ * @param {object} vals 
+ * @return properly formatted time string, format determined by function parameters
+ */
 
 export const format_time = vals => {
     const date = new Date();
@@ -66,6 +90,12 @@ export const format_time = vals => {
         return `${add_remove_chars({type: 'leading_zero', char: hours})}:${add_remove_chars({type: 'leading_zero', char: min})}`
     }
 }
+
+/**
+ * @function format_date
+ * @param {object} vals 
+ * @return properly formatted date string, format determined by function obj parameter
+ */
 
 export const format_date = vals => {
     if(vals.data_type === 'mm-dd-yyyy' && vals.type === 'set') {
@@ -109,6 +139,12 @@ export const format_date = vals => {
     }
 }
 
+/**
+ * @function get_address
+ * @param {string} address 
+ * @return array of address elements from google maps search results formatted for html display
+ */
+
 export const get_address = (address) => {
     const address_elements = {}
     if(!address) return 
@@ -125,6 +161,12 @@ function add_remove_chars(val) {
         return val.char
 
 }
+
+/**
+ * @function validate
+ * @param {object} vals
+ * @returns param object with any errors matched against specified statements
+ */
 
 export const validate = vals => {
     const errors = {};

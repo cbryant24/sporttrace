@@ -8,25 +8,31 @@ import MapWithAMarker from './display_games_map';
 import Location_Display from './location_display'
 
 
-
+/**
+ * @class 
+ * @classdesc Holds the all game information for joinable games user is not apart of
+ * @returns a class component with all games listed that user is not apart of
+ */
 class Find_Game extends Component {
-    constructor(props){
-        super(props)
-
-        this.state = {
-            current: ''
-        }
-    }
 
     componentWillMount() {
+        /**
+         * if the user is signed in call to database to pull games user is not apart of
+         */
         if(this.props.auth) {
             this.props.get_active_games({type: 'user', fb_id: this.props.auth.fb_id})
             return
         }
+        /**
+         * if user is not signed in call to database to pull all games
+         */
         this.props.get_active_games()
     }
 
     componentWillReceiveProps(nextProps) {
+        /**
+         * Determing if all games for the user have already been retrieved
+         */
         if(nextProps.auth.fb_id !== this.props.auth.fb_id) {
             this.props.get_active_games({type: 'user', fb_id: nextProps.auth.fb_id})
             return
@@ -34,42 +40,46 @@ class Find_Game extends Component {
     }
 
     render() {
-        const { current } = this.state
         const { active_games } = this.props;
         var games_list = <div>No Actice Games</div>
         if(active_games.length > 0) {
             games_list = active_games.map( (item, idx) => <Game key={idx} game_info={item}/>  )
         }
         return (
-        <div>
             <div>
-                <MapWithAMarker
-                history={this.props.history}
-                lat_lon={this.props}/>
-            </div>
-            
-            <header className="masthead">
-                <div className="row">
-                    <Location_Display history={this.props.history}/>
-                    <Game_Details_Box history={this.props.history}/>
-                    <div className="col-lg-8 col-12" >
-                        <div className="game-list-header">
-                            <div className="row">
-                                <div className="col-3">Title</div>
-                                <div className="col-3">Time</div>
-                                <div className="col-2">Vibe/Total Players</div>
-                            </div>
-                            <div className="game-list-container">
-                                {games_list}
+                <div>
+                    <MapWithAMarker
+                    history={this.props.history}
+                    lat_lon={this.props}/>
+                </div>
+                <header className="masthead">
+                    <div className="row">
+                        <Location_Display history={this.props.history}/>
+                        <Game_Details_Box history={this.props.history}/>
+                        <div className="col-lg-8 col-12" >
+                            <div className="game-list-header">
+                                <div className="row">
+                                    <div className="col-3">Title</div>
+                                    <div className="col-3">Time</div>
+                                    <div className="col-2">Vibe/Total Players</div>
+                                </div>
+                                <div className="game-list-container">
+                                    {games_list}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </header>
-        </div>
+                </header>
+            </div>
         )
     }
 }
+
+/**
+ * @function mapStateToProps
+ * @param { object } state 
+ * @return specified state from redux store need to display games
+ */
 
 function mapStateToProps(state) {
     return {

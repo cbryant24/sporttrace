@@ -1,3 +1,5 @@
+/**@module active_games_routes */
+
 const models = require('../models');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,6 +11,12 @@ let Game_History = models.game_history;
 let sequelize = models.sequelize;
 router.use(bodyParser.json())
 
+/**
+ * @function 
+ * @param {Object} req client request object for data from the database games table on route /games 
+ * @param {Object} res server response object with games from the games table
+ * @returns {Object} data from the games table that represents games greater than or equal to todays date
+ */
 router.get('/', (req, res) => {
     var today = new Date().getTime()
     sequelize.query(`SELECT * FROM \`games\` WHERE game_date >= ${today}`, { model: Games })
@@ -25,6 +33,15 @@ router.get('/', (req, res) => {
             })
         })
 })
+
+/**
+ * @function 
+ * @param {Object} req client request object for data from the database games table on route /games 
+ * @param {Object} res server response object with games from the games table
+ * @returns {Object} data from the games table that represents games greater than or equal to todays date
+ * that the user is not already associated with
+ */
+
 
 router.post('/user', (req, res) => {
     var today = new Date().getTime()
@@ -53,18 +70,6 @@ router.post('/user', (req, res) => {
             
         })
 })
-
-// router.get('/zip', function(req, res) {
-
-//     Game.findAll( {where: { zipcode: req.data }}).then( tbl_games => {
-//         let games = {
-//             success: true,
-//             data: tbl_games
-//         }
-//     })
-//     res.status(200).send(games)
-// })
-
 
 
 module.exports = router;

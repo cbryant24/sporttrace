@@ -4,18 +4,38 @@ import axios from 'axios';
 import { reset_game_id, leave_game, open_close_form, open_close_modal, update_selected_game } from '../actions';
 import Edit_Game_Form from './post_game_redux_form';
 
+/**
+ * @class
+ * @classdesc a react class component that displays the currently selected game from the user
+ */
 
 class Game_Details_Box extends Component {
+    /**
+     * @function componentWillMount
+     * @returns clears game_details_box of any previously selected game in global state when first mounting
+     */
     componentWillMount() {
         this.props.reset_game_id()
     }
-
+    /**
+     * @function componentWillUnMount
+     * @returns clears game_details_box of currently selected game in global state when unmounting
+     */
     componentWillUnmount() {
         this.props.open_close_form(false)
         this.props.update_selected_game({})
     }
 
-    handle_button_click(option, selected_game) {
+    /**
+     * @function handle_button_click 
+     * @param {string} option string value to determine users action on the selected game
+     * @returns a modal open with user selected action of leave, join, edit for the selected game 
+     */
+
+    handle_button_click(option) {
+        /**
+         * If the user is not signed in instruct them via a model to signin or signup
+         */
         if(!this.props.auth) {
             this.props.open_close_modal({open: true, type: 'response', message: 'Please Sign In To Join'})
             return
@@ -32,7 +52,6 @@ class Game_Details_Box extends Component {
     
     render() {
         const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, creator, city } = this.props.selected_game;        
-        // const {active_games, user_game_history} = this.props
         if(this.props.open_form) {
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
@@ -46,7 +65,6 @@ class Game_Details_Box extends Component {
         }
 
         if(!this.props.selected_game.id) {
-            
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
@@ -57,9 +75,6 @@ class Game_Details_Box extends Component {
         }
 
         if(this.props.history.location.pathname === '/find_game') {
-            // var selected_game = active_games.filter( item => {
-            //     return item.id === this.props.game_id
-            // })
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
                     <div className='gameinfobox'>
@@ -76,10 +91,6 @@ class Game_Details_Box extends Component {
         }
 
         if(this.props.history.location.pathname === '/your_games') {
-            
-            // var selected_game = user_game_history.games.filter( item => {
-            //     return item.id === this.props.game_id
-            // })
             let current_date = new Date().getTime()
             return (
                 <div className='col-lg-4 col-12' id="game_details_box">
@@ -90,6 +101,10 @@ class Game_Details_Box extends Component {
                         <p>{ city }</p>
                         {game_date > current_date ?
                         <div>
+                            /**
+                             * determining which button action to display based on date of game and if user created game 
+                             * determing if user created game handled by backend verification
+                             */
                             {creator ? 
                             <button onClick={ () => this.handle_button_click('edit')} className='btn btn-outline btn-xl modal-btn'>
                                 Edit Game
@@ -105,11 +120,15 @@ class Game_Details_Box extends Component {
                     </div>
                  </div>
             )
-        }
-        
-    }
-        
+        }   
+    }       
 }
+
+/**
+ * @function mapStateToProps
+ * @param { object } state 
+ * @return specified state from redux store need to display selected game by user
+ */
 
 function mapStateToProps(state) {
     return {

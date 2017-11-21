@@ -4,11 +4,12 @@ import PostGameForm from './post_game_redux_form';
 import MapWithAMarker from './display_games_map';
 import { connect } from 'react-redux';
 
-class PostGame extends Component {
-    componentWillMount() {
-        console.log('this be the props from postgame', this.props)
-    }
 
+/**
+ * @class
+ * @classdesc a react class component that displays redux form for posting games and google map
+ */
+class PostGame extends Component {
     render() {
         return (
             <div>
@@ -24,6 +25,12 @@ class PostGame extends Component {
         )
     }
 }
+
+/**
+ * @function mapStateToProps
+ * @param {object} state 
+ * @returns latitude and longitutde to display map for center location and marker location
+ */
 
 function mapStateToProps(state) {
     return {

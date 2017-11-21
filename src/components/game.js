@@ -2,15 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { update_lat_long, update_selected_game } from '../actions';
 
- const Game = props => {
+
+/**
+ * @function Game
+ * @param {*} props
+ * @returns single JSX game for Find_Game and Your_Games display games component 
+ */
+const Game = props => {
     const {game_description, game_date, game_time, game_title, game_vibe, id, formatted_date, players, city } = props.game_info;
     
+
+    /**
+     * @function handle_view_click
+     * @return updates state with the user selected game to global redux state selected_game
+     */
     const handle_view_click = () => {
+        /**
+         * if edit form is open on Game_Details_Box component prevent user from closing it incorrectly
+         */
         if(props.open_form) return
         
         props.update_selected_game(props.game_info)
     }
-    debugger
+
     return (
         <div className='single-game row'>
             <div className='col-3 textpad'>{game_title}</div>
@@ -29,6 +43,13 @@ import { update_lat_long, update_selected_game } from '../actions';
         </div>
     )
 }
+
+/**
+ * @function mapStateToProps
+ * @param { object } state 
+ * @return specified state from redux store need to determine if user form is open 
+ * and update map with latitude and longitude for map with marker
+ */
 
 function mapStateToProps(state) {
     return {

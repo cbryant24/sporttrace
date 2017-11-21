@@ -6,6 +6,12 @@ import { open_close_modal, get_users_history, update_selected_game, open_close_f
 import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
 
+
+/**
+ * @function Transition
+ * @param {object} param0 
+ * @returns a container element for wrapped jsx that adds css transitions for wrapped element
+ */
 const Transition = ({ children, ...props }) => (
     <CSSTransition
       {...props}
@@ -15,9 +21,21 @@ const Transition = ({ children, ...props }) => (
     </CSSTransition>
   );
 
+/**
+ * @class
+ * @classdesc react class component that displays a modal either confirming the users actions or displaying app messages
+ */
+
 class Sports_Modal extends Component {
+    /**
+     * @function render_address
+     * @returns an array of the various address components in jsx for confirmation display
+     */
     render_address() {
         let address_elements = this.props.displayed_game.address_elements
+        /**
+         * address_elements possibly in JSON format, returned from google search box results
+         */
         address_elements = typeof address_elements === 'string'? JSON.parse(address_elements):address_elements
         let complete_address = [];
         let i = 0;
@@ -26,12 +44,18 @@ class Sports_Modal extends Component {
         }
         return complete_address
     }
-
+    /**
+     * @function game_status
+     * @returns api posts to the database for games created, games joined, games left, or games updated as determined by user
+     */
     game_status() {
         switch(this.props.modal.game_status) {
             case 'create':
                 this.props.open_close_modal(false)
                 axios.post('/api/post_game', this.props.displayed_game).then( (res) => {
+                    /**
+                     * direct the user to /your_games page after successful api post of game creation with a modal response from the server
+                     */
                     setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
                     res.data.created ? this.props.history.push('/your_games'):''
                     return
@@ -40,7 +64,10 @@ class Sports_Modal extends Component {
             case 'join':
                 this.props.open_close_modal(false)
                 axios.post('/api/join_game', {selected_game: this.props.displayed_game, joining_fb_id: this.props.auth.fb_id} ).then( (res) => {
-                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                    /**
+                     * direct the user to /your_games page after successful api post of joining game with a modal response from the server
+                     */
+                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 500)
                     res.data.created ? this.props.history.push('/your_games'):''
                     return
                 })
@@ -48,9 +75,13 @@ class Sports_Modal extends Component {
             case 'leave':
                 this.props.open_close_modal(false)
                 axios.post('/api/history/leave', {selected_game: this.props.displayed_game, leaving_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                    /**
+                     * direct the user to /your_games page after successful api post of leaving game with a modal response from the server
+                     * update global state of selected_game to empty object to close game_details_edit mode
+                     */
                     this.props.get_users_history(this.props.auth.fb_id)
                     this.props.update_selected_game({})
-                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                    setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 500)
                     res.data.destroyed ? this.props.history.push('/your_games'):''
                     return
                 })
@@ -58,10 +89,14 @@ class Sports_Modal extends Component {
             case 'update':
             this.props.open_close_modal(false)
             axios.put('/api/history/update', {selected_game: this.props.displayed_game, updating_fb_id: this.props.auth.fb_id} ).then( (res) => {
+                /**
+                 * request latest games of the user from the server to display changes for user 
+                 * update global state of selected_game to empty object to close game_details_edit mode
+                 */
                 this.props.open_close_form(false)
                 this.props.get_users_history(this.props.auth.fb_id)
                 this.props.update_selected_game({})
-                setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 1000)
+                setTimeout( () => this.props.open_close_modal({open: true, message: res.data.msg, type: 'response'}), 500)
                 return
             })
             break
@@ -93,7 +128,6 @@ class Sports_Modal extends Component {
             )
         }
         if(modal.type === 'confirmation') {
-            debugger
             return (
                     <div className='modal-contain'>
                         <div id='modal' className=''>
@@ -129,11 +163,7 @@ class Sports_Modal extends Component {
             )
             
         }
-        return (
-        <div>
-        </div>
-        
-        )
+        return <div></div>
     }
 
     render() {
@@ -153,6 +183,12 @@ class Sports_Modal extends Component {
     }
 }
 
+/**
+ * @function mapStateToProps
+ * @param {object} state 
+ * @returns modal from state to retireve game values from Redux Form and Game Details Box component 
+ */
+
 function mapStateToProps(state) {
     return {
         modal: state.sports.modal,
@@ -162,19 +198,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { open_close_modal, get_users_history, update_selected_game, open_close_form })(Sports_Modal)
-
-
-
-
-
-
-
-{/* <Fade in={this.props.modal.open}>
-    <div className={`container ${modal.open ? 'modal-open': 'modal-closed'}`}>
-        <div>
-            {this.render_modal_data()}
-        </div>
-    </div>
-</Fade> */}
-
-

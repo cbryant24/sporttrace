@@ -5,9 +5,16 @@ import { connect } from 'react-redux';
 import { sign_in, sign_out } from '../actions'
 
 
+/**
+ * @class
+ * @classdesc a react class component the renders the navigation menu
+ */
 
 class Nav_Bar extends Component {
-
+    /**
+     * @function render_login
+     * @return a jsx element that logs the user in or out depending on logged in status
+     */
     render_login() {
         if(this.props.auth) {
             return <li onClick={ () => this.handle_logout()} className="nav-item"><a href='' className='mx-3'>Logout</a></li>
@@ -15,6 +22,10 @@ class Nav_Bar extends Component {
         return <li className="nav-item"><a className='mx-3' href='/signin/facebook'>Login/Signup</a></li>
     }
 
+    /**
+     * @function handle_logout
+     * @return logs the user out of there profile
+     */
     handle_logout() {
         
         this.props.history.push('/')
@@ -47,6 +58,12 @@ class Nav_Bar extends Component {
         )
     }
 }
+
+/**
+ * @function mapStateToProps
+ * @param {object} state 
+ * @return adding authorization to props to log user in or out
+ */
 
 function mapStateToProps(state){
     return {
