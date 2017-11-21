@@ -45,7 +45,6 @@ passport.use(
     callbackURL: "/signin/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('this be the user from passport yall')
     /**
      * after facebook has verified the user find the user in the database
      * or create a new user in the database on the user table
