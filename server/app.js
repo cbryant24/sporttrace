@@ -37,7 +37,7 @@ app.use(passport.session())
 require('./routes/auth_routes')(app)
 
 app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname, '..', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 })
 // app.get('/', function(req, res) {
 //     res.end();
