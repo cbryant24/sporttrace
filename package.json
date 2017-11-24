@@ -32,7 +32,7 @@
     "logger": "0.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-google-maps": "^8.3.4",
+    "react-google-maps": "^8.5.0",
     "react-icons": "^2.2.7",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
