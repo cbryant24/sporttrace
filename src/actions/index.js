@@ -96,7 +96,6 @@ export function update_lat_long(new_lat_lon) {
 export function get_users_history(fb_id) {
     return dispatch => {
         axios.post('/api/history', {fb_id} ).then( res => {
-            console.log('this is history api res', res)
             dispatch({
                 type: types.GET_USER_HISTORY,
                 payload: res.data
@@ -167,7 +166,6 @@ export function clear_user_history() {
 export function leave_game(game_id, fb_id) {
     return dispatch => {
         axios.post('/api/leave_game', {game_id, fb_id}).then( res => {
-            console.log('this be the res from unjoin_game', res)
 
             dispatch({
                 type: types.LEAVE_GAME,

@@ -73,7 +73,6 @@ class Side_Nav extends Component {
             back_drop_hide: false,
             nav_in: false
         })
-        console.log('hello everyone')
     }
 
     render() {

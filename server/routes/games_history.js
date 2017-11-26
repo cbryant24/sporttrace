@@ -49,7 +49,6 @@ router.post('/', (req, res) => {
  */
 
 router.put('/update', (req, res) => {
-    console.log('this is the safari update object', req.body)
     const string_address = JSON.stringify(req.body.address_elements)    
     Games
     .update( 

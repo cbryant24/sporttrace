@@ -181,8 +181,7 @@ function mapStateToProps(state, props) {
          * normalizing date and time info for user selected and user input data
          * for html input form elements
          */
-        const ampm = new Date(props.selection.game_date).getHours() > 12 ? 'pm':'am';
-        const time = format_time({data_type: 'hh:mm', type: 'current mili'});
+        const ampm = new Date(props.selection.game_date).getHours() >= 12 ? 'pm':'am';
         const current_date = format_date({data_type: 'yyyy-mm-dd', type: 'current'});
         const edit_date = format_date({
             data_type: 'yyyy-mm-dd', 
@@ -194,6 +193,7 @@ function mapStateToProps(state, props) {
             type: 'set', 
             game_milliseconds:props.selection.game_date
         })
+        debugger
         initialValues = {
             title: props.selection.game_title,
             time: edit_time.replace(/[a-zA-z]/g, ''),

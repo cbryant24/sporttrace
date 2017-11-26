@@ -44,7 +44,6 @@ function initAutocomplete() {
         create_game.complete_game.lat_lon.lon = searchBox.bounds.f.b;
         places.forEach(function(place) {
             if (!place.geometry) {
-            console.log("Returned place contains no geometry");
             return;
             }
             var icon = {
@@ -110,12 +109,10 @@ function Create_Game() {
         current_mil_time = current_mil_time.substr(current_mil_time.search(/([0-9]){1,2}(?=:)/g), 5);
         
         if(user_date < current_date) {
-            console.log('game date must be in the future')
             return
         }
 
         if($(".game_time_input")[0].value < current_mil_time && user_date === current_date) {
-            console.log('game time must be in the future')
             return
         }
 
@@ -125,7 +122,6 @@ function Create_Game() {
         this.complete_game.game_vibe = $('select')[0][0].selected === true ? 'casual':'competitive';
         this.complete_game.game_address = this.location[0].formatted_address;
         this.complete_game.game_description = $('.game_description_input')[0].value
-        console.log(JSON.stringify(this.complete_game));
         $.ajax({
             url: 'php/data.php?action=insert',
             method: 'post',
