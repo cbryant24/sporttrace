@@ -32,7 +32,6 @@ class Mobile_Nav extends Component {
             back_drop_hide: false,
             modal_in: false
         })
-        console.log('hello everyone')
     }
 
     render() {

@@ -13,7 +13,6 @@ const app = express();
 require('./services/passport');
 
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
-console.log(path.resolve(__dirname, '..', 'dist'));
 
 /**
  * middleware for handling all routing for client request

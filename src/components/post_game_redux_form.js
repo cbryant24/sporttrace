@@ -4,7 +4,7 @@ import Search_Bar from './map_searchbar';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { open_close_modal, update_selected_game, open_close_form, update_lat_long } from '../actions'
-import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate, get_address } from './helpers';
+import { renderInput, renderCheckBox, renderSelect, format_date, format_time, validate, get_address, renderAmPm } from './helpers';
 
 /**
  * @class 
@@ -66,6 +66,7 @@ class PostGameForm extends Component {
         }
 
         if(this.props.history.location.pathname === '/your_games') {
+            debugger
             if(!this.state.location_change &&  this.compare_form_vals(this.props.initialValues, vals)  ) {
                 this.props.open_close_modal({open: true, type: 'response', message: 'Change game info to update game'})
                 return
@@ -73,16 +74,18 @@ class PostGameForm extends Component {
             /**
              * building the game object with the data from redux from that the user has selected to edit
              */
-            const game_milliseconds = new Date(`${vals.date} ${vals.time}`).getTime()
+            if(vals.date.indexOf('-') > 0) 
+                vals.date = format_date({data_type: 'mm/dd/yyyy', type: 'format', date: vals.date})
+            const game_milliseconds = new Date(vals.date +' '+ vals.time +' '+vals.ampm).getTime()
             const complete_game = {
                 game_date: game_milliseconds,
-                formatted_date: `${format_date({data_type: 'mm-dd-yyyy', type: 'set', game_milliseconds})}, ${format_time({data_type: 'hh:mm', type: 'set', game_milliseconds}) }`,
+                formatted_date: `${format_date({data_type: 'mm-dd-yyyy', type: 'set', game_milliseconds})}, ${format_time({data_type: 'hh:mm', type: 'set', game_milliseconds}) }${vals.ampm}`,
                 game_description: vals.description,
                 game_title: vals.title,
                 game_vibe: vals.vibe,
-                lat: this.props.location.lat || this.props.selection.latitude,
-                lon: this.props.location.lon || this.props.selection.longitude,
-                zip: this.props.location.zipcode || this.props.selection.zipcode,
+                lat: this.props.location.lat || this.props.selection.lat,
+                lon: this.props.location.lon || this.props.selection.lon,
+                zip: this.props.location.zipcode || this.props.selection.zip,
                 ball: vals.ball,
                 address_elements: get_address(this.props.location.address) || this.props.selection.address_elements,
                 google_place_id: this.props.location.place_id || this.props.selection.google_place_id,
@@ -97,10 +100,11 @@ class PostGameForm extends Component {
         /**
          * building the game object with the data from redux form that the user has input to create a new game
          */
-        const game_milliseconds = new Date(`${vals.date} ${vals.time}`).getTime()
+        debugger
+        const game_milliseconds = new Date(`${vals.date} ${vals.time} ${vals.ampm}`).getTime()
         const complete_game = {
             game_date: game_milliseconds,
-            formatted_date: `${format_date({data_type: 'mm-dd-yyyy', type: 'set', game_milliseconds})}, ${format_time({data_type: 'hh:mm', type: 'set', game_milliseconds}) }`,
+            formatted_date: `${format_date({data_type: 'mm-dd-yyyy', type: 'set', game_milliseconds})}, ${format_time({data_type: 'hh:mm', type: 'set', game_milliseconds}) }${vals.ampm}`,
             game_description: vals.description,
             game_title: vals.title,
             game_vibe: vals.vibe,
@@ -137,7 +141,10 @@ class PostGameForm extends Component {
                     <div className="row">
                         <div className={ this.props.history.location.pathname === '/your_games' ? 'col-12':'col-sm-6 col-12'}>
                         <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
-                        <Field name="time" component={renderInput} label="Time" type="time"   className="game_time_input" placeholder="Game Time"/>
+                        <div className='row'>
+                            <Field name="time" component={renderInput} label="Time"  className="game_time_input" placeholder="Game Time"/>
+                            <Field name="ampm" component={renderAmPm} label="AM/PM" type="select" className="form-control" />
+                        </div>
                         <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
                         </div>
                         <div className={ this.props.history.location.pathname === '/your_games' ? 'col-12':'col-sm-6 col-12'}>
@@ -174,8 +181,8 @@ function mapStateToProps(state, props) {
          * normalizing date and time info for user selected and user input data
          * for html input form elements
          */
-        const time = format_time({data_type: 'hh:mm', type: 'current mili'})
-        const current_date = format_date({data_type: 'yyyy-mm-dd', type: 'current'})
+        const ampm = new Date(props.selection.game_date).getHours() >= 12 ? 'pm':'am';
+        const current_date = format_date({data_type: 'yyyy-mm-dd', type: 'current'});
         const edit_date = format_date({
             data_type: 'yyyy-mm-dd', 
             type: 'set', 
@@ -183,16 +190,18 @@ function mapStateToProps(state, props) {
         })
         const edit_time = format_time({
             data_type: 'hh:mm', 
-            type: 'set mili', 
+            type: 'set', 
             game_milliseconds:props.selection.game_date
         })
+        debugger
         initialValues = {
             title: props.selection.game_title,
-            time: edit_time,
+            time: edit_time.replace(/[a-zA-z]/g, ''),
             date: edit_date,
             vibe: props.selection.game_vibe,
             description: props.selection.game_description,
             ball: props.selection.ball,
+            ampm
         }
     }
     return {

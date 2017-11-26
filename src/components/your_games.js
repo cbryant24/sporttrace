@@ -68,6 +68,7 @@ class Your_Games extends Component {
                 user_game_history={this.props.user_game_history.games}
                 history={this.props.history}
                 lat_lon={this.props}
+                selected_game={this.props.selected_game}
                 />
                 <header className="masthead">
                     <div className="row">
@@ -104,7 +105,8 @@ function mapStateToProps(state) {
         user_game_history: state.sports.user_game_history,
         lat_long: state.sports.lat_lon,
         modal: state.sports.modal,
-        auth: state.sports.auth
+        auth: state.sports.auth,
+        selected_game: state.sports.selected_game
     }
 }
 

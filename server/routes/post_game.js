@@ -16,7 +16,6 @@ router.use(bodyParser.json())
  * @returns {Object} with message and boolean indicating success or failure
  */
 router.post('/', function(req, res){
-    console.log('this is the req body from post game', req.body)
     const string_address = JSON.stringify(req.body.address_elements)
     Games
     .findOrCreate({where: {
@@ -37,7 +36,6 @@ router.post('/', function(req, res){
     })
     .spread( (game, created) => {
         if(created) {
-            console.log('this is the game before history', game, created)
             Games_History.findOrCreate( {where: {
                 game_id: game.id,
                 fb_id: req.body.fb_id,

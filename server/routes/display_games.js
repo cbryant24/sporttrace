@@ -62,7 +62,6 @@ router.post('/user', (req, res) => {
                         req.filtered_games_list = req.game_with_players.filter( item => {
                             return user_game_ids.indexOf(item.id) === -1
                         })
-                        console.log('this is the players list items', user_game_ids)                                                
                         res.status(200).send(req.filtered_games_list)
                     })
                 })    
