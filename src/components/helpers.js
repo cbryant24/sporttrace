@@ -6,11 +6,12 @@ import React from 'react';
  * @param {obj} param0 redux form object values and methods
  * @return input field for redux form for game creation and editing
  */
-export const renderInput = ({input, label, type, meta: {touched, error}}) => {
+export const renderInput = ({input, label, type, placeholder, meta: {touched, error}}) => {
+    debugger
     return (
         <div className="form-group">
             <label> {label} </label>
-            <input {...input} className="form-control" type={type}/>
+            <input placeholder={placeholder} {...input} className="form-control" type={type}/>
             <div className="form-error text-center"> {touched && error} </div>
         </div>
 

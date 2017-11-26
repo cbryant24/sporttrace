@@ -142,10 +142,10 @@ class PostGameForm extends Component {
                         <div className={ this.props.history.location.pathname === '/your_games' ? 'col-12':'col-sm-6 col-12'}>
                         <Field name="title" component={renderInput} label="Title"  className="game_title_input" type="text" placeholder="Your Title"/>
                         <div className='row'>
-                            <Field name="time" component={renderInput} label="Time"  className="game_time_input" placeholder="Game Time"/>
+                            <Field name="time" component={renderInput} label="Time"  className="game_time_input" placeholder="Game Time HH:MM"/>
                             <Field name="ampm" component={renderAmPm} label="AM/PM" type="select" className="form-control" />
                         </div>
-                        <Field name="date" component={renderInput} label="Date" type="date" className="game_time_input" placeholder="Game Time"/>
+                        <Field name="date" component={renderInput} label="Date" className="game_time_input" placeholder="Game Time MM/DD/YYYY"/>
                         </div>
                         <div className={ this.props.history.location.pathname === '/your_games' ? 'col-12':'col-sm-6 col-12'}>
                         <Field name="vibe" component={renderSelect} label="Vibe" type="select" className="game_vibe_input form-control" />
