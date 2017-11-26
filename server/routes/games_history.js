@@ -49,6 +49,7 @@ router.post('/', (req, res) => {
  */
 
 router.put('/update', (req, res) => {
+    console.log('this is the safari update object', req.body)
     const string_address = JSON.stringify(req.body.address_elements)    
     Games
     .update( 
@@ -57,7 +58,7 @@ router.put('/update', (req, res) => {
         /**
          * regex to sanitize data
          */
-        game_description: req.body.selected_game.game_description.match(/[\w!'# ]/g).join(''),
+        game_description: req.body.game_description ? req.body.game_description.match(/[\w!'# ]/g).join(''):'',
         game_title: req.body.selected_game.game_title.match(/[\w!'# ]/g).join(''),
         game_vibe: req.body.selected_game.game_vibe.match(/[\w]/g).join(''),
         longitude: req.body.selected_game.lon,       
