@@ -156,7 +156,7 @@ class Sports_Modal extends Component {
                             </iframe>
                             <div className='row'>
                                 <button onClick={ () => this.game_status() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
-                                <button onClick={ ()=> open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button>
+                                {/* <button onClick={ ()=> open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button> */}
                             </div>
                         </div>
                     </div>
