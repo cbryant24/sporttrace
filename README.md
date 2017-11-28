@@ -1,4 +1,4 @@
-# FANTASY FOOTBALL
+# SPORTTRACE
 
 ## Technologies: React, Node, Redux, Axios, HTML5, CSS3, Bootstrap, 
 ### Paradigms: React
@@ -14,4 +14,4 @@ a game has been created. The games will update with the total number of players
 participating each time a player joins or leaves a game. All user and game information is held in a SQL database and accessed through the Node server. The application was developed using bootstrap for a mobile responsive experience. 
 
 ##### DEMO IMAGE: 
-![alt text](http://chrisbryantdev.com/myportfolio/portfolio/img/sporttrace.png "Sporttrace")
+![alt text](http://chrisbryantdev.com/img/sporttrace.png "Sporttrace")
