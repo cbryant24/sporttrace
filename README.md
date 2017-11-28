@@ -1,7 +1,7 @@
 # SPORTTRACE
 
 ## Technologies: React, Node, Redux, Axios, HTML5, CSS3, Bootstrap, 
-### Paradigms: React
+### Stack: MERN
 
 #### Description
 
