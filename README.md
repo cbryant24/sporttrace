@@ -15,3 +15,4 @@ participating each time a player joins or leaves a game. All user and game infor
 
 ##### DEMO IMAGE: 
 ![alt text](http://chrisbryantdev.com/img/sporttrace.png "Sporttrace")
+![alt text](http://chrisbryantdev.com/img/sporttrace_your_games.png "Sporttrace")
