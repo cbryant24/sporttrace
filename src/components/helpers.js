@@ -61,7 +61,7 @@ export const renderAmPm = ({input, label, type, meta: {touched, error}}) => {
     return (
         <div className="form-group">
             <label> {label} </label>
-            <select {...input} className="form-control ampm" type={type}>
+            <select {...input} className="form-control" id='ampm' type={type}>
                 <option></option>
                 <option value="am">AM</option>
                 <option value="pm">PM</option>
@@ -231,8 +231,14 @@ export const validate = vals => {
     if(!slash_date_check.test(vals.date) && !hyphen_date_check.test(vals.date))
         errors.date = 'Enter a valid date MM/DD/YYYY'
     
+    if(vals.title && vals.title.length > 35) 
+        errors.title = 'Enter a shorter title'
+
     if(!vals.ampm)
         errors.ampm = ' Select AM or PM '
+
+    if(vals.description && vals.description.length > 50)
+        errors.description = 'Enter a shorter description'
 
     if(vals.description && !alpha_numeric.test(vals.description))
         errors.description = 'Enter a Valid Description'

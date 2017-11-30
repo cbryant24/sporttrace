@@ -3,7 +3,7 @@ import React from "react";
  * recompose library to build map component according to 
  * react-google-maps documentation
  */
-import { compose, withProps } from "recompose";
+import { compose, withProps, lifecycle, withState } from "recompose";
 /**
  * react-google-maps export functions for display maps, markers, and marker functionality
  */
@@ -11,8 +11,11 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 
 import { connect } from 'react-redux';
+import { update_selected_game } from '../actions'
 
-
+function handle_clicker() {
+  console.log('hello')
+}
 
 /**
  * @function myMapComponent
@@ -30,6 +33,7 @@ const MyMapComponent = compose(
     containerElement: <div style={{ height: `50vh`, width: '100vw'}} />,
     mapElement: <div style={{ height: `100%`, width: '100vw', marginTop: `10vh`}} />,
   }),
+  withState('center', 'set_centers', null),
   /**
    * react-google-map premade functions for 
    * adding map functionality
@@ -42,9 +46,10 @@ const MyMapComponent = compose(
    * passed in from the find_games, your_games, and 
    * post_game component
    */
-  const { pathname } = props.location
-  const {lat_long} = props.map_info
-  const {selected_game} = props
+  
+  const { pathname } = props.location;
+  const {lat_long} = props.map_info;
+  const {selected_game} = props;
   /**
    * using the app url pathname passed to the component to determine
    * which type of map to render, multiple markers and locations
@@ -57,26 +62,17 @@ const MyMapComponent = compose(
 
     return (
       <GoogleMap
-      defaultZoom={19}
+      defaultZoom={17}
       center= {{ lat, lng }}>
         <MarkerWithLabel
-        markerWithLabel={window.MarkerWithLabel}
-        labelAnchor={new google.maps.Point(0, 0)}
-        labelStyle={{
-          backgroundColor: "rgba(0,0,0,0.8)", 
-          fontSize: "10px", 
-          padding: "6px",
-          color: "white",
-          maxWidth: "10vw",
-          maxHeight: "15vh",
-        }}
-        position={{lat, lng}} >
+          markerWithLabel={window.MarkerWithLabel}
+          labelAnchor={new google.maps.Point(0, 0)}
+          position={{lat, lng}}>
           <div>{marker_label}</div>
         </MarkerWithLabel>
       </GoogleMap>
     )
   }
-
   /**
    * with the list of active games passed from the backend database
    * to build the list of markers for either the find games map 
@@ -90,10 +86,10 @@ const MyMapComponent = compose(
       const markers = props.map_info.active_games.map( (item, idx) => {
         let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
         return (<MarkerWithLabel
-          markerWithLabel={window.MarkerWithLabel}
+          onClick={ () => props.update_selected_game(item)}
           labelAnchor={new google.maps.Point(0, 0)}
           labelStyle={{
-            backgroundColor: "rgba(0,0,0,0.8)", 
+            backgroundColor: "rgba(0,0,0,0.75)", 
             fontSize: "10px", 
             padding: "6px",
             color: "white",
@@ -101,11 +97,11 @@ const MyMapComponent = compose(
             maxHeight: "15vh",
           }}
           key={idx} 
-          position={lat_lon} 
-          onClick={props.onMarkerClick}>
+          position={lat_lon}>
             <div>{`${item.city}, ${item.formatted_date}`}</div>
         </MarkerWithLabel>)
       })
+      debugger
       return (
         <GoogleMap
           defaultZoom={10}
@@ -125,6 +121,7 @@ const MyMapComponent = compose(
       const markers = props.map_info.user_game_history.games.map( (item, idx) => {
         let lat_lon = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
         return (<MarkerWithLabel
+            onClick={ () => props.update_selected_game(item)}
             labelAnchor={new google.maps.Point(0, 0)}
             labelStyle={{
               backgroundColor: "rgba(0,0,0,0.8)", 
@@ -135,8 +132,7 @@ const MyMapComponent = compose(
               maxHeight: "15vh",
             }}
             key={idx} 
-            position={lat_lon} 
-            onClick={props.onMarkerClick}>
+            position={lat_lon}>
               <div>{`${item.city}, ${item.formatted_date}`}</div>
           </MarkerWithLabel>)
         
@@ -176,14 +172,17 @@ class MyFancyComponent extends React.PureComponent {
     }, 3000)
   }
 
-  handleMarkerClick = () => {
+  handleMarkerClick = (item) => {
+    debugger
+    console.log(item)
     this.setState({ isMarkerShown: false })
     this.delayedShowMarker()
   }
-
   render() {
     return (
       <MyMapComponent
+        handleMarkerClick={this.handleMarkerClick}
+        update_selected_game={this.props.update_selected_game}
         selected_game={this.props.selected_game}
         location={this.props.history.location}
         onMarkerClick={this.handleMarkerClick}
@@ -208,4 +207,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(MyFancyComponent)
+export default connect(mapStateToProps, {update_selected_game})(MyFancyComponent)

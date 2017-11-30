@@ -152,12 +152,12 @@ class Sports_Modal extends Component {
                                     <div><p className='modal-description'> {game_description} </p></div>
                                 </div>
                             </div>
+                            <div className='row mt-3'>
+                                <button onClick={ () => this.game_status() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
+                                <button onClick={ ()=> open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button>
+                            </div>
                             <iframe scrolling='no' className='text-center' src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBkCzIStPV0yFoFd1DIdH9X1r-xwFjLEVc&q=place_id:${google_place_id ? google_place_id:""}`}>
                             </iframe>
-                            <div className='row'>
-                                <button onClick={ () => this.game_status() } className='btn btn-outline btn-xl modal-btn'>{modal.game_status} Game</button>
-                                {/* <button onClick={ ()=> open_close_modal(false)} className='btn btn-outline btn-xl modal-btn'>Cancel</button> */}
-                            </div>
                         </div>
                     </div>
             )

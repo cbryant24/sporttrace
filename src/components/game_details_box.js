@@ -11,13 +11,6 @@ import Edit_Game_Form from './post_game_redux_form';
 
 class Game_Details_Box extends Component {
     /**
-     * @function componentWillMount
-     * @returns clears game_details_box of any previously selected game in global state when first mounting
-     */
-    componentWillMount() {
-        this.props.reset_game_id()
-    }
-    /**
      * @function componentWillUnMount
      * @returns clears game_details_box of currently selected game in global state when unmounting
      */
@@ -46,6 +39,8 @@ class Game_Details_Box extends Component {
             case 'join': 
                 return this.props.open_close_modal({open: true, title: 'Join Game?', type: 'confirmation', game_status: 'join'})
             case 'edit':
+                return this.props.open_close_form(true)
+            case 'recreate':
                 return this.props.open_close_form(true)
         }
     }
@@ -110,7 +105,7 @@ class Game_Details_Box extends Component {
                             </button>
                         </div>:
                         <button onClick={ () => this.handle_button_click( 'recreate')} className='btn btn-outline btn-xl joinbtn'>
-                            Recreate Game
+                                Recreate Game
                         </button>
                         }
                     </div>

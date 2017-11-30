@@ -93,6 +93,10 @@ class PostGameForm extends Component {
                 game_id: this.props.selection.game_id
             }
             this.props.update_selected_game(complete_game);
+            if(this.props.selection.game_date < new Date().getTime()) {
+                this.props.open_close_modal({open: true, type: 'confirmation', title: 'Recreate Game?', game_status: 'create'})
+                return
+            }
             this.props.open_close_modal({open: true, type: 'confirmation', title: 'Update Game?', game_status: 'update'});
             return
 

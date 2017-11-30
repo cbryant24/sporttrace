@@ -423,10 +423,49 @@
     font-size: 15px; 
   }
 
-  .ampm {
-    height: 5.5vh;
-  }
 
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
+/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
+/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+.map-searchbar {
+  height: 90px;
+}
+
+.form-error {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: 30px;
+}
+
+#ampm {
+  height: 5.5vh;
+}
+
+#ampm + .form-error {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+@keyframes flashing {
+  from {background: rgba(0,0,0,0.7) };
+  to {background: white}
+  from {color: white}
+  to {color: black}
+}
+
+.flashing-error {
+  animation-name: flashing;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
@@ -790,40 +829,6 @@
       font-size: 6px;
     }
   }
-
-/*|_______________________________________________________________________________________________|*/
-/*|_______________________________________________________________________________________________|*/
-
-/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
-/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
-/*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*//*POSTGAMEFORM*/
-
-/*|_______________________________________________________________________________________________|*/
-/*|_______________________________________________________________________________________________|*/
-
-.map-searchbar {
-  height: 90px;
-}
-
-.form-error {
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-weight: 30px;
-}
-
-@keyframes flashing {
-  from {background: rgba(0,0,0,0.7) };
-  to {background: white}
-  from {color: white}
-  to {color: black}
-}
-
-.flashing-error {
-  animation-name: flashing;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
 
 
 /*|_______________________________________________________________________________________________|*/
