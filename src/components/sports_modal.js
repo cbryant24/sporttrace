@@ -108,7 +108,7 @@ class Sports_Modal extends Component {
 
     render_modal() {
         const {game_title, formatted_date, game_description, game_vibe, address, ball, google_place_id} = this.props.displayed_game;
-        const { modal, open_close_modal, open } = this.props   
+        const { modal, open_close_modal, open, auth } = this.props   
         if(modal.type === 'response') {
             return (
                 <div className='modal-contain'>
@@ -122,7 +122,14 @@ class Sports_Modal extends Component {
                                 <h2 className='text-center'>{this.props.modal.message}</h2>
                             </div>
                         </div>
-                        <button onClick={ ()=> open_close_modal(false) } className='btn btn-outline btn-xl modal-btn'>Close</button>
+                        <div className='response-btns'>
+                        {!auth ? 
+                            <a onClick={ ()=> open_close_modal(false) } href='/signin/facebook' className='btn btn-outline btn-xl modal-btn'>Login/Signup</a>:''
+                        }
+                            <button onClick={ ()=> open_close_modal(false) } className='btn btn-outline btn-xl modal-btn'>Close</button>
+
+                        </div>
+                       
                     </div>
                 </div>
             )

@@ -29,9 +29,9 @@ const MyMapComponent = compose(
    */
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDYHgOUitMvtS5HncYdM762JAT54DMThX0&libraries=geometry,places,embed",    
-    loadingElement: <div style={{ height: `100%`, width: '100vw'}} />,
-    containerElement: <div style={{ height: `50vh`, width: '100vw'}} />,
-    mapElement: <div style={{ height: `100%`, width: '100vw', marginTop: `10vh`}} />,
+    loadingElement: <div style={{ height: `100%`, width: '100%'}} />,
+    containerElement: <div style={{ height: `50vh`, width: '100%'}} />,
+    mapElement: <div style={{ height: `100%`, width: '100%', marginTop: `10vh`}} />,
   }),
   withState('center', 'set_centers', null),
   /**

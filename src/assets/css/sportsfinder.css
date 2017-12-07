@@ -331,7 +331,7 @@
   }
 
   .game-list-container{
-    overflow: scroll;
+    overflow: auto;
     height: 40vh;
     background-color: white;
     color: black;
@@ -359,8 +359,7 @@
     letter-spacing: 1px;
     color: white;
     height: 100%;
-    overflow: scroll;
-    height: 47vh;
+    overflow: auto;
   }
 
   .textpad{
@@ -650,7 +649,7 @@
   }
 
   #modal .game_info, #modal .game_address {
-    overflow: scroll;
+    overflow: auto;
     max-height: 20vh;
   }
 
@@ -714,7 +713,13 @@
 
   #modal-success button {
     margin-top: 20px;
-}
+  }
+
+  .response-btns a, .response-btns button  {
+    width: 100%;
+    position: relative;
+    top: 20vh;
+  }
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
