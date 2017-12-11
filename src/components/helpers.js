@@ -7,7 +7,6 @@ import React from 'react';
  * @return input field for redux form for game creation and editing
  */
 export const renderInput = ({input, label, type, placeholder, meta: {touched, error}}) => {
-    debugger
     return (
         <div className="form-group">
             <label> {label} </label>
@@ -79,7 +78,6 @@ export const renderAmPm = ({input, label, type, meta: {touched, error}}) => {
  */
 
 export const format_time = vals => {
-    debugger
     const date = new Date();
     if(vals.data_type === 'hh:mm' && vals.type === 'set') {
         let hours = new Date(vals.game_milliseconds).getHours() > 12 ? new Date(vals.game_milliseconds).getHours() - 12 : new Date(vals.game_milliseconds).getHours()

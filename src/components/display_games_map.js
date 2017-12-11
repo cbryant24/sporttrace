@@ -13,9 +13,6 @@ import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithL
 import { connect } from 'react-redux';
 import { update_selected_game } from '../actions'
 
-function handle_clicker() {
-  console.log('hello')
-}
 
 /**
  * @function myMapComponent
@@ -101,7 +98,6 @@ const MyMapComponent = compose(
             <div>{`${item.city}, ${item.formatted_date}`}</div>
         </MarkerWithLabel>)
       })
-      debugger
       return (
         <GoogleMap
           defaultZoom={10}
@@ -173,8 +169,6 @@ class MyFancyComponent extends React.PureComponent {
   }
 
   handleMarkerClick = (item) => {
-    debugger
-    console.log(item)
     this.setState({ isMarkerShown: false })
     this.delayedShowMarker()
   }

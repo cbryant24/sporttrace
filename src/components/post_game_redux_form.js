@@ -66,7 +66,6 @@ class PostGameForm extends Component {
         }
 
         if(this.props.history.location.pathname === '/your_games') {
-            debugger
             if(!this.state.location_change &&  this.compare_form_vals(this.props.initialValues, vals)  ) {
                 this.props.open_close_modal({open: true, type: 'response', message: 'Change game info to update game'})
                 return
@@ -104,7 +103,6 @@ class PostGameForm extends Component {
         /**
          * building the game object with the data from redux form that the user has input to create a new game
          */
-        debugger
         const game_milliseconds = new Date(`${vals.date} ${vals.time} ${vals.ampm}`).getTime()
         const complete_game = {
             game_date: game_milliseconds,
@@ -197,7 +195,6 @@ function mapStateToProps(state, props) {
             type: 'set', 
             game_milliseconds:props.selection.game_date
         })
-        debugger
         initialValues = {
             title: props.selection.game_title,
             time: edit_time.replace(/[a-zA-z]/g, ''),
