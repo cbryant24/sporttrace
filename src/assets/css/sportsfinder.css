@@ -525,7 +525,9 @@
   .modal-contain {
     position: absolute;
     z-index: 5;
-    padding: 0 4% 0% 4%
+    padding: 0 4% 0% 4%;
+    left: 3%;
+    top: 2%;
   }
 
   #backdrop   {
@@ -545,11 +547,11 @@
   .modal-open, .modal-closed  {
     position: fixed;
     top: 15%;
-    left: 20%;
+    left: 25%;
     color: white;
     background-color: rgba(0,0,0,0.8);
     height: 75vh;
-    width: 55vw;
+    width: 45vw;
     z-index: 7;
   }
 
