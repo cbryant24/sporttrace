@@ -710,10 +710,24 @@
       min-width: 100%;
     }
 
-    .modal-open {
-      height: 75vh;
-      width: 75vw;
-      left: 12%;
+    .modal-open, .modal-closed  {
+      height: 100vh;
+      width: 100vw;
+      left: 0%;
+      top: 0%;
+    }
+
+    .modal-closed {
+      top: -103%;
+    }
+
+    .game_info, .game_address {
+      overflow: visible; 
+      max-height: 30vh;
+    }
+    
+    .mobile-modal-text {
+      height: 30vh;
     }
 
     #modal iframe {
