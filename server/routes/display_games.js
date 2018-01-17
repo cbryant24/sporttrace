@@ -12,15 +12,23 @@ let sequelize = models.sequelize;
 router.use(bodyParser.json())
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database games table on route /games 
- * @param {Object} res server response object with games from the games table
- * @returns {Object} data from the games table that represents games greater than or equal to todays date
+ *  data from the games table that represents games greater than or equal to todays date
+ * used for route /find_game route
  */
 router.get('/', (req, res) => {
+    /**
+     * get current date for retrieval of current games from the database
+     */
     var today = new Date().getTime()
+
+    /**
+     * sequelize library used to access the sql database to pull all current games user is not apart of
+     */
     sequelize.query(`SELECT * FROM \`games\` WHERE game_date >= ${today}`, { model: Games })
         .then( tbl_games => {
+            /**
+             * in promise fullfillment of selecting current games from the games table
+             */
             let games = tbl_games.map( item => item.dataValues)
             req.game_with_players = []
             selected_player_counts(games).then( (games_arr) =>{
@@ -35,16 +43,18 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database games table on route /games 
- * @param {Object} res server response object with games from the games table
- * @returns {Object} data from the games table that represents games greater than or equal to todays date
+
+ * data from the games table that represents games greater than or equal to todays date
  * that the user is not already associated with
  */
 
 
 router.post('/user', (req, res) => {
+    /**
+     * get current date for retrieval of current games from the database
+     */
     var today = new Date().getTime()
+    
     sequelize.query(`SELECT * FROM \`games\` WHERE game_date >= ${today}`, { model: Games })
         .then( tbl_games => {
             let games = tbl_games.map( item => item.dataValues)
@@ -55,6 +65,10 @@ router.post('/user', (req, res) => {
                         req.game_with_players.push({...game, players: games_arr[idx + 1]})
                     }
                 })
+                /**
+                 * Joining the games together based on games the user is not apart of also returns 
+                 * object filled with joinable games for user
+                 */
                 sequelize.query(`SELECT * FROM \`games\` JOIN \`game_history\` ON games.id=game_history.game_id`, { type: sequelize.QueryTypes.SELECT })
                 .then( tbl_games => {
                     Game_History.findAll({ where: {fb_id: req.body.fb_id}}).then( user_games => {

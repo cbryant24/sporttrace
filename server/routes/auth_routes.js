@@ -3,9 +3,7 @@
 const passport = require('passport');
 
 /**
- * @function
- * @param {Object} app 
- * @returns routing provided by passport library, handle user login and logout requests from the client
+ * routing provided by passport library, handle user login and logout requests from the client
  */
 module.exports = (app) => {
     app.get('/signin/facebook',

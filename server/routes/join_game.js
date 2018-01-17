@@ -1,3 +1,5 @@
+/**@module join_game_routes */
+
 const models = require('../models');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,11 +12,8 @@ const Games = models.games;
 router.use(bodyParser.json())
 
 /**
- * @module join_game_routes
- * @function
- * @param {Object} req client request object to add user association to a game on the games_history table
- * @param {Object} res server response object with database response
- * @returns {Object} object with boolean on association creation with success or failure message
+ * object with boolean on association creation with success or failure message
+ * used for /find_game route
  */
 
 router.post('/', (req, res) => {

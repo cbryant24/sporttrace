@@ -10,13 +10,12 @@ let Games_History = models.game_history
 router.use(bodyParser.json())
 
 /**
- * @function 
- * @param {Object} req client request object to post a game from the user to the games and games history table
- * @param {Object} res server response object with boolean and message 
- * @returns {Object} with message and boolean indicating success or failure
+ *  returns object with message and boolean indicating success or failure used for /post_game route
  */
 router.post('/', function(req, res){
     const string_address = JSON.stringify(req.body.address_elements)
+
+    //sanitize data then add game info to sql database using sequelize library respond with message of succes or failure
     Games
     .findOrCreate({where: {
         game_date: req.body.game_date,

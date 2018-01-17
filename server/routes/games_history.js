@@ -15,11 +15,8 @@ const Games = models.games
 router.use(bodyParser.json())
 
 /**
- * @function 
- * @param {Object} req client request object to retrieve game association data from game_history table
- * @param {Object} res server response object with games from the games history table with number of players for each game
- * @returns {Object} data from the joined games and games_history table that represents games with player couts
- * @returns {Object} message for the client to display to user for success or failure
+ * returns object from the joined games and games_history table that represents games with player couts
+ * with message for the client to display to user for success or failure
  */
 
 router.post('/', (req, res) => {
@@ -42,10 +39,7 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object to update a game info
- * @param {Object} res server response object with update info 
- * @returns {Object} number of records in the database affected and message for client to display to user on success or failure
+ *  number of records in the database affected and message for client to display to user on success or failure
  */
 
 router.put('/update', (req, res) => {
@@ -78,10 +72,7 @@ router.put('/update', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object to delete user from a game
- * @param {Object} res server response object with database response
- * @returns {Object} number of records in the database affected and message for client to display to user on success or failure
+ * returns number of records in the database affected and message for client to display to user on success or failure
  */
 
 router.post('/leave', (req, res) => {
