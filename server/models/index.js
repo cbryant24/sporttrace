@@ -43,7 +43,7 @@ Object.keys(sports_finder_tbls).forEach(function(modelName) {
   });
 
 /**
- * add the sequelize connection to the sql database in the object
+ * add the sequelize connection to the sql database in the object to be exported
  */
 sports_finder_tbls.sequelize = sequelize;
 sports_finder_tbls.Sequelize = Sequelize;
