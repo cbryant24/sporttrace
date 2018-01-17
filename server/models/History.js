@@ -1,10 +1,7 @@
 /**@module history_table */
 
 /**
- * @function 
- * @param {object} sequelize 
- * @param {object} DataTypes 
- * @returns model of game_history sql database table
+ *  model of game_history sql database table
  */
 
 module.exports = (sequelize, DataTypes) => {

@@ -1,10 +1,7 @@
 /**@module user_table */
 
 /**
- * @function 
- * @param {object} sequelize 
- * @param {object} DataTypes 
- * @returns model of users sql database table
+ *  model of users sql database table
  */
 
 module.exports = (sequelize, dataTypes) => {
